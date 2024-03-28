@@ -10,7 +10,6 @@ import os
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy import create_engine, text
-from sqlalchemy.dialects import mysql
 from sqlalchemy.orm import sessionmaker
 from config import ROMM_DB_DRIVER
 from config.config_manager import SQLITE_DB_BASE_PATH, ConfigManager
@@ -32,8 +31,8 @@ SIZE_UNIT_TO_BYTES = {
 
 
 def migrate_to_mysql() -> None:
-    if ROMM_DB_DRIVER != "mariadb":
-        raise Exception("Version 3.0 requires MariaDB as database driver!")
+    if ROMM_DB_DRIVER != "mariadb" and ROMM_DB_DRIVER != "postgres":
+        raise Exception("Version 3.0 requires MariaDB or PostgresQL as database drivers!")
 
     # Skip if sqlite database is not mounted
     if not os.path.exists(f"{SQLITE_DB_BASE_PATH}/romm.db"):
@@ -149,13 +148,18 @@ def upgrade() -> None:
 
     # Drop the primary key (slug)
     with op.batch_alter_table("platforms", schema=None) as batch_op:
-        batch_op.drop_constraint(constraint_name="PRIMARY", type_="primary")
+        batch_op.drop_constraint(constraint_name="platforms_pkey", type_="primary")
         batch_op.drop_column("n_roms")
 
     # Switch to new id column as platform primary key
-    op.execute(
-        "ALTER TABLE platforms ADD COLUMN id INTEGER(11) NOT NULL AUTO_INCREMENT PRIMARY KEY"
-    )
+    if ROMM_DB_DRIVER == "mariadb":
+        op.execute(
+            "ALTER TABLE platforms ADD COLUMN id INTEGER(11) NOT NULL AUTO_INCREMENT PRIMARY KEY"
+        )
+    elif ROMM_DB_DRIVER == "postgres":
+        op.execute(
+            "ALTER TABLE platforms ADD COLUMN id SERIAL PRIMARY KEY"
+        )
 
     # Add new columns to roms table
     with op.batch_alter_table("roms", schema=None) as batch_op:
@@ -165,11 +169,11 @@ def upgrade() -> None:
         batch_op.add_column(
             sa.Column("file_size_bytes", sa.BigInteger(), nullable=False)
         )
-        batch_op.add_column(sa.Column("igdb_metadata", mysql.JSON(), nullable=True))
+        batch_op.add_column(sa.Column("igdb_metadata", sa.JSON(), nullable=True))
         batch_op.add_column(sa.Column("platform_id", sa.Integer(), nullable=False))
         batch_op.alter_column(
             "revision",
-            existing_type=mysql.VARCHAR(length=20),
+            existing_type=sa.VARCHAR(length=20),
             type_=sa.String(length=100),
             existing_nullable=True,
         )
@@ -222,21 +226,21 @@ def upgrade() -> None:
 def downgrade() -> None:
     with op.batch_alter_table("roms", schema=None) as batch_op:
         batch_op.add_column(
-            sa.Column("platform_slug", mysql.VARCHAR(length=50), nullable=False)
+            sa.Column("platform_slug", sa.VARCHAR(length=50), nullable=False)
         )
         batch_op.add_column(
-            sa.Column("p_igdb_id", mysql.VARCHAR(length=10), nullable=True)
+            sa.Column("p_igdb_id", sa.VARCHAR(length=10), nullable=True)
         )
         batch_op.add_column(
-            sa.Column("p_name", mysql.VARCHAR(length=150), nullable=True)
+            sa.Column("p_name", sa.VARCHAR(length=150), nullable=True)
         )
         batch_op.add_column(
-            sa.Column("p_sgdb_id", mysql.VARCHAR(length=10), nullable=True)
+            sa.Column("p_sgdb_id", sa.VARCHAR(length=10), nullable=True)
         )
         batch_op.add_column(
-            sa.Column("file_size_units", mysql.VARCHAR(length=10), nullable=False)
+            sa.Column("file_size_units", sa.VARCHAR(length=10), nullable=False)
         )
-        batch_op.add_column(sa.Column("file_size", mysql.FLOAT(), nullable=False))
+        batch_op.add_column(sa.Column("file_size", sa.FLOAT(), nullable=False))
         batch_op.drop_constraint("fk_platform_id_roms", type_="foreignkey")
 
     with op.batch_alter_table("roms", schema=None) as batch_op:
@@ -281,7 +285,7 @@ def downgrade() -> None:
         batch_op.alter_column(
             "revision",
             existing_type=sa.String(length=100),
-            type_=mysql.VARCHAR(length=20),
+            type_=sa.VARCHAR(length=20),
             existing_nullable=True,
         )
 
@@ -289,7 +293,7 @@ def downgrade() -> None:
         batch_op.add_column(
             sa.Column(
                 "n_roms",
-                mysql.INTEGER(display_width=11),
+                sa.INTEGER(display_width=11),
                 autoincrement=False,
                 nullable=True,
             )

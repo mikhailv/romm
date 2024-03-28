@@ -24,7 +24,8 @@ RUN apk add --upgrade \
         mariadb-connector-c \
         netcat-openbsd \
         python3 \
-        tzdata
+        tzdata \
+        postgresql-libs
 
 # Install additional build dependencies
 RUN apk add --upgrade \
@@ -40,7 +41,9 @@ RUN apk add --upgrade \
         dpkg-dev dpkg \
         linux-headers \
         make \
-        openssl-dev
+        openssl-dev \
+        musl-dev \
+        postgresql-dev
 
 # Create python venv to not clash with OS python packages
 RUN python3 -m venv /backend/
@@ -138,7 +141,9 @@ RUN apk del \
         dpkg-dev dpkg \
         linux-headers \
         make \
-        openssl-dev
+        openssl-dev \
+        musl-dev \
+        postgresql-dev
 
 # cleanup leftover files that are not needed at runtime
 RUN rm -r \

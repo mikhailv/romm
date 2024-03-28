@@ -25,7 +25,7 @@ cp env.template .env
 
 ```sh
 # https://mariadb.com/docs/skysql-previous-release/connect/programming-languages/c/install/#Installation_via_Package_Repository_(Linux): 
-sudo apt install libmariadb3 libmariadb-dev pipx
+sudo apt install libmariadb3 libmariadb-dev pipx libpq-dev
 ```
 
 ### - Install python dependencies

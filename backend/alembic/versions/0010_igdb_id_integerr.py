@@ -7,7 +7,6 @@ Create Date: 2023-09-14 09:57:13.487331
 """
 from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
 revision = "0010_igdb_id_integerr"
@@ -24,13 +23,13 @@ def upgrade() -> None:
 
         batch_op.alter_column(
             "igdb_id",
-            existing_type=mysql.VARCHAR(length=10),
+            existing_type=sa.VARCHAR(length=10),
             type_=sa.Integer(),
             existing_nullable=True,
         )
         batch_op.alter_column(
             "sgdb_id",
-            existing_type=mysql.VARCHAR(length=10),
+            existing_type=sa.VARCHAR(length=10),
             type_=sa.Integer(),
             existing_nullable=True,
         )
@@ -41,13 +40,13 @@ def upgrade() -> None:
 
         batch_op.alter_column(
             "igdb_id",
-            existing_type=mysql.VARCHAR(length=10),
+            existing_type=sa.VARCHAR(length=10),
             type_=sa.Integer(),
             existing_nullable=True,
         )
         batch_op.alter_column(
             "sgdb_id",
-            existing_type=mysql.VARCHAR(length=10),
+            existing_type=sa.VARCHAR(length=10),
             type_=sa.Integer(),
             existing_nullable=True,
         )
@@ -61,13 +60,13 @@ def downgrade() -> None:
         batch_op.alter_column(
             "sgdb_id",
             existing_type=sa.Integer(),
-            type_=mysql.VARCHAR(length=10),
+            type_=sa.VARCHAR(length=10),
             existing_nullable=True,
         )
         batch_op.alter_column(
             "igdb_id",
             existing_type=sa.Integer(),
-            type_=mysql.VARCHAR(length=10),
+            type_=sa.VARCHAR(length=10),
             existing_nullable=True,
         )
 
@@ -75,13 +74,13 @@ def downgrade() -> None:
         batch_op.alter_column(
             "sgdb_id",
             existing_type=sa.Integer(),
-            type_=mysql.VARCHAR(length=10),
+            type_=sa.VARCHAR(length=10),
             existing_nullable=True,
         )
         batch_op.alter_column(
             "igdb_id",
             existing_type=sa.Integer(),
-            type_=mysql.VARCHAR(length=10),
+            type_=sa.VARCHAR(length=10),
             existing_nullable=True,
         )
 

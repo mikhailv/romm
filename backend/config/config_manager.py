@@ -92,6 +92,18 @@ class ConfigManager:
                 f"mariadb+mariadbconnector://{DB_USER}:%s@{DB_HOST}:{DB_PORT}/{DB_NAME}"
                 % quote_plus(DB_PASSWD)
             )
+        
+        elif ROMM_DB_DRIVER == "postgres":
+            if not DB_USER or not DB_PASSWD:
+                log.critical(
+                    "Missing database credentials, check your environment variables!"
+                )
+                sys.exit(3)
+
+            return (
+                f"postgresql+psycopg2://{DB_USER}:%s@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+                % quote_plus(DB_PASSWD)
+            )
 
         # DEPRECATED
         if ROMM_DB_DRIVER == "sqlite":
