@@ -1,14 +1,12 @@
 <script setup lang="ts">
+import { useNuxtApp } from "#app";
 import identityApi from "@/services/api/identity";
 import storeHeartbeat from "@/stores/heartbeat";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
-import { inject, ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref } from "vue";
 
 // Props
 const heartbeatStore = storeHeartbeat();
-// const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const router = useRouter();
 const username = ref("");
 const password = ref("");
@@ -20,7 +18,7 @@ async function login() {
   await identityApi
     .login(username.value, password.value)
     .then(() => {
-      const next = (router.currentRoute.value.query?.next || "/").toString();
+      const next = (router.currentRoute.value.query?.next || "/home").toString();
       router.push(next);
     })
     .catch(({ response, message }) => {
@@ -30,11 +28,11 @@ async function login() {
         message ||
         response.statusText;
 
-      // emitter?.emit("snackbarShow", {
-      //   msg: `Unable to login: ${errorMessage}`,
-      //   icon: "mdi-close-circle",
-      //   color: "red",
-      // });
+      emitter?.emit("snackbarShow", {
+        msg: `Unable to login: ${errorMessage}`,
+        icon: "mdi-close-circle",
+        color: "red",
+      });
       console.error(
         `[${response.status} ${response.statusText}] ${errorMessage}`
       );

@@ -1,5 +1,5 @@
 import { fileURLToPath } from "url";
-import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
@@ -9,6 +9,9 @@ export default defineNuxtConfig({
   css: [
     "vuetify/lib/styles/main.sass",
     "@mdi/font/css/materialdesignicons.min.css",
+    "@/assets/styles/fonts.css",
+    "@/assets/styles/scrollbar.css",
+    "@/assets/styles/common.css",
   ],
   build: {
     target: "esnext",
@@ -16,6 +19,7 @@ export default defineNuxtConfig({
   },
   plugins: [
     "~/plugins/api.client.ts",
+    "~/plugins/emitter.client.ts",
     "~/plugins/vuetify.client.ts",
     "~/plugins/webfontloader.client.ts",
   ],
