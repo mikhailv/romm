@@ -115,12 +115,12 @@ onMounted(() => {
           :lazy-src="
             romsStore.isSimpleRom(rom)
               ? !rom.igdb_id && !rom.moby_id && !rom.has_cover
-                ? `~/assets/images/default/cover/big_${theme.global.name.value}_unmatched.png`
+                ? `/assets/images/default/cover/big_${theme.global.name.value}_unmatched.png`
                 : (rom.igdb_id || rom.moby_id) && !rom.has_cover
-                ? `~/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
-                : `~/assets/romm/resources/${rom.path_cover_s}?ts=${rom.updated_at}`
+                ? `/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
+                : `/assets/romm/resources/${rom.path_cover_s}?ts=${rom.updated_at}`
               : !rom.igdb_url_cover && !rom.moby_url_cover
-              ? `~/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
+              ? `/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
               : rom.igdb_url_cover
               ? rom.igdb_url_cover
               : rom.moby_url_cover

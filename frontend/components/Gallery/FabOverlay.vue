@@ -40,14 +40,14 @@ function scrollToTop() {
 async function onScan() {
   scanningStore.set(true);
   emitter?.emit("snackbarShow", {
-    msg: `Scanning ${route.params.platform}...`,
+    msg: `Scanning ${route.params.id}...`,
     icon: "mdi-loading mdi-spin",
     color: "romm-accent-1",
   });
 
   if (!socket.connected) socket.connect();
   socket.emit("scan", {
-    platforms: [route.params.platform],
+    platforms: [route.params.id],
     roms: romsStore.selectedRoms,
     type: "partial",
     apis: heartbeat.getMetadataOptions().map((s) => s.value),

@@ -30,8 +30,8 @@ const downloadStore = storeDownload();
         size="x-small"
         @click="
           $router.push({
-            name: 'play',
-            params: { rom: rom?.id },
+            name: 'index-play-id',
+            params: { id: rom?.id },
           })
         "
         icon="mdi-play"

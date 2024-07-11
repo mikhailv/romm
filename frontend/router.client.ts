@@ -80,7 +80,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   const heartbeat = storeHeartbeat();
   if (to.name == "setup" && !heartbeat.value.SHOW_SETUP_WIZARD) {
-    router.push({ name: "dashboard" });
+    router.push({ name: "index-dashboard" });
   }
   // TODO: check permission for pages. Ex: view user can access to /scan view
 });

@@ -4,7 +4,7 @@ import { transformAssetUrls } from "vite-plugin-vuetify";
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   ssr: false,
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: ["@pinia/nuxt"],
   css: [
     "vuetify/lib/styles/main.sass",

@@ -195,7 +195,7 @@ function resetGallery() {
 }
 
 onMounted(async () => {
-  const routePlatformId = Number(route.params.platform);
+  const routePlatformId = Number(route.params.id);
   const routePlatform = platforms.get(routePlatformId);
 
   if (!routePlatform) {
@@ -229,7 +229,7 @@ onBeforeRouteUpdate(async (to, from) => {
 
   resetGallery();
 
-  const routePlatformId = Number(to.params.platform);
+  const routePlatformId = Number(to.params.id);
   const routePlatform = platforms.get(routePlatformId);
   if (!routePlatform) {
     const { data } = await platformApi.getPlatform(routePlatformId);

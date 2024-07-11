@@ -99,7 +99,7 @@ onBeforeMount(async () => {
   <new-version />
   <NuxtPage />
 
-  <!-- <delete-platform-dialog />
+  <delete-platform-dialog />
   <create-collection-dialog />
   <edit-collection-dialog />
   <add-roms-to-collection-dialog />
@@ -121,5 +121,5 @@ onBeforeMount(async () => {
   <create-user-dialog />
   <edit-user-dialog />
   <delete-user-dialog />
-  <loading-view /> -->
+  <loading-view />
 </template>

@@ -195,7 +195,7 @@ function resetGallery() {
 }
 
 onMounted(async () => {
-  const routeCollectionId = Number(route.params.collection);
+  const routeCollectionId = Number(route.params.id);
   const routeCollection = collectionsStore.get(routeCollectionId);
 
   if (!routeCollection) {
@@ -228,7 +228,7 @@ onBeforeRouteUpdate(async (to, from) => {
 
   resetGallery();
 
-  const routeCollectionId = Number(to.params.collection);
+  const routeCollectionId = Number(to.params.id);
   const routeCollection = collectionsStore.get(routeCollectionId);
   if (!routeCollection) {
     const { data } = await collectionApi.getCollection(routeCollectionId);

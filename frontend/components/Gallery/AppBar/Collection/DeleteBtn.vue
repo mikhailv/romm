@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { type Collection } from "@/stores/collections";
 import storeRoms from "@/stores/roms";
-
-
-import { inject } from "vue";
 import { useRoute } from "vue-router";
 
 // Props
@@ -14,7 +11,7 @@ const roms = storeRoms();
 
 <template>
   <v-list-item
-    v-if="route.params.collection"
+    v-if="route.params.id"
     class="py-4 pr-5 text-romm-red"
     @click="
       emitter?.emit(

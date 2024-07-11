@@ -2,9 +2,7 @@
 import type { SearchCoverSchema } from "@/__generated__";
 import RDialog from "@/components/common/RDialog.vue";
 import sgdbApi from "@/services/api/sgdb";
-
-
-import { inject, onBeforeUnmount, ref } from "vue";
+import { onBeforeUnmount, ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props

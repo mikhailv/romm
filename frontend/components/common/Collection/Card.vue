@@ -33,7 +33,7 @@ const theme = useTheme();
       :elevation="isHovering && transformScale ? 20 : 3"
       :to="
         withLink && collection
-          ? { name: 'collection', params: { collection: collection.id } }
+          ? { name: 'index-collection-id', params: { id: collection.id } }
           : ''
       "
     >

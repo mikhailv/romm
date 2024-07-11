@@ -35,5 +35,5 @@ onMounted(async () => {
   <stats />
   <recently-added v-if="recentRoms.length > 0" />
   <platforms v-if="filledPlatforms.length > 0" />
-  <!-- <collections v-if="allCollections.length > 0" /> -->
+  <collections v-if="allCollections.length > 0" />
 </template>

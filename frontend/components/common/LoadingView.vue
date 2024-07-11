@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { ref, inject } from "vue";
+import { ref } from "vue";
 
-
-
+// Props
 const show = ref(false);
 const scrim = ref(false);
-
 const emitter = useNuxtApp().$emitter;
 emitter?.on("showLoadingDialog", (args) => {
   show.value = args.loading;

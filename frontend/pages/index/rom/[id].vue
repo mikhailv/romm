@@ -42,7 +42,7 @@ const { currentRom } = storeToRefs(romsStore);
 // Functions
 async function fetchDetails() {
   await romApi
-    .getRom({ romId: parseInt(route.params.rom as string) })
+    .getRom({ romId: parseInt(route.params.id as string) })
     .then(({ data }) => {
       currentRom.value = data;
     })
@@ -71,7 +71,7 @@ async function fetchDetails() {
 
 onBeforeMount(async () => {
   emitter?.emit("showLoadingDialog", { loading: true, scrim: false });
-  if (currentRom.value?.id == parseInt(route.params.rom as string)) {
+  if (currentRom.value?.id == parseInt(route.params.id as string)) {
     emitter?.emit("showLoadingDialog", { loading: false, scrim: false });
   } else {
     await fetchDetails();

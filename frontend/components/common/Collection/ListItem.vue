@@ -9,7 +9,7 @@ defineProps<{ collection: Collection }>();
 <template>
   <v-list-item
     :key="collection.id"
-    :to="{ name: 'collection', params: { collection: collection.id } }"
+    :to="{ name: 'index-collection-id', params: { id: collection.id } }"
     :value="collection.name"
   >
     <template #prepend>

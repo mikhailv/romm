@@ -40,7 +40,7 @@ function onFullScreenChange() {
 
 onMounted(async () => {
   const romResponse = await romApi.getRom({
-    romId: parseInt(route.params.rom as string),
+    romId: parseInt(route.params.id as string),
   });
   rom.value = romResponse.data;
   supportedCores.value = [...getSupportedCores(rom.value.platform_slug)];

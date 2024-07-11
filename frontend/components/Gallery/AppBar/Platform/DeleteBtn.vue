@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { type Platform } from "@/stores/platforms";
 import storeRoms from "@/stores/roms";
-
-
-import { inject } from "vue";
 import { useRoute } from "vue-router";
 
 // Props
@@ -14,7 +11,7 @@ const route = useRoute();
 
 <template>
   <v-list-item
-    v-if="route.params.platform"
+    v-if="route.params.id"
     class="py-4 pr-5 text-romm-red"
     @click="
       emitter?.emit(

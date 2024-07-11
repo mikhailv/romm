@@ -4,9 +4,7 @@ import PlatformIcon from "@/components/common/Platform/Icon.vue";
 import RDialog from "@/components/common/RDialog.vue";
 import romApi from "@/services/api/rom";
 import type { SimpleRom } from "@/stores/roms";
-
-
-import { inject, onBeforeUnmount, ref } from "vue";
+import { onBeforeUnmount, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
