@@ -77,8 +77,8 @@ async function copyDownloadLink(rom: DetailedRom) {
       class="flex-grow-1"
       @click="
         $router.push({
-          name: 'play',
-          params: { rom: rom?.id },
+          name: 'index-play-id',
+          params: { id: rom?.id },
         })
       "
     >

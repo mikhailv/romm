@@ -67,7 +67,7 @@ async function removeRomsFromCollection() {
       emitter?.emit("showLoadingDialog", { loading: false, scrim: false });
       romsStore.resetSelection();
       if (selectedCollection.value?.roms.length == 0) {
-        router.push({ name: "dashboard" });
+        router.push({ name: "index-dashboard" });
       }
       closeDialog();
     });

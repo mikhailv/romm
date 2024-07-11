@@ -317,8 +317,8 @@ onMounted(async () => {
             prepend-icon="mdi-arrow-left"
             @click="
               $router.push({
-                name: 'rom',
-                params: { rom: rom?.id },
+                name: 'index-rom-id',
+                params: { id: rom?.id },
               })
             "
             >Back to game details
@@ -332,8 +332,8 @@ onMounted(async () => {
             prepend-icon="mdi-arrow-left"
             @click="
               $router.push({
-                name: 'platform',
-                params: { platform: rom?.platform_id },
+                name: 'index-platform-id',
+                params: { id: rom?.platform_id },
               })
             "
             >Back to gallery

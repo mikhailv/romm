@@ -26,7 +26,7 @@ async function logout() {
       color: "green",
     });
   });
-  await router.push({ name: "login" });
+  await router.push({ name: "index-login" });
   auth.setUser(null);
 }
 </script>

@@ -21,8 +21,8 @@ function formatItem(rom: DetailedRom) {
 
 function updateVersion() {
   router.push({
-    name: "rom",
-    params: { rom: version.value },
+    name: "index-rom-id",
+    params: { id: version.value },
   });
 }
 </script>

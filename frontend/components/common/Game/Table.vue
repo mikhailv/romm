@@ -76,7 +76,7 @@ const HEADERS = [
 
 // Functions
 function rowClick(_: Event, row: { item: SimpleRom }) {
-  router.push({ name: "rom", params: { rom: row.item.id } });
+  router.push({ name: "index-rom-id", params: { id: row.item.id } });
 }
 
 function updateDataTablePages() {
@@ -179,8 +179,8 @@ onMounted(() => {
           size="small"
           @click.stop="
             $router.push({
-              name: 'play',
-              params: { rom: item?.id },
+              name: 'index-play-id',
+              params: { id: item?.id },
             })
           "
         >

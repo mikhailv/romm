@@ -56,8 +56,8 @@ async function deleteRoms() {
       closeDialog();
       if (route.name == "rom") {
         router.push({
-          name: "platform",
-          params: { platform: platformId.value },
+          name: "index-platform-id",
+          params: { id: platformId.value },
         });
       }
     })

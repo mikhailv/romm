@@ -26,7 +26,7 @@ onBeforeMount(async () => {
     .then(async ({ data: data }) => {
       heartbeat.set(data);
       if (heartbeat.value.SHOW_SETUP_WIZARD) {
-        router.push({ name: "setup" });
+        router.push({ name: "index-setup" });
       } else {
         await userApi
           .fetchCurrentUser()
@@ -48,7 +48,7 @@ onBeforeMount(async () => {
         Cookies.remove(cookie); // Remove each cookie
       }
       router.push({
-        name: "login",
+        name: "index-login",
       });
     });
 });

@@ -45,7 +45,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           Cookies.remove(cookie); // Remove each cookie
         }
         router.push({
-          name: "login",
+          name: "index-login",
           query: { next: router.currentRoute.value.path },
         });
       }
