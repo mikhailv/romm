@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import router from "@/plugins/router.client.js";
 import userApi from "@/services/api/user";
 import storeHeartbeat from "@/stores/heartbeat";
 import type { Events } from "@/types/emitter";
 import type { Emitter } from "mitt";
-import { useRoute } from "vue-router";
 import { computed, inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
 const { xs, smAndDown } = useDisplay();
-const emitter = inject<Emitter<Events>>("emitter");
+// const emitter = inject<Emitter<Events>>("emitter");
 const heartbeat = storeHeartbeat();
-const route = useRoute()
 const visiblePassword = ref(false);
 // Use a computed property to reactively update metadataOptions based on heartbeat
 const metadataOptions = computed(() => [
@@ -48,6 +45,7 @@ const filledAdminUser = computed(
 );
 const isFirstStep = computed(() => step.value == 1);
 const isLastStep = computed(() => step.value == 2);
+const router = useRouter()
 
 // Functions
 async function finishWizard() {
@@ -58,13 +56,13 @@ async function finishWizard() {
       router.push({ name: "login" });
     })
     .catch(({ response, message }) => {
-      emitter?.emit("snackbarShow", {
-        msg: `Unable to create user: ${
-          response?.data?.detail || response?.statusText || message
-        }`,
-        icon: "mdi-close-circle",
-        color: "red",
-      });
+      // emitter?.emit("snackbarShow", {
+      //   msg: `Unable to create user: ${
+      //     response?.data?.detail || response?.statusText || message
+      //   }`,
+      //   icon: "mdi-close-circle",
+      //   color: "red",
+      // });
     });
 }
 </script>
@@ -74,7 +72,7 @@ async function finishWizard() {
 
   <v-container class="fill-height justify-center">
     <v-card class="translucent-dark px-3" elevation="0">
-      <v-img src="/assets/isotipo.svg" class="mx-auto mt-4" width="70" />
+      <v-img src="/assets/images/isotipo.svg" class="mx-auto mt-4" width="70" />
       <v-stepper
         :mobile="smAndDown"
         class="bg-transparent"
@@ -214,7 +212,7 @@ async function finishWizard() {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("/assets/login_bg.png") center center;
+  background: url("/assets/images/login_bg.png") center center;
   background-size: cover;
 }
 #sources {

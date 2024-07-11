@@ -8,7 +8,7 @@ import { useRouter } from "vue-router";
 
 // Props
 const heartbeatStore = storeHeartbeat();
-const emitter = inject<Emitter<Events>>("emitter");
+// const emitter = inject<Emitter<Events>>("emitter");
 const router = useRouter();
 const username = ref("");
 const password = ref("");
@@ -30,11 +30,11 @@ async function login() {
         message ||
         response.statusText;
 
-      emitter?.emit("snackbarShow", {
-        msg: `Unable to login: ${errorMessage}`,
-        icon: "mdi-close-circle",
-        color: "red",
-      });
+      // emitter?.emit("snackbarShow", {
+      //   msg: `Unable to login: ${errorMessage}`,
+      //   icon: "mdi-close-circle",
+      //   color: "red",
+      // });
       console.error(
         `[${response.status} ${response.statusText}] ${errorMessage}`
       );
