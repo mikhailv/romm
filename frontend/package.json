@@ -48,6 +48,7 @@
     "socket.io-client": "^4.7.5",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
+    "vuetify": "^3.6.5",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
@@ -74,8 +75,7 @@
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.11.0",
     "vite-plugin-vuetify": "^2.0.3",
-    "vue-tsc": "^2.0.0",
-    "vuetify": "^3.6.13-3.7.0-beta.0.0"
+    "vue-tsc": "^2.0.0"
   },
   "engines": {
     "node": "18"
