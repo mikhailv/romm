@@ -15,10 +15,10 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["/*"]
     },
-    "types": ["@nuxt/types", "./src/plugins/pinia.d.ts"],
+    "types": ["@nuxt/types", "./types/pinia.d.ts"],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": ["**/*.ts", "**/*.vue", "../bk-app.vue"]
+  "include": ["**/*.ts", "**/*.vue"]
 }

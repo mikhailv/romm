@@ -52,7 +52,7 @@ async function login() {
     <v-card class="translucent-dark py-8 px-5" width="500">
       <v-row no-gutters>
         <v-col>
-          <v-img src="/assets/isotipo.svg" class="mx-auto" width="150" />
+          <v-img src="/assets/images/isotipo.svg" class="mx-auto" width="150" />
 
           <v-row class="text-white justify-center mt-2" no-gutters>
             <v-col cols="10" md="8">
@@ -123,7 +123,7 @@ async function login() {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("/assets/login_bg.png") center center;
+  background: url("/assets/images/login_bg.png") center center;
   background-size: cover;
 }
 #version {

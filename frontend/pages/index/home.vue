@@ -46,11 +46,11 @@ const navigationStore = storeNavigation();
 const auth = storeAuth();
 const platformsStore = storePlatforms();
 const collectionsStore = storeCollections();
-const emitter = inject<Emitter<Events>>("emitter");
-emitter?.on("refreshDrawer", async () => {
-  const { data: platformData } = await platformApi.getPlatforms();
-  platformsStore.set(platformData);
-});
+// const emitter = inject<Emitter<Events>>("emitter");
+// emitter?.on("refreshDrawer", async () => {
+//   const { data: platformData } = await platformApi.getPlatforms();
+//   platformsStore.set(platformData);
+// });
 
 // Functions
 onBeforeMount(async () => {
@@ -99,7 +99,7 @@ onBeforeMount(async () => {
   <settings-drawer />
 
   <new-version />
-  <router-view />
+  <NuxtPage />
 
   <delete-platform-dialog />
   <create-collection-dialog />
