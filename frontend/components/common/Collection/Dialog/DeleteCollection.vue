@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import RAvatar from "@/components/common/Collection/RAvatar.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import collectionApi from "@/services/api/collection";
 import storeCollections, { type Collection } from "@/stores/collections";
-
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
+// Props
 const router = useRouter();
 const { lgAndUp } = useDisplay();
 const collectionsStore = storeCollections();
@@ -20,6 +17,7 @@ emitter?.on("showDeleteCollectionDialog", (collectionToDelete) => {
   show.value = true;
 });
 
+// Functions
 async function deleteCollection() {
   if (!collection.value) return;
 
@@ -59,7 +57,7 @@ function closeDialog() {
 }
 </script>
 <template>
-  <r-dialog
+  <common-r-dialog
     v-if="collection"
     @close="closeDialog"
     v-model="show"
@@ -70,7 +68,7 @@ function closeDialog() {
     <template #content>
       <v-row class="justify-center align-center pa-2" no-gutters>
         <span>Removing collection</span>
-        <r-avatar class="ml-1" :collection="collection" />
+        <common-collection-r-avatar class="ml-1" :collection="collection" />
         <span class="ml-1 text-romm-accent-1">{{ collection.name }}</span>
         <span class="ml-1">from RomM. Do you confirm?</span>
       </v-row>
@@ -85,5 +83,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

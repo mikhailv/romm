@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import configApi from "@/services/api/config";
 import storeConfig from "@/stores/config";
-
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -44,7 +40,7 @@ function closeDialog() {
 }
 </script>
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
@@ -53,7 +49,7 @@ function closeDialog() {
     <template #content>
       <v-row class="justify-center pa-2 align-center" no-gutters>
         <span class="mr-1">Deleting platform binding</span>
-        <platform-icon
+        <common-platform-icon
           class="mx-2"
           :key="platformBindingSlugToDelete"
           :slug="platformBindingSlugToDelete"
@@ -74,14 +70,11 @@ function closeDialog() {
       <v-row class="justify-center mb-2" no-gutters>
         <v-btn-group divided density="compact">
           <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
-          <v-btn
-            class="bg-terciary text-romm-red"
-            @click="deleteBindPlatform"
-          >
+          <v-btn class="bg-terciary text-romm-red" @click="deleteBindPlatform">
             Confirm
           </v-btn>
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

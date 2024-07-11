@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import configApi from "@/services/api/config";
 import platformApi from "@/services/api/platform";
 import storeConfig from "@/stores/config";
-import { type Platform } from "@/stores/platforms";
-
 import storeHeartbeat from "@/stores/heartbeat";
-
-import { inject, ref } from "vue";
+import { type Platform } from "@/stores/platforms";
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -81,7 +77,7 @@ function closeDialog() {
 }
 </script>
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     :width="mdAndUp ? '45vw' : '95vw'"
@@ -132,7 +128,7 @@ function closeDialog() {
                 :title="item.raw.name ?? ''"
               >
                 <template #prepend>
-                  <platform-icon
+                  <common-common-common-common-platform-icon
                     :key="item.raw.slug"
                     :size="35"
                     :slug="item.raw.slug"
@@ -143,7 +139,7 @@ function closeDialog() {
             <template #selection="{ item }">
               <v-list-item class="px-0" :title="item.raw.name ?? ''">
                 <template #prepend>
-                  <platform-icon
+                  <common-common-common-common-platform-icon
                     :size="35"
                     :key="item.raw.slug"
                     :slug="item.raw.slug"
@@ -174,5 +170,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

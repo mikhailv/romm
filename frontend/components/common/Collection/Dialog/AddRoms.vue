@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import RAvatarCollection from "@/components/common/Collection/RAvatar.vue";
-import RAvatarRom from "@/components/common/Game/RAvatar.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import type { UpdatedCollection } from "@/services/api/collection";
 import collectionApi from "@/services/api/collection";
 import storeCollections from "@/stores/collections";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-
-
-import { inject, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -83,7 +78,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-bookmark-plus-outline"
@@ -118,7 +113,7 @@ function closeDialog() {
             :subtitle="item.raw.description"
           >
             <template #prepend>
-              <r-avatar-collection :collection="item.raw" />
+              <common-collection-r-avatar :collection="item.raw" />
             </template>
             <template #append>
               <v-chip class="ml-2" size="x-small" label>
@@ -143,7 +138,7 @@ function closeDialog() {
         <template #item.name="{ item }">
           <v-list-item class="px-0">
             <template #prepend>
-              <r-avatar-rom :rom="item" />
+              <common-game-r-avatar :rom="item" />
             </template>
             <v-row no-gutters
               ><v-col>{{ item.name }}</v-col></v-row
@@ -194,5 +189,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

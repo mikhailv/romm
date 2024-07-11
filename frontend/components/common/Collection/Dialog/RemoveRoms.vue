@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import RAvatarRom from "@/components/common/Game/RAvatar.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import collectionApi from "@/services/api/collection";
 import type { Collection } from "@/stores/collections";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
 
-
-import { inject, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
-const router = useRouter()
+const router = useRouter();
 const { mdAndUp } = useDisplay();
 const show = ref(false);
 const romsStore = storeRoms();
@@ -89,7 +86,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-bookmark-remove-outline"
@@ -121,7 +118,7 @@ function closeDialog() {
         <template #item.name="{ item }">
           <v-list-item class="px-0">
             <template #prepend>
-              <r-avatar-rom :rom="item" />
+              <common-game-r-avatar :rom="item" />
             </template>
             <v-row no-gutters
               ><v-col>{{ item.name }}</v-col></v-row
@@ -171,5 +168,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

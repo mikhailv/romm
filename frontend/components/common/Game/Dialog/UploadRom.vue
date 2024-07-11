@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import platformApi from "@/services/api/platform";
 import romApi from "@/services/api/rom";
 import socket from "@/services/socket";
@@ -10,7 +8,7 @@ import storeScanning from "@/stores/scanning";
 
 import { formatBytes } from "@/utils";
 
-import { inject, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -170,7 +168,7 @@ watch(itemsPerPage, async () => {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-upload"
@@ -197,7 +195,7 @@ watch(itemsPerPage, async () => {
                 :title="item.raw.name ?? ''"
               >
                 <template #prepend>
-                  <platform-icon
+                  <common-platform-icon
                     :key="item.raw.slug"
                     :size="35"
                     :slug="item.raw.slug"
@@ -208,7 +206,7 @@ watch(itemsPerPage, async () => {
             <template #selection="{ item }">
               <v-list-item class="px-0" :title="item.raw.name ?? ''">
                 <template #prepend>
-                  <platform-icon
+                  <common-platform-icon
                     :size="35"
                     :key="item.raw.slug"
                     :slug="item.raw.slug"
@@ -327,5 +325,5 @@ watch(itemsPerPage, async () => {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

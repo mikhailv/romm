@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import GameCard from "@/components/common/Game/Card/Base.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import romApi, { type UpdateRom } from "@/services/api/rom";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
@@ -114,7 +112,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     v-if="rom"
     @close="closeDialog"
     v-model="show"
@@ -171,11 +169,13 @@ function closeDialog() {
         <v-col>
           <v-row class="pa-2 justify-center" no-gutters>
             <v-col class="cover">
-              <game-card :rom="rom" :src="imagePreviewUrl">
+              <common-game-card-base :rom="rom" :src="imagePreviewUrl">
                 <template #append-inner-right>
                   <v-btn-group rounded="0" divided density="compact">
                     <v-btn
-                      :disabled="!heartbeat.value.METADATA_SOURCES?.STEAMGRIDDB_ENABLED"
+                      :disabled="
+                        !heartbeat.value.METADATA_SOURCES?.STEAMGRIDDB_ENABLED
+                      "
                       size="small"
                       class="translucent-dark"
                       @click="
@@ -213,7 +213,7 @@ function closeDialog() {
                     </v-btn>
                   </v-btn-group>
                 </template>
-              </game-card>
+              </common-game-card-base>
             </v-col>
           </v-row>
         </v-col>
@@ -229,7 +229,7 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>
 <style scoped>
 .cover {

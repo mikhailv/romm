@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import RDialog from "@/components/common/RDialog.vue";
 import userApi from "@/services/api/user";
 import storeUsers from "@/stores/users";
 import { ref } from "vue";
@@ -44,7 +43,7 @@ function closeDialog() {
 }
 </script>
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-account"
@@ -110,5 +109,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

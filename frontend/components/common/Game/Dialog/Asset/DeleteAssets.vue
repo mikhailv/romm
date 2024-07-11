@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import type { SaveSchema, StateSchema } from "@/__generated__";
-import RDialog from "@/components/common/RDialog.vue";
 import saveApi from "@/services/api/save";
 import stateApi from "@/services/api/state";
 import storeRoms, { type DetailedRom } from "@/stores/roms";
-
 import { formatBytes } from "@/utils";
-
-import { inject, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -106,7 +103,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
@@ -147,7 +144,8 @@ function closeDialog() {
           <v-list-item class="px-0">
             <v-row no-gutters>
               <v-col>
-                {{ item.file_name }}<v-chip
+                {{ item.file_name
+                }}<v-chip
                   v-if="assetsToDeleteFromFs.includes(item.id) && smAndUp"
                   label
                   size="x-small"
@@ -255,5 +253,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import RDialog from "@/components/common/RDialog.vue";
-
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -23,7 +20,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-content-copy"
@@ -38,6 +35,6 @@ function closeDialog() {
       <v-row class="justify-center text-center pa-2 mb-3" no-gutters>
         <v-list-item class="bg-terciary">{{ link }}</v-list-item>
       </v-row>
-    </template></r-dialog
+    </template></common-r-dialog
   >
 </template>

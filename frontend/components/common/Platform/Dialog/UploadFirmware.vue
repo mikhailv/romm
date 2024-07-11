@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import RDialog from "@/components/common/RDialog.vue";
 import firmwareApi from "@/services/api/firmware";
 import storeRoms from "@/stores/roms";
-
 import { formatBytes } from "@/utils";
-
 import { storeToRefs } from "pinia";
-import { inject, nextTick, ref, watch } from "vue";
+import { nextTick, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -102,7 +99,7 @@ watch(itemsPerPage, async () => {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-memory"
@@ -204,5 +201,5 @@ watch(itemsPerPage, async () => {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

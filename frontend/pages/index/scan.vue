@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import RAvatar from "@/components/common/Game/RAvatar.vue";
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
 import socket from "@/services/socket";
 import storeHeartbeat from "@/stores/heartbeat";
 import storePlatforms, { type Platform } from "@/stores/platforms";
@@ -122,7 +120,7 @@ async function stopScan() {
             :subtitle="item.raw.fs_slug"
           >
             <template #prepend>
-              <platform-icon
+              <common-platform-icon
                 :key="item.raw.slug"
                 :size="35"
                 :slug="item.raw.slug"
@@ -137,7 +135,7 @@ async function stopScan() {
         </template>
         <template #chip="{ item }">
           <v-chip>
-            <platform-icon
+            <common-platform-icon
               :key="item.raw.slug"
               :slug="item.raw.slug"
               :size="20"
@@ -309,7 +307,7 @@ async function stopScan() {
             <v-list-item class="pa-0">
               <template #prepend>
                 <v-avatar :rounded="0" size="40">
-                  <platform-icon :key="platform.slug" :slug="platform.slug" />
+                  <common-platform-icon :key="platform.slug" :slug="platform.slug" />
                 </v-avatar>
               </template>
               {{ platform.name }}
@@ -332,7 +330,7 @@ async function stopScan() {
               :to="{ name: 'rom', params: { rom: rom.id } }"
             >
               <template #prepend>
-                <r-avatar :rom="rom" />
+                <common-game-r-avatar :rom="rom" />
               </template>
               <v-row no-gutters>
                 <span

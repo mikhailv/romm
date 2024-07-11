@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import RDialog from "@/components/common/RDialog.vue";
 import platformApi from "@/services/api/platform";
 import storePlatforms, { type Platform } from "@/stores/platforms";
-
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
 
+// Props
 const router = useRouter();
 const { lgAndUp } = useDisplay();
 const platformsStore = storePlatforms();
@@ -20,6 +17,7 @@ emitter?.on("showDeletePlatformDialog", (platformToDelete) => {
   show.value = true;
 });
 
+// Functions
 async function deletePlatform() {
   if (!platform.value) return;
 
@@ -55,7 +53,7 @@ function closeDialog() {
 }
 </script>
 <template>
-  <r-dialog
+  <common-r-dialog
     v-if="platform"
     @close="closeDialog"
     v-model="show"
@@ -66,7 +64,7 @@ function closeDialog() {
     <template #content>
       <v-row class="justify-center align-center pa-2" no-gutters>
         <span class="mr-1">Removing platform</span>
-        <platform-icon :slug="platform.slug" />
+        <common-common-platform-icon :slug="platform.slug" />
         <span class="ml-1"
           >{{ platform.name }} - [<span class="text-romm-accent-1">{{
             platform.fs_slug
@@ -79,17 +77,12 @@ function closeDialog() {
     <template #append>
       <v-row class="justify-center pa-2" no-gutters>
         <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog" >
-            Cancel
-          </v-btn>
-          <v-btn
-            class="bg-terciary text-romm-red"
-            @click="deletePlatform"
-          >
+          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+          <v-btn class="bg-terciary text-romm-red" @click="deletePlatform">
             Confirm
           </v-btn>
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

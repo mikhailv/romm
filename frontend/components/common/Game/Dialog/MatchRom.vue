@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import type { SearchRomSchema } from "@/__generated__";
-import GameCard from "@/components/common/Game/Card/Base.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import romApi from "@/services/api/rom";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-
-
-import { inject, onBeforeUnmount, ref } from "vue";
+import { onBeforeUnmount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
 
@@ -110,7 +106,7 @@ async function searchRom() {
 function showSources(matchedRom: SearchRomSchema) {
   if (!rom.value) return;
 
-  var cardContent = document.getElementById("r-dialog-content");
+  var cardContent = document.getElementById("common-r-dialog-content");
   if (cardContent) {
     cardContent.scrollTop = 0;
   }
@@ -205,7 +201,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-search-web"
@@ -266,7 +262,8 @@ onBeforeUnmount(() => {
             size="30"
             rounded="1"
           >
-            <v-img src="/assets/images/scrappers/moby.png" /></v-avatar></template
+            <v-img
+              src="/assets/images/scrappers/moby.png" /></v-avatar></template
       ></v-tooltip>
     </template>
     <template #toolbar>
@@ -319,7 +316,7 @@ onBeforeUnmount(() => {
           v-show="!searching"
           v-for="matchedRom in filteredMatchedRoms"
         >
-          <game-card
+          <common-game-card-base
             @click="showSources(matchedRom)"
             :rom="matchedRom"
             title-on-footer
@@ -481,7 +478,7 @@ onBeforeUnmount(() => {
         </v-col>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>
 
 <style scoped>

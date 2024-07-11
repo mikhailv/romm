@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { SearchCoverSchema } from "@/__generated__";
-import RDialog from "@/components/common/RDialog.vue";
 import sgdbApi from "@/services/api/sgdb";
 import { onBeforeUnmount, ref } from "vue";
 import { useDisplay } from "vuetify";
@@ -100,7 +99,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-image-search-outline"
@@ -210,5 +209,5 @@ onBeforeUnmount(() => {
         </v-expansion-panel>
       </v-expansion-panels>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Notification from "@/components/common/Notification.vue";
 import { api } from "@/plugins/api.client.ts";
 import userApi from "@/services/api/user";
 import storeAuth from "@/stores/auth";
@@ -26,7 +25,7 @@ onBeforeMount(async () => {
     .then(async ({ data: data }) => {
       heartbeat.set(data);
       if (heartbeat.value.SHOW_SETUP_WIZARD) {
-        router.push({ name: "index-setup" });
+        router.push({ name: "setup" });
       } else {
         await userApi
           .fetchCurrentUser()
@@ -48,7 +47,7 @@ onBeforeMount(async () => {
         Cookies.remove(cookie); // Remove each cookie
       }
       router.push({
-        name: "index-login",
+        name: "login",
       });
     });
 });
@@ -57,7 +56,9 @@ onBeforeMount(async () => {
 <template>
   <v-app>
     <v-main>
-      <NuxtPage />
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
     </v-main>
   </v-app>
 </template>

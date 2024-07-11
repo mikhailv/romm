@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import CollectionCard from "@/components/common/Collection/Card.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import collectionApi, {
   type UpdatedCollection,
 } from "@/services/api/collection";
 import storeCollections from "@/stores/collections";
 import storeHeartbeat from "@/stores/heartbeat";
 
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useDisplay, useTheme } from "vuetify";
 
 // Props
@@ -98,7 +95,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-bookmark-box-multiple"
@@ -136,7 +133,7 @@ function closeDialog() {
         <v-col>
           <v-row class="pa-2 justify-center" no-gutters>
             <v-col class="cover">
-              <collection-card
+              <common-collection-card
                 :key="collection.updated_at"
                 :show-title="false"
                 :with-link="false"
@@ -146,7 +143,9 @@ function closeDialog() {
                 <template #append-inner>
                   <v-btn-group rounded="0" divided density="compact">
                     <v-btn
-                      :disabled="!heartbeat.value.METADATA_SOURCES?.STEAMGRIDDB_ENABLED"
+                      :disabled="
+                        !heartbeat.value.METADATA_SOURCES?.STEAMGRIDDB_ENABLED
+                      "
                       size="small"
                       class="translucent-dark"
                       @click="
@@ -184,7 +183,7 @@ function closeDialog() {
                     </v-btn>
                   </v-btn-group>
                 </template>
-              </collection-card>
+              </common-collection-card>
             </v-col>
           </v-row>
         </v-col>
@@ -205,7 +204,7 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>
 <style scoped>
 .cover {

@@ -90,7 +90,7 @@ onMounted(() => {
       </v-card-text>
 
       <v-card-text
-        id="r-dialog-content"
+        id="common-r-dialog-content"
         class="pa-1"
         :class="{ scroll: scrollContent }"
       >

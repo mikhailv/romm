@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import type { FirmwareSchema } from "@/__generated__";
-import RDialog from "@/components/common/RDialog.vue";
 import firmwareApi from "@/services/api/firmware";
 import storeRoms from "@/stores/roms";
-
 import { formatBytes } from "@/utils";
-
 import { storeToRefs } from "pinia";
-import { inject, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -86,7 +83,7 @@ function closeDialog() {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
@@ -233,5 +230,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

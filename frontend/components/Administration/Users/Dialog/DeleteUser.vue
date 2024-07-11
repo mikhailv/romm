@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import RDialog from "@/components/common/RDialog.vue";
 import userApi from "@/services/api/user";
 import storeUsers from "@/stores/users";
-import type { Events, UserItem } from "@/types/emitter";
+import type { UserItem } from "@/types/emitter";
 import { defaultAvatarPath } from "@/utils";
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -52,7 +50,7 @@ function closeDialog() {
 }
 </script>
 <template>
-  <r-dialog
+  <common-r-dialog
     v-if="user"
     @close="closeDialog"
     v-model="show"
@@ -85,5 +83,5 @@ function closeDialog() {
         </v-btn-group>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>

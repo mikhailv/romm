@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import GameCard from "@/components/common/Game/Card/Base.vue";
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
-import RDialog from "@/components/common/RDialog.vue";
 import romApi from "@/services/api/rom";
 import type { SimpleRom } from "@/stores/roms";
 import { onBeforeUnmount, ref } from "vue";
@@ -95,7 +92,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <r-dialog
+  <common-r-dialog
     v-model="show"
     icon="mdi-magnify"
     :loading-condition="searching"
@@ -142,7 +139,7 @@ onBeforeUnmount(() => {
                 :title="(item as SelectItem).raw.platform_name ?? ''"
               >
                 <template #prepend>
-                  <platform-icon
+                  <common-platform-icon
                     :size="35"
                     :key="(item as SelectItem).raw.platform_slug"
                     :slug="(item as SelectItem).raw.platform_slug"
@@ -156,7 +153,7 @@ onBeforeUnmount(() => {
                 :title="(item as SelectItem).raw.platform_name ?? ''"
               >
                 <template #prepend>
-                  <platform-icon
+                  <common-platform-icon
                     :size="35"
                     :key="(item as SelectItem).raw.platform_slug"
                     :slug="(item as SelectItem).raw.platform_slug"
@@ -190,17 +187,17 @@ onBeforeUnmount(() => {
           v-show="!searching"
           v-for="rom in filteredRoms"
         >
-          <game-card
+          <common-common-game-card-base-base
             :rom="rom"
             @click="onGameClick({ rom, event: $event })"
             title-on-hover
             show-flags
             transform-scale
-            show-platform-icon
+            show-common-platform-icon
             show-fav
           />
         </v-col>
       </v-row>
     </template>
-  </r-dialog>
+  </common-r-dialog>
 </template>
