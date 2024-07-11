@@ -30,6 +30,12 @@ cp env.template .env
 sudo apt install libmariadb3 libmariadb-dev pipx
 ```
 
+#### - Spin up mariadb in docker
+
+```sh
+docker-compose up -d
+```
+
 #### - Install python dependencies
 
 You'll need poetry installed
@@ -45,13 +51,8 @@ Then create the virtual environment
 ```sh
 # Fix disable parallel installation stuck: $> poetry config experimental.new-installer false
 # Fix Loading macOS/linux stuck: $> export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+cd backend
 poetry install --sync
-```
-
-#### - Spin up mariadb in docker
-
-```sh
-docker-compose up -d
 ```
 
 #### - Run the backend
@@ -59,7 +60,6 @@ docker-compose up -d
 *\_\_*Migrations will be run automatically when running the backend.\_\_\*
 
 ```sh
-cd backend
 poetry run python3 main.py
 ```
 
@@ -75,7 +75,7 @@ poetry run python3 worker.py
 #### - Install node.js dependencies
 
 ```sh
-cd frontend
+cd ../frontend
 # npm version >= 9 needed
 npm install
 ```
@@ -84,13 +84,15 @@ npm install
 
 ```sh
 mkdir assets/romm
-ln -s ../backend/romm_mock/resources assets/romm/resources
-ln -s ../backend/romm_mock/assets assets/romm/assets
+cd assets/romm
+ln -s ../../../romm_mock/resources assets/romm/resources
+ln -s ../../../romm_mock/assets assets/romm/assets
 ```
 
 #### - Run the frontend
 
 ```sh
+cd ../../
 npm run dev
 ```
 

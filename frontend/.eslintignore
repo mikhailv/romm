@@ -15,3 +15,4 @@ coverage
 *.local
 __generated__
 *.config.js
+*.config.ts

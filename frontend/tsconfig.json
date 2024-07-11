@@ -1,16 +1,24 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["src/**/*.ts", "src/**/*.vue"],
-  "types": ["node", "file-saver", "lodash", "js-cookie", "vue-router", "vue"],
+  // https://nuxt.com/docs/guide/concepts/typescript
+  "extends": ["./.nuxt/tsconfig.json"],
   "compilerOptions": {
-    "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "lib": ["dom", "ES6"],
-    "baseUrl": ".",
-    "noImplicitAny": true,
+    "allowJs": true,
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
-    "types": ["./src/plugins/pinia.d.ts"]
-  }
+    "types": ["@nuxt/types", "./src/plugins/pinia.d.ts"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": ["**/*.ts", "**/*.vue", "../bk-app.vue"]
 }

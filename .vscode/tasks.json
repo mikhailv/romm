@@ -22,7 +22,7 @@
 		{
 			"label": "Execute tests",
 			"type": "shell",
-			"command": "cd backend && poetry run pytest -vv -c ../pytest.ini",
+			"command": "cd backend && poetry run pytest -vv -c pytest.ini",
 			"problemMatcher": []
 		},
 		{

@@ -10,7 +10,13 @@ module.exports = tseslint.config(
   ...tseslint.configs.recommended,
   ...vue.configs["flat/recommended"],
   {
-    ignores: ["node_modules", "dist", "__generated__", "*.config.js"],
+    ignores: [
+      "node_modules",
+      "dist",
+      "__generated__",
+      "*.config.js",
+      "*.config.ts",
+    ],
     languageOptions: {
       parserOptions: {
         parser: "@typescript-eslint/parser",
