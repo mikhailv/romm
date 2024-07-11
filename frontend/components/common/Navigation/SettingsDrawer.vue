@@ -3,11 +3,8 @@ import type { UserSchema } from "@/__generated__";
 import identityApi from "@/services/api/identity";
 import storeAuth from "@/stores/auth";
 import storeNavigation from "@/stores/navigation";
-import type { Events } from "@/types/emitter";
 import { defaultAvatarPath } from "@/utils";
-import type { Emitter } from "mitt";
 import { storeToRefs } from "pinia";
-import { inject } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
@@ -16,9 +13,9 @@ const navigationStore = storeNavigation();
 const router = useRouter();
 const auth = storeAuth();
 const { user, scopes } = storeToRefs(auth);
-const emitter = inject<Emitter<Events>>("emitter");
 const { activeSettingsDrawer } = storeToRefs(navigationStore);
 const { smAndDown } = useDisplay();
+const emitter = useNuxtApp().$emitter;
 
 // Functions
 async function logout() {
@@ -43,6 +40,7 @@ async function logout() {
   >
     <v-list rounded="0" class="pa-0">
       <v-list-img>
+        <!-- TODO: nuxt3 not rendering dynamic src -->
         <v-img
           :src="
             user?.avatar_path
@@ -51,6 +49,11 @@ async function logout() {
           "
           cover
         >
+        <template #error>
+          <!-- TODO: not working with variable -->
+          <!-- <v-img cover :src="defaultAvatarPath" /> -->
+          <v-img cover src="/assets/images/default/user.png" />
+        </template>
         </v-img>
       </v-list-img>
       <v-list-item
@@ -66,18 +69,18 @@ async function logout() {
         append-icon="mdi-account"
         >Profile</v-list-item
       >
-      <v-list-item :to="{ name: 'settings' }" append-icon="mdi-palette"
+      <v-list-item :to="{ name: 'index-settings' }" append-icon="mdi-palette"
         >UI Settings</v-list-item
       >
       <v-list-item
         v-if="scopes.includes('platforms.write')"
         append-icon="mdi-table-cog"
-        :to="{ name: 'management' }"
+        :to="{ name: 'index-management' }"
         >Library Management
       </v-list-item>
       <v-list-item
         v-if="scopes.includes('users.write')"
-        :to="{ name: 'administration' }"
+        :to="{ name: 'index-administration' }"
         append-icon="mdi-security"
         >Administration</v-list-item
       >

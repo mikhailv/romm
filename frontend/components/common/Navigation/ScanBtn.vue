@@ -5,11 +5,9 @@ import storeGalleryFilter from "@/stores/galleryFilter";
 import storeNavigation from "@/stores/navigation";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
 import storeScanning from "@/stores/scanning";
-import type { Events } from "@/types/emitter";
 import { normalizeString } from "@/utils";
-import type { Emitter } from "mitt";
 import { storeToRefs } from "pinia";
-import { inject, onBeforeUnmount } from "vue";
+import { onBeforeUnmount } from "vue";
 
 // Props
 withDefaults(
@@ -24,12 +22,13 @@ const navigationStore = storeNavigation();
 const auth = storeAuth();
 const galleryFilter = storeGalleryFilter();
 const isFiltered = normalizeString(galleryFilter.filterSearch).trim() != "";
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const scanningStore = storeScanning();
 const { scanningPlatforms, scanning } = storeToRefs(scanningStore);
 const romsStore = storeRoms();
 // Connect to socket on load to catch running scans
-if (!socket.connected) socket.connect();
+// TODO: fix socket connect
+// if (!socket.connected) socket.connect();
 
 socket.on(
   "scan:scanning_platform",
@@ -119,7 +118,7 @@ onBeforeUnmount(() => {
       :size="20"
       indeterminate
     />
-    <v-icon v-else :color="$route.name == 'scan' ? 'romm-accent-1' : ''"
+    <v-icon v-else :color="$route.name == 'index-scan' ? 'romm-accent-1' : ''"
       >mdi-magnify-scan</v-icon
     >
   </v-btn>

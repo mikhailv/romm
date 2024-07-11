@@ -2,10 +2,7 @@
 import CollectionListItem from "@/components/common/Collection/ListItem.vue";
 import storeCollections from "@/stores/collections";
 import storeNavigation from "@/stores/navigation";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
 import { storeToRefs } from "pinia";
-import { inject } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -14,7 +11,7 @@ const { smAndDown } = useDisplay();
 const collectionsStore = storeCollections();
 const { filteredCollections, searchText } = storeToRefs(collectionsStore);
 const { activeCollectionsDrawer } = storeToRefs(navigationStore);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 
 // Functions
 async function addCollection() {

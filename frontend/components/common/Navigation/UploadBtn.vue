@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import storeAuth from "@/stores/auth";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
-import { inject } from "vue";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const auth = storeAuth();
 </script>
 <template>

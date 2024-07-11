@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import storeNavigation from "@/stores/navigation";
-import storePlatforms from "@/stores/platforms";
 import { storeToRefs } from "pinia";
-import { useDisplay } from "vuetify";
 
 // Props
 withDefaults(
@@ -24,7 +22,7 @@ const { activeCollectionsDrawer } = storeToRefs(navigationStore);
     :color="activeCollectionsDrawer ? 'terciary' : ''"
     icon
     @click="navigationStore.switchActiveCollectionsDrawer"
-    ><v-icon :color="$route.name == 'collection' ? 'romm-accent-1' : ''"
+    ><v-icon :color="$route.name == 'index-collection-id' ? 'romm-accent-1' : ''"
       >mdi-bookmark-box-multiple</v-icon
     ></v-btn
   >

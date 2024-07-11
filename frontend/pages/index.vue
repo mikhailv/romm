@@ -35,9 +35,7 @@ import storeAuth from "@/stores/auth";
 import storeCollections from "@/stores/collections";
 import storeNavigation from "@/stores/navigation";
 import storePlatforms from "@/stores/platforms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
-import { inject, onBeforeMount } from "vue";
+import { onBeforeMount } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -46,11 +44,11 @@ const navigationStore = storeNavigation();
 const auth = storeAuth();
 const platformsStore = storePlatforms();
 const collectionsStore = storeCollections();
-// const emitter = inject<Emitter<Events>>("emitter");
-// emitter?.on("refreshDrawer", async () => {
-//   const { data: platformData } = await platformApi.getPlatforms();
-//   platformsStore.set(platformData);
-// });
+const emitter = useNuxtApp().$emitter;
+emitter?.on("refreshDrawer", async () => {
+  const { data: platformData } = await platformApi.getPlatforms();
+  platformsStore.set(platformData);
+});
 
 // Functions
 onBeforeMount(async () => {
@@ -90,7 +88,7 @@ onBeforeMount(async () => {
 <template>
   <main-drawer v-if="!smAndDown" />
 
-  <main-app-bar v-if="smAndDown" />
+  <!-- <main-app-bar v-if="smAndDown" /> -->
 
   <platforms-drawer />
 
@@ -98,10 +96,10 @@ onBeforeMount(async () => {
 
   <settings-drawer />
 
-  <new-version />
-  <NuxtPage />
+  <!-- <new-version /> -->
+  <!-- <NuxtPage /> -->
 
-  <delete-platform-dialog />
+  <!-- <delete-platform-dialog />
   <create-collection-dialog />
   <edit-collection-dialog />
   <add-roms-to-collection-dialog />
@@ -123,10 +121,5 @@ onBeforeMount(async () => {
   <create-user-dialog />
   <edit-user-dialog />
   <delete-user-dialog />
-  <loading-view />
+  <loading-view /> -->
 </template>
-<style scoped>
-.v-progress-linear {
-  z-index: 9999 !important;
-}
-</style>

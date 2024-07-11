@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useNuxtApp } from "#app";
 import identityApi from "@/services/api/identity";
 import storeHeartbeat from "@/stores/heartbeat";
 import { ref } from "vue";

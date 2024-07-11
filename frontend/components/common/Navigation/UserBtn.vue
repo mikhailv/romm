@@ -18,13 +18,20 @@ const { user } = storeToRefs(auth);
       v-bind="hoverProps"
       :class="{ 'border-romm-accent-1': isHovering }"
     >
+      <!-- TODO: nuxt3 not rendering dynamic src -->
       <v-img
         :src="
           user?.avatar_path
             ? `/assets/romm/assets/${user?.avatar_path}?ts=${user?.updated_at}`
             : defaultAvatarPath
         "
-      />
+      >
+        <template #error>
+          <!-- TODO: not working with variable -->
+          <!-- <v-img :src="defaultAvatarPath" /> -->
+          <v-img src="/assets/images/default/user.png" />
+        </template>
+      </v-img>
     </v-avatar>
   </v-hover>
 </template>

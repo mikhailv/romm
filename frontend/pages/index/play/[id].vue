@@ -5,7 +5,7 @@ import firmwareApi from "@/services/api/firmware";
 import romApi from "@/services/api/rom";
 import type { DetailedRom } from "@/stores/roms";
 import { formatBytes, formatTimestamp, getSupportedCores } from "@/utils";
-import Player from "@/views/Play/Player.vue";
+import Player from "@/components/Player/Base.vue";
 import { isNull } from "lodash";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
@@ -90,7 +90,7 @@ onMounted(async () => {
           <v-img
             class="mx-auto"
             width="250"
-            src="/assets/emulatorjs/powered_by_emulatorjs.png"
+            src="/assets/images/emulatorjs/powered_by_emulatorjs.png"
           />
           <v-divider class="my-4" />
           <v-list-item class="px-2">

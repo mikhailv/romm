@@ -11,7 +11,7 @@ withDefaults(defineProps<{ platform: Platform; rail?: boolean }>(), {
 <template>
   <v-list-item
     :key="platform.slug"
-    :to="{ name: 'platform', params: { platform: platform.id } }"
+    :to="{ name: 'index-platform-id', params: { id: platform.id } }"
     :value="platform.slug"
   >
     <template #prepend>
