@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Excluded from "@/other/Management/Excluded.vue";
-import PlatformBinding from "@/other/Management/PlatformBinding.vue";
-import PlatformVersions from "@/other/Management/PlatformVersions.vue";
+import Excluded from "@/components/Management/Excluded.vue";
+import PlatformBinding from "@/components/Management/PlatformBinding.vue";
+import PlatformVersions from "@/components/Management/PlatformVersions.vue";
 </script>
 
 <template>
