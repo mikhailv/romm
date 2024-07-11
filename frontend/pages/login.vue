@@ -17,7 +17,7 @@ async function login() {
   await identityApi
     .login(username.value, password.value)
     .then(() => {
-      const next = (router.currentRoute.value.query?.next || "/").toString();
+      const next = (router.currentRoute.value.query?.next || "/dashboard").toString();
       router.push(next);
     })
     .catch(({ response, message }) => {
