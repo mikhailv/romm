@@ -26,12 +26,12 @@ export default defineStore("navigation", {
     goHome() {
       this.resetDrawers();
       const router = useRouter();
-      router.push({ name: "index" });
+      router.push({ name: "index-dashboard" });
     },
     goScan() {
       this.resetDrawers();
       const router = useRouter();
-      router.push("/scan");
+      router.push({ name: "index-scan" });
     },
     resetDrawers() {
       this.activePlatformsDrawer = false;

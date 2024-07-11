@@ -2,9 +2,9 @@
 import type { SaveSchema } from "@/__generated__";
 import UploadSavesDialog from "@/components/common/Game/Dialog/Asset/UploadSaves.vue";
 import { type DetailedRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes, formatTimestamp } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, onMounted, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -12,7 +12,7 @@ import { useDisplay } from "vuetify";
 const { xs, mdAndUp } = useDisplay();
 const props = defineProps<{ rom: DetailedRom }>();
 const selectedSaves = ref<SaveSchema[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const HEADERS = [
   {
     title: "Name",

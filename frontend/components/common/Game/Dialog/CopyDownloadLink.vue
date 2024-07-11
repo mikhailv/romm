@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import RDialog from "@/components/common/RDialog.vue";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -9,7 +9,7 @@ import { useDisplay } from "vuetify";
 const { lgAndUp } = useDisplay();
 const show = ref(false);
 const link = ref("");
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showCopyDownloadLinkDialog", (downloadLink) => {
   show.value = true;
   link.value = downloadLink;

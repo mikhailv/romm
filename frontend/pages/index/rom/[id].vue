@@ -16,10 +16,8 @@ import romApi from "@/services/api/rom";
 import storeDownload from "@/stores/download";
 import type { Platform } from "@/stores/platforms";
 import storeRoms from "@/stores/roms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
 import { storeToRefs } from "pinia";
-import { inject, onBeforeMount, ref, watch } from "vue";
+import { onBeforeMount, ref, watch } from "vue";
 import { onBeforeRouteLeave, useRoute } from "vue-router";
 import { useDisplay } from "vuetify";
 
@@ -36,7 +34,7 @@ const tab = ref<
   | "relatedgames"
 >("details");
 const { smAndDown, mdAndDown, mdAndUp, lgAndUp } = useDisplay();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const noRomError = ref(false);
 const romsStore = storeRoms();
 const { currentRom } = storeToRefs(romsStore);

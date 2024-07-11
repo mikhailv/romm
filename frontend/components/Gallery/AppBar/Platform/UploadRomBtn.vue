@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { inject } from "vue";
 import { useRoute } from "vue-router";
-import type { Emitter } from "mitt";
-import type { Events } from "@/types/emitter";
+
+
 import storePlatforms, { type Platform } from "@/stores/platforms";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const platforms = storePlatforms();
 const route = useRoute();
 </script>

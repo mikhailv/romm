@@ -4,13 +4,13 @@ import RSection from "@/components/common/RSection.vue";
 import { api } from "@/plugins/api.client.ts";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRunningTasks from "@/stores/runningTasks";
-import type { Events } from "@/types/emitter";
+
 import { convertCronExperssion } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { computed, inject } from "vue";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const heartbeatStore = storeHeartbeat();
 const runningTasks = storeRunningTasks();
 

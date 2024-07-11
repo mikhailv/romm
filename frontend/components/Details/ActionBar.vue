@@ -3,15 +3,15 @@ import AdminMenu from "@/components/common/Game/AdminMenu.vue";
 import romApi from "@/services/api/rom";
 import storeDownload from "@/stores/download";
 import type { DetailedRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { getDownloadLink, isEmulationSupported } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, ref } from "vue";
 
 // Props
 const props = defineProps<{ rom: DetailedRom }>();
 const downloadStore = storeDownload();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const playInfoIcon = ref("mdi-play");
 const emulationSupported = isEmulationSupported(props.rom.platform_slug);
 

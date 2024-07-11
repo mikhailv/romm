@@ -13,7 +13,7 @@ const router = useRouter();
 
 // Functions
 function onGameClick(emitData: { rom: SimpleRom; event: MouseEvent }) {
-  router.push({ name: "rom", params: { rom: emitData.rom.id } });
+  router.push({ name: "index-rom-id", params: { id: emitData.rom.id } });
 }
 </script>
 <template>

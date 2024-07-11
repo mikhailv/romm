@@ -6,8 +6,8 @@ import type { UpdatedCollection } from "@/services/api/collection";
 import collectionApi from "@/services/api/collection";
 import storeCollections from "@/stores/collections";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -18,7 +18,7 @@ const romsStore = storeRoms();
 const collectionsStore = storeCollections();
 const selectedCollection = ref<UpdatedCollection>();
 const roms = ref<SimpleRom[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showAddToCollectionDialog", (romsToAdd) => {
   roms.value = romsToAdd;
   updateDataTablePages();

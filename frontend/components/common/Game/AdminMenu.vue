@@ -7,14 +7,14 @@ import storeCollections, { type Collection } from "@/stores/collections";
 import storeHeartbeat from "@/stores/heartbeat";
 import type { SimpleRom } from "@/stores/roms";
 // import storeRoms from "@/stores/roms";
-// import type { Events } from "@/types/emitter";
-// import type { Emitter } from "mitt";
+// 
+// 
 import { storeToRefs } from "pinia";
 import { inject } from "vue";
 
 // Props
 const props = defineProps<{ rom: SimpleRom }>();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const heartbeat = storeHeartbeat();
 const auth = storeAuth();
 const collectionsStore = storeCollections();

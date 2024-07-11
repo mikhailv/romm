@@ -5,8 +5,8 @@ import collectionApi, {
 import storeCollections, { type Collection } from "@/stores/collections";
 import storeRoms from "@/stores/roms";
 import { type SimpleRom } from "@/stores/roms.js";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { storeToRefs } from "pinia";
 import { inject } from "vue";
 
@@ -15,7 +15,7 @@ const props = defineProps<{ rom: SimpleRom }>();
 const romsStore = storeRoms();
 const collectionsStore = storeCollections();
 const { favCollection } = storeToRefs(collectionsStore);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 
 // Functions
 async function switchFromFavourites() {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { inject, ref } from "vue";
-import type { Emitter } from "mitt";
-import type { Events } from "@/types/emitter";
+
+
 
 // Props
 const showSortBar = ref(false);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("sortBarShow", () => {
   showSortBar.value = !showSortBar.value;
 });

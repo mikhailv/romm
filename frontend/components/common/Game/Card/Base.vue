@@ -59,14 +59,11 @@ const card = ref();
 const theme = useTheme();
 const galleryViewStore = storeGalleryView();
 const collectionsStore = storeCollections();
-const image = ref("")
 
 onMounted(() => {
   card.value.$el.addEventListener("contextmenu", (event: Event) => {
     event.preventDefault();
   });
-  image.value = `~/assets/romm/resources/${props.rom.path_cover_l}?ts=${props.rom.updated_at}`
-  console.log(image.value)
 });
 </script>
 
@@ -90,6 +87,7 @@ onMounted(() => {
         absolute
       />
       <v-hover v-slot="{ isHovering, props: hoverProps }" open-delay="800">
+        <!-- TODO: nuxt3 not rendering dynamic src -->
         <v-img
           @click="handleClick"
           @touchstart="handleTouchStart"
@@ -104,12 +102,12 @@ onMounted(() => {
               ? src
               : romsStore.isSimpleRom(rom)
               ? !rom.igdb_id && !rom.moby_id && !rom.has_cover && true
-                ? `~/assets/images/default/cover/big_${theme.global.name.value}_unmatched.png`
+                ? `/assets/images/default/cover/big_${theme.global.name.value}_unmatched.png`
                 : (rom.igdb_id || rom.moby_id) && !rom.has_cover
-                ? `~/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
-                : image
+                ? `/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
+                : `/assets/romm/resources/${props.rom.path_cover_l}?ts=${props.rom.updated_at}`
               : !rom.igdb_url_cover && !rom.moby_url_cover
-              ? `~/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
+              ? `/assets/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
               : rom.igdb_url_cover
               ? rom.igdb_url_cover
               : rom.moby_url_cover

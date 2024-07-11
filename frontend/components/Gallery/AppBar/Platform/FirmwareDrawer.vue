@@ -5,9 +5,9 @@ import UploadFirmwareDialog from "@/components/common/Platform/Dialog/UploadFirm
 import storeAuth from "@/stores/auth";
 import storeGalleryView from "@/stores/galleryView";
 import storeRoms from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { storeToRefs } from "pinia";
 import { inject, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
@@ -20,7 +20,7 @@ const { currentPlatform } = storeToRefs(romsStore);
 const galleryViewStore = storeGalleryView();
 const { activeFirmwareDrawer } = storeToRefs(galleryViewStore);
 const selectedFirmware = ref<FirmwareSchema[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const HEADERS = [
   {
     title: "Firmware",

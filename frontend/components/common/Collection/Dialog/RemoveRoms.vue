@@ -4,8 +4,8 @@ import RDialog from "@/components/common/RDialog.vue";
 import collectionApi from "@/services/api/collection";
 import type { Collection } from "@/stores/collections";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -16,7 +16,7 @@ const show = ref(false);
 const romsStore = storeRoms();
 const selectedCollection = ref<Collection>();
 const roms = ref<SimpleRom[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showRemoveFromCollectionDialog", (romsToRemove) => {
   roms.value = romsToRemove;
   selectedCollection.value = romsStore.currentCollection as Collection;

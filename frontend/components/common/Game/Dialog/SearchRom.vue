@@ -4,8 +4,8 @@ import PlatformIcon from "@/components/common/Platform/Icon.vue";
 import RDialog from "@/components/common/RDialog.vue";
 import romApi from "@/services/api/rom";
 import type { SimpleRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, onBeforeUnmount, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
@@ -31,7 +31,7 @@ const filteredRoms = ref<SimpleRom[]>([]);
 const platforms = ref<Platform[]>([]);
 const selectedPlatform = ref<Platform | null>(null);
 const searchValue = ref("");
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showSearchRomDialog", () => {
   show.value = true;
 });

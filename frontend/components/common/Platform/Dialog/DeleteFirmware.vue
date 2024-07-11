@@ -3,9 +3,9 @@ import type { FirmwareSchema } from "@/__generated__";
 import RDialog from "@/components/common/RDialog.vue";
 import firmwareApi from "@/services/api/firmware";
 import storeRoms from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { storeToRefs } from "pinia";
 import { inject, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
@@ -17,7 +17,7 @@ const firmwares = ref<FirmwareSchema[]>([]);
 const firmwaresToDeleteFromFs = ref<number[]>([]);
 const romsStore = storeRoms();
 const { currentPlatform } = storeToRefs(romsStore);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showDeleteFirmwareDialog", (firmwaresToDelete) => {
   firmwares.value = firmwaresToDelete;
   updateDataTablePages();

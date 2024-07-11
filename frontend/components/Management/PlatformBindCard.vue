@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import PlatformIcon from "@/components/common/Platform/Icon.vue";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject } from "vue";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const emit = defineEmits(["clickEdit", "clickDelete"]);
 defineProps<{
   slug: string;

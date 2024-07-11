@@ -4,7 +4,7 @@ import userApi from "@/services/api/user";
 import storeUsers from "@/stores/users";
 import type { Events, UserItem } from "@/types/emitter";
 import { defaultAvatarPath } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -13,7 +13,7 @@ const user = ref<UserItem | null>(null);
 const show = ref(false);
 const usersStore = storeUsers();
 const { lgAndUp } = useDisplay();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showDeleteUserDialog", (userToDelete) => {
   user.value = { password: "", ...userToDelete };
   show.value = true;

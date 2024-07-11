@@ -6,8 +6,8 @@ import collectionApi, {
 } from "@/services/api/collection";
 import storeCollections from "@/stores/collections";
 import storeHeartbeat from "@/stores/heartbeat";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 import { useDisplay, useTheme } from "vuetify";
 
@@ -20,7 +20,7 @@ const collection = ref<UpdatedCollection>({} as UpdatedCollection);
 const collectionsStore = storeCollections();
 const imagePreviewUrl = ref<string | undefined>("");
 const removeCover = ref(false);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showCreateCollectionDialog", () => {
   show.value = true;
 });

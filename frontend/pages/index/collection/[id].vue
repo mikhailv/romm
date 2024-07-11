@@ -11,11 +11,9 @@ import storeCollections from "@/stores/collections";
 import storeGalleryFilter from "@/stores/galleryFilter";
 import storeGalleryView from "@/stores/galleryView";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
 import { normalizeString, views } from "@/utils";
-import type { Emitter } from "mitt";
 import { storeToRefs } from "pinia";
-import { inject, onBeforeUnmount, onMounted, ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
@@ -39,7 +37,7 @@ const itemsShown = ref(itemsPerBatch.value);
 const noCollectionError = ref(false);
 const router = useRouter();
 let timeout: ReturnType<typeof setTimeout>;
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("filter", onFilterChange);
 
 // Functions

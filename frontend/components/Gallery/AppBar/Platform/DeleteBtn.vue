@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { type Platform } from "@/stores/platforms";
 import storeRoms from "@/stores/roms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject } from "vue";
 import { useRoute } from "vue-router";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const roms = storeRoms();
 const route = useRoute();
 </script>

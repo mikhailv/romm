@@ -8,10 +8,8 @@ import storeGalleryView from "@/stores/galleryView";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRoms from "@/stores/roms";
 import storeScanning from "@/stores/scanning";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
 import { storeToRefs } from "pinia";
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 
 // Props
@@ -19,7 +17,7 @@ const romsStore = storeRoms();
 const galleryViewStore = storeGalleryView();
 const { scrolledToTop, currentView } = storeToRefs(galleryViewStore);
 const { selectedRoms } = storeToRefs(romsStore);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const fabMenu = ref(false);
 emitter?.on("openFabMenu", (open) => {
   fabMenu.value = open;

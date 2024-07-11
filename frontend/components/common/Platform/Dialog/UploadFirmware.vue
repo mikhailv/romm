@@ -2,9 +2,9 @@
 import RDialog from "@/components/common/RDialog.vue";
 import firmwareApi from "@/services/api/firmware";
 import storeRoms from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { storeToRefs } from "pinia";
 import { inject, nextTick, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
@@ -15,7 +15,7 @@ const show = ref(false);
 const romsStore = storeRoms();
 const { currentPlatform } = storeToRefs(romsStore);
 const filesToUpload = ref<File[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("addFirmwareDialog", () => {
   updateDataTablePages();
   show.value = true;

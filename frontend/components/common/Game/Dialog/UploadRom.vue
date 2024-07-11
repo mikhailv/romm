@@ -7,9 +7,9 @@ import socket from "@/services/socket";
 import storeHeartbeat from "@/stores/heartbeat";
 import { type Platform } from "@/stores/platforms";
 import storeScanning from "@/stores/scanning";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -35,7 +35,7 @@ const itemsPerPage = ref(10);
 const pageCount = ref(0);
 const PER_PAGE_OPTIONS = [10, 25, 50, 100];
 
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showUploadRomDialog", (platformWhereUpload) => {
   if (platformWhereUpload) {
     selectedPlatform.value = platformWhereUpload;

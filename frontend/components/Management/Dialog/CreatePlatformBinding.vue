@@ -6,8 +6,8 @@ import platformApi from "@/services/api/platform";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeConfig from "@/stores/config";
 import { type Platform } from "@/stores/platforms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -15,7 +15,7 @@ import { useDisplay } from "vuetify";
 const { mdAndUp } = useDisplay();
 const show = ref(false);
 const configStore = storeConfig();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const supportedPlatforms = ref<Platform[]>();
 const heartbeat = storeHeartbeat();
 const fsSlugToCreate = ref<string>("");

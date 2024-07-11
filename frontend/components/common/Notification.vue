@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import storeNotifications from "@/stores/notifications";
 import type { Events, SnackbarStatus } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
 import { inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -12,7 +12,7 @@ const snackbarStatus = ref<SnackbarStatus>({ msg: "" });
 const notificationStore = storeNotifications();
 
 // Event listeners bus
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("snackbarShow", (snackbar: SnackbarStatus) => {
   show.value = true;
   snackbarStatus.value = snackbar;

@@ -5,8 +5,8 @@ import type { UpdatedCollection } from "@/services/api/collection";
 import collectionApi from "@/services/api/collection";
 import collectionStore, { type Collection } from "@/stores/collections";
 import storeHeartbeat from "@/stores/heartbeat";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 import { useDisplay, useTheme } from "vuetify";
 
@@ -19,7 +19,7 @@ const collection = ref<UpdatedCollection>({} as UpdatedCollection);
 const imagePreviewUrl = ref<string | undefined>("");
 const removeCover = ref(false);
 const heartbeat = storeHeartbeat();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showEditCollectionDialog", (collectionToEdit: Collection) => {
   collection.value = collectionToEdit;
   show.value = true;

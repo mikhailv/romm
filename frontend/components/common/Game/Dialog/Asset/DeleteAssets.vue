@@ -4,9 +4,9 @@ import RDialog from "@/components/common/RDialog.vue";
 import saveApi from "@/services/api/save";
 import stateApi from "@/services/api/state";
 import storeRoms, { type DetailedRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -18,7 +18,7 @@ const assetType = ref<"user_saves" | "user_states">("user_saves");
 const romRef = ref<DetailedRom | null>(null);
 const assets = ref<(SaveSchema | StateSchema)[]>([]);
 const assetsToDeleteFromFs = ref<number[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showDeleteSavesDialog", ({ rom, saves }) => {
   assetType.value = "user_saves";
   assets.value = saves;

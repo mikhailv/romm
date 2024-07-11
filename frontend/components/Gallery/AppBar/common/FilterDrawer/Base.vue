@@ -2,14 +2,14 @@
 import FilterUnmatchedBtn from "@/components/Gallery/AppBar/common/FilterDrawer/FilterUnmatchedBtn.vue";
 import FilterFavouritesBtn from "@/components/Gallery/AppBar/common/FilterDrawer/FilterFavouritesBtn.vue";
 import storeGalleryFilter from "@/stores/galleryFilter";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { storeToRefs } from "pinia";
 import { inject, nextTick, ref } from "vue";
 
 // Props
 const show = ref(false);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const galleryFilterStore = storeGalleryFilter();
 const {
   activeFilterDrawer,

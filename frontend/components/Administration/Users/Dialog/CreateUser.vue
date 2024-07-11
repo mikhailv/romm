@@ -2,9 +2,7 @@
 import RDialog from "@/components/common/RDialog.vue";
 import userApi from "@/services/api/user";
 import storeUsers from "@/stores/users";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -17,7 +15,7 @@ const { lgAndUp } = useDisplay();
 const show = ref(false);
 const usersStore = storeUsers();
 
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showCreateUserDialog", () => {
   show.value = true;
 });

@@ -4,13 +4,13 @@ import PlatformBindCard from "@/components/Management/PlatformBindCard.vue";
 import RSection from "@/components/common/RSection.vue";
 import storeAuth from "@/stores/auth";
 import storeConfig from "@/stores/config";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { storeToRefs } from "pinia";
 import { inject, ref } from "vue";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const authStore = storeAuth();
 const configStore = storeConfig();
 const { config } = storeToRefs(configStore);

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import storeGalleryFilter from "@/stores/galleryFilter";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { storeToRefs } from "pinia";
 import { inject } from "vue";
 
 // Props
 const galleryFilterStore = storeGalleryFilter();
 const { filterFavourites } = storeToRefs(galleryFilterStore);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 function setFavourites() {
   galleryFilterStore.switchFilterFavourites();
   emitter?.emit("filter", null);

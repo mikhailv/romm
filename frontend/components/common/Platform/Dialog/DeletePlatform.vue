@@ -2,8 +2,8 @@
 import RDialog from "@/components/common/RDialog.vue";
 import platformApi from "@/services/api/platform";
 import storePlatforms, { type Platform } from "@/stores/platforms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
@@ -14,7 +14,7 @@ const { lgAndUp } = useDisplay();
 const platformsStore = storePlatforms();
 const platform = ref<Platform | null>(null);
 const show = ref(false);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showDeletePlatformDialog", (platformToDelete) => {
   platform.value = platformToDelete;
   show.value = true;

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import configApi from "@/services/api/config";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 
 // Props
 const show = ref(false);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const excludeToCreate = ref();
 const exclusionToCreate = ref();
 emitter?.on("showCreateExclusionDialog", ({ exclude }) => {

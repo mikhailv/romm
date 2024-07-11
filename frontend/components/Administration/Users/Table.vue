@@ -3,9 +3,9 @@ import RSection from "@/components/common/RSection.vue";
 import userApi from "@/services/api/user";
 import storeAuth from "@/stores/auth";
 import storeUsers, { type User } from "@/stores/users";
-import type { Events } from "@/types/emitter";
+
 import { defaultAvatarPath, formatTimestamp } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { storeToRefs } from "pinia";
 import { inject, onMounted, ref } from "vue";
 import { useDisplay } from "vuetify";
@@ -13,7 +13,7 @@ import { useDisplay } from "vuetify";
 // Props
 const userSearch = ref("");
 const { xs } = useDisplay();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const usersStore = storeUsers();
 const { allUsers } = storeToRefs(usersStore);
 const auth = storeAuth();

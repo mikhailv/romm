@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Collections from "@/other/Dashboard/Collections.vue";
-import Platforms from "@/other/Dashboard/Platforms.vue";
-import recentlyAdded from "@/other/Dashboard/Recent.vue";
-import Stats from "@/other/Dashboard/Stats.vue";
+import Collections from "@/components/Dashboard/Collections.vue";
+import Platforms from "@/components/Dashboard/Platforms.vue";
+import recentlyAdded from "@/components/Dashboard/Recent.vue";
+import Stats from "@/components/Dashboard/Stats.vue";
 import romApi from "@/services/api/rom";
 import storeCollections from "@/stores/collections";
 import storePlatforms from "@/stores/platforms";
@@ -35,5 +35,5 @@ onMounted(async () => {
   <stats />
   <recently-added v-if="recentRoms.length > 0" />
   <platforms v-if="filledPlatforms.length > 0" />
-  <collections v-if="allCollections.length > 0" />
+  <!-- <collections v-if="allCollections.length > 0" /> -->
 </template>

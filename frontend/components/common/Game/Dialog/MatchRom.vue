@@ -5,8 +5,8 @@ import RDialog from "@/components/common/RDialog.vue";
 import romApi from "@/services/api/rom";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, onBeforeUnmount, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useDisplay, useTheme } from "vuetify";
@@ -28,7 +28,7 @@ const theme = useTheme();
 const searchBy = ref("Name");
 const matchedRoms = ref<SearchRomSchema[]>([]);
 const filteredMatchedRoms = ref<SearchRomSchema[]>();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const showSelectSource = ref(false);
 const renameAsSource = ref(false);
 const selectedMatchRom = ref<SearchRomSchema>();

@@ -5,7 +5,7 @@ import storeAuth from "@/stores/auth";
 import storeUsers from "@/stores/users";
 import type { Events, UserItem } from "@/types/emitter";
 import { defaultAvatarPath } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -16,7 +16,7 @@ const show = ref(false);
 const auth = storeAuth();
 const usersStore = storeUsers();
 const imagePreviewUrl = ref<string | undefined>("");
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showEditUserDialog", (userToEdit) => {
   user.value = { ...userToEdit, password: "", avatar: undefined };
   show.value = true;

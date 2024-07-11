@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import storeGalleryFilter from "@/stores/galleryFilter";
-import type { Events } from "@/types/emitter";
+
 import { debounce } from "lodash";
-import type { Emitter } from "mitt";
+
 import { storeToRefs } from "pinia";
 import { inject, nextTick } from "vue";
 
 // Props
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 const galleryFilterStore = storeGalleryFilter();
 const { filterSearch } = storeToRefs(galleryFilterStore);
 

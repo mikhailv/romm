@@ -88,7 +88,7 @@ onBeforeMount(async () => {
 <template>
   <main-drawer v-if="!smAndDown" />
 
-  <!-- <main-app-bar v-if="smAndDown" /> -->
+  <main-app-bar v-if="smAndDown" />
 
   <platforms-drawer />
 
@@ -96,8 +96,8 @@ onBeforeMount(async () => {
 
   <settings-drawer />
 
-  <!-- <new-version /> -->
-  <!-- <NuxtPage /> -->
+  <new-version />
+  <NuxtPage />
 
   <!-- <delete-platform-dialog />
   <create-collection-dialog />

@@ -2,9 +2,9 @@
 import type { StateSchema } from "@/__generated__";
 import UploadStatesDialog from "@/components/common/Game/Dialog/Asset/UploadStates.vue";
 import { type DetailedRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import { formatBytes, formatTimestamp } from "@/utils";
-import type { Emitter } from "mitt";
+
 import { inject, onMounted, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -12,7 +12,7 @@ import { useDisplay } from "vuetify";
 const { xs, mdAndUp } = useDisplay();
 const props = defineProps<{ rom: DetailedRom }>();
 const selectedStates = ref<StateSchema[]>([]);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 // emitter?.on("romUpdated", (romUpdated) => {});
 const HEADERS = [
   {

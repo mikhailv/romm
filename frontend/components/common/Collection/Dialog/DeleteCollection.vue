@@ -3,8 +3,8 @@ import RAvatar from "@/components/common/Collection/RAvatar.vue";
 import RDialog from "@/components/common/RDialog.vue";
 import collectionApi from "@/services/api/collection";
 import storeCollections, { type Collection } from "@/stores/collections";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { inject, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
@@ -14,7 +14,7 @@ const { lgAndUp } = useDisplay();
 const collectionsStore = storeCollections();
 const collection = ref<Collection | null>(null);
 const show = ref(false);
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("showDeleteCollectionDialog", (collectionToDelete) => {
   collection.value = collectionToDelete;
   show.value = true;

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import userApi from "@/services/api/user";
 import storeHeartbeat from "@/stores/heartbeat";
-import type { Events } from "@/types/emitter";
-import type { Emitter } from "mitt";
+
+
 import { computed, inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
 const { xs, smAndDown } = useDisplay();
-// const emitter = inject<Emitter<Events>>("emitter");
+// const emitter = useNuxtApp().$emitter;
 const heartbeat = storeHeartbeat();
 const visiblePassword = ref(false);
 // Use a computed property to reactively update metadataOptions based on heartbeat

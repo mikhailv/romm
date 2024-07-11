@@ -5,7 +5,7 @@ import RAvatar from "@/components/common/Game/RAvatar.vue";
 import romApi from "@/services/api/rom";
 import storeDownload from "@/stores/download";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-import type { Events } from "@/types/emitter";
+
 import {
   formatBytes,
   isEmulationSupported,
@@ -13,14 +13,14 @@ import {
   regionToEmoji,
 } from "@/utils";
 import { isNull } from "lodash";
-import type { Emitter } from "mitt";
+
 import { inject, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Props
 const { xs } = useDisplay();
-const emitter = inject<Emitter<Events>>("emitter");
+const emitter = useNuxtApp().$emitter;
 emitter?.on("updateDataTablePages", updateDataTablePages);
 const showSiblings = isNull(localStorage.getItem("settings.showSiblings"))
   ? true
