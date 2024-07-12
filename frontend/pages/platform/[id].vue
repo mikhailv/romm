@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import GalleryAppBar from "@/components/Gallery/AppBar/Platform/Base.vue";
-import FabOverlay from "@/components/Gallery/FabOverlay.vue";
-import EmptyGame from "@/components/common/EmptyGame.vue";
-import EmptyPlatform from "@/components/common/EmptyPlatform.vue";
-import GameCard from "@/components/common/Game/Card/Base.vue";
-import GameDataTable from "@/components/common/Game/Table.vue";
 import platformApi from "@/services/api/platform";
 import romApi from "@/services/api/rom";
 import storeGalleryFilter from "@/stores/galleryFilter";
@@ -251,7 +245,7 @@ onBeforeUnmount(() => {
 
 <template>
   <template v-if="!noPlatformError">
-    <gallery-app-bar />
+    <gallery-app-bar-platform />
     <template v-if="filteredRoms.length > 0">
       <v-row
         no-gutters
@@ -271,7 +265,7 @@ onBeforeUnmount(() => {
           :lg="views[currentView]['size-lg']"
           :xl="views[currentView]['size-xl']"
         >
-          <game-card
+          <common-game-card
             :key="rom.updated_at"
             :rom="rom"
             title-on-hover
@@ -291,7 +285,7 @@ onBeforeUnmount(() => {
 
         <!-- Gallery list view -->
         <v-col v-show="currentView == 2">
-          <game-data-table
+          <common-game-table
             :class="{
               'fill-height-desktop': !smAndDown,
               'fill-height-mobile': smAndDown,
@@ -299,12 +293,12 @@ onBeforeUnmount(() => {
           />
         </v-col>
       </v-row>
-      <fab-overlay />
+      <gallery-fab-overlay />
     </template>
     <template v-else>
-      <empty-game v-if="!gettingRoms && galleryFilterStore.isFiltered()" />
+      <common-empty-game v-if="!gettingRoms && galleryFilterStore.isFiltered()" />
     </template>
   </template>
 
-  <empty-platform v-else />
+  <common-empty-platform v-else />
 </template>

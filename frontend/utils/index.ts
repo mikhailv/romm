@@ -42,7 +42,7 @@ export const views: Record<
   },
 };
 
-export const defaultAvatarPath = "/assets/default/user.png";
+export const defaultAvatarPath = "/images/default/user.png";
 
 export function normalizeString(s: string) {
   return s

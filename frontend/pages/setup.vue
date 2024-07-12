@@ -15,19 +15,19 @@ const metadataOptions = computed(() => [
   {
     name: "IGDB",
     value: "igdb",
-    logo_path: "/assets/images/scrappers/igdb.png",
+    logo_path: "`/images/scrappers/igdb.png`",
     disabled: !heartbeat.value.METADATA_SOURCES?.IGDB_API_ENABLED,
   },
   {
     name: "MobyGames",
     value: "moby",
-    logo_path: "/assets/images/scrappers/moby.png",
+    logo_path: "`/images/scrappers/moby.png`",
     disabled: !heartbeat.value.METADATA_SOURCES?.MOBY_API_ENABLED,
   },
   {
     name: "SteamgridDB",
     value: "sgdb",
-    logo_path: "/assets/images/scrappers/sgdb.png",
+    logo_path: "`/images/scrappers/sgdb.png`",
     disabled: !heartbeat.value.METADATA_SOURCES?.STEAMGRIDDB_ENABLED,
   },
 ]);
@@ -69,7 +69,7 @@ async function finishWizard() {
 <template>
   <v-container class="main-secondary-container fill-height justify-center">
     <v-card class="translucent-dark px-3" elevation="0">
-      <v-img src="/assets/images/isotipo.svg" class="mx-auto mt-4" width="70" />
+      <v-img :src="`/images/isotipo.svg`" class="mx-auto mt-4" width="70" />
       <v-stepper
         :mobile="smAndDown"
         class="bg-transparent"

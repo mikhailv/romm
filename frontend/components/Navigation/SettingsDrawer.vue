@@ -44,7 +44,7 @@ async function logout() {
         <v-img
           :src="
             user?.avatar_path
-              ? `assets/${user?.avatar_path}?ts=${user?.updated_at}`
+              ? `/assets/${user?.avatar_path}?ts=${user?.updated_at}`
               : defaultAvatarPath
           "
           cover
@@ -52,7 +52,7 @@ async function logout() {
         <template #error>
           <!-- TODO: not working with variable -->
           <!-- <v-img cover :src="defaultAvatarPath" /> -->
-          <v-img cover src="/assets/images/default/user.png" />
+          <v-img cover :src="`/images/default/user.png`" />
         </template>
         </v-img>
       </v-list-img>

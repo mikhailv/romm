@@ -51,7 +51,7 @@ function previewImage(event: Event) {
 }
 
 async function removeArtwork() {
-  imagePreviewUrl.value = `/assets/default/cover/big_${theme.global.name.value}_missing_cover.png`;
+  imagePreviewUrl.value = `/images/default/cover/big_${theme.global.name.value}_missing_cover.png`;
   removeCover.value = true;
 }
 
@@ -169,7 +169,7 @@ function closeDialog() {
         <v-col>
           <v-row class="pa-2 justify-center" no-gutters>
             <v-col class="cover">
-              <common-game-card-base :rom="rom" :src="imagePreviewUrl">
+              <common-game-card :rom="rom" :src="imagePreviewUrl">
                 <template #append-inner-right>
                   <v-btn-group rounded="0" divided density="compact">
                     <v-btn
@@ -213,7 +213,7 @@ function closeDialog() {
                     </v-btn>
                   </v-btn-group>
                 </template>
-              </common-game-card-base>
+              </common-game-card>
             </v-col>
           </v-row>
         </v-col>

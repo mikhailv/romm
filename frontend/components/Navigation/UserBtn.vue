@@ -22,14 +22,14 @@ const { user } = storeToRefs(auth);
       <v-img
         :src="
           user?.avatar_path
-            ? `assets/${user?.avatar_path}?ts=${user?.updated_at}`
+            ? `/assets/${user?.avatar_path}?ts=${user?.updated_at}`
             : defaultAvatarPath
         "
       >
         <template #error>
           <!-- TODO: not working with variable -->
           <!-- <v-img :src="defaultAvatarPath" /> -->
-          <v-img src="/assets/images/default/user.png" />
+          <v-img :src="`/images/default/user.png`" />
         </template>
       </v-img>
     </v-avatar>

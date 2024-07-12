@@ -264,7 +264,7 @@ onBeforeUnmount(() => {
           :lg="views[currentView]['size-lg']"
           :xl="views[currentView]['size-xl']"
         >
-          <common-game-card-base
+          <common-game-card
             :key="rom.updated_at"
             :rom="rom"
             title-on-hover

@@ -61,11 +61,11 @@ window.EJS_biosUrl = props.bios
   ? `/api/firmware/${props.bios.id}/content/${props.bios.file_name}`
   : "";
 window.EJS_player = "#game";
-window.EJS_pathtodata = "/assets/emulatorjs/";
+window.EJS_pathtodata = "~assets/emulatorjs/";
 window.EJS_color = "#A453FF";
 window.EJS_alignStartButton = "center";
 window.EJS_startOnLoaded = true;
-window.EJS_backgroundImage = "images/emulatorjs/loading_black.png";
+window.EJS_backgroundImage = "`/images/emulatorjs/loading_black.png`";
 window.EJS_defaultOptions = { "save-state-location": "browser" };
 if (romRef.value.name) window.EJS_gameName = romRef.value.name;
 

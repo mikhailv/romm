@@ -21,7 +21,7 @@ const heartbeat = storeHeartbeat();
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url("/assets/images/login_bg.png") center center;
+  background: url("`/images/login_bg.png`") center center;
   background-size: cover;
 }
 #version {

@@ -11,10 +11,10 @@ const theme = useTheme();
     <v-img
       :src="
         !rom.igdb_id && !rom.moby_id && !rom.has_cover
-          ? `/assets/default/cover/small_${theme.global.name.value}_unmatched.png`
+          ? `/images/default/cover/small_${theme.global.name.value}_unmatched.png`
           : rom.has_cover
-          ? `/assets/romm/resources/${rom.path_cover_s}?ts=${rom.updated_at}`
-          : `/assets/default/cover/small_${theme.global.name.value}_missing_cover.png`
+          ? `/images/resources/${rom.path_cover_s}?ts=${rom.updated_at}`
+          : `/images/default/cover/small_${theme.global.name.value}_missing_cover.png`
       "
     />
   </v-avatar>

@@ -90,7 +90,7 @@ onMounted(async () => {
           <v-img
             class="mx-auto"
             width="250"
-            src="/assets/images/emulatorjs/powered_by_emulatorjs.png"
+            :src="`/images/emulatorjs/powered_by_emulatorjs.png`"
           />
           <v-divider class="my-4" />
           <v-list-item class="px-2">

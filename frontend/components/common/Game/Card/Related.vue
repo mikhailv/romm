@@ -28,7 +28,7 @@ const theme = useTheme();
       :src="
         `${rom.cover_url}`
           ? `https:${rom.cover_url.replace('t_thumb', 't_cover_big')}`
-          : `/assets/default/cover/big_${theme.global.name.value}_missing_cover.png`
+          : `/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
       "
       :aspect-ratio="2 / 3"
       cover

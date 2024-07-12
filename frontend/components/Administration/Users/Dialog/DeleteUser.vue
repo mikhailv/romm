@@ -64,7 +64,7 @@ function closeDialog() {
           <v-img
             :src="
               user.avatar_path
-                ? `assets/${user.avatar_path}?ts=${user.updated_at}`
+                ? `/assets/${user.avatar_path}?ts=${user.updated_at}`
                 : defaultAvatarPath
             "
           >

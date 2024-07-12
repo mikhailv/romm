@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import GameCard from "@/components/common/Game/Card/Base.vue";
-import RSection from "@/components/common/RSection.vue";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
 import { views } from "@/utils";
 import { storeToRefs } from "pinia";
@@ -17,7 +15,7 @@ function onGameClick(emitData: { rom: SimpleRom; event: MouseEvent }) {
 }
 </script>
 <template>
-  <r-section icon="mdi-shimmer" title="Recently added">
+  <common-r-section icon="mdi-shimmer" title="Recently added">
     <template #content>
       <v-row class="flex-nowrap overflow-x-auto" no-gutters>
         <v-col
@@ -30,7 +28,7 @@ function onGameClick(emitData: { rom: SimpleRom; event: MouseEvent }) {
           :lg="views[0]['size-lg']"
           :xl="views[0]['size-xl']"
         >
-          <game-card
+          <common-game-card
             :key="rom.updated_at"
             @click="onGameClick"
             :rom="rom"
@@ -45,5 +43,5 @@ function onGameClick(emitData: { rom: SimpleRom; event: MouseEvent }) {
       <!-- TODO: Check recently added games in the last 30 days -->
       <!-- TODO: Add a button to upload roms if no roms were uploaded in the last 30 days -->
     </template>
-  </r-section>
+  </common-r-section>
 </template>

@@ -46,7 +46,7 @@ function previewImage(event: Event) {
 }
 
 async function removeArtwork() {
-  imagePreviewUrl.value = `/assets/default/cover/big_${theme.global.name.value}_collection.png`;
+  imagePreviewUrl.value = `/images/default/cover/big_${theme.global.name.value}_collection.png`;
   removeCover.value = true;
 }
 

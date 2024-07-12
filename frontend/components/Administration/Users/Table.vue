@@ -129,7 +129,7 @@ onMounted(() => {
             <v-img
               :src="
                 item.avatar_path
-                  ? `/assets/romm/assets/${item.avatar_path}?ts=${item.updated_at}`
+                  ? `/assets/${item.avatar_path}?ts=${item.updated_at}`
                   : defaultAvatarPath
               "
             />

@@ -187,7 +187,7 @@ onBeforeUnmount(() => {
           v-show="!searching"
           v-for="rom in filteredRoms"
         >
-          <common-game-card-base
+          <common-game-card
             :rom="rom"
             @click="onGameClick({ rom, event: $event })"
             title-on-hover

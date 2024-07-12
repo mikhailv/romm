@@ -236,7 +236,7 @@ onBeforeUnmount(() => {
             size="30"
             rounded="1"
           >
-            <v-img src="/assets/images/scrappers/igdb.png" />
+            <v-img :src="`/images/scrappers/igdb.png`" />
           </v-avatar>
         </template>
       </v-tooltip>
@@ -263,7 +263,7 @@ onBeforeUnmount(() => {
             rounded="1"
           >
             <v-img
-              src="/assets/images/scrappers/moby.png" /></v-avatar></template
+              :src="`/images/scrappers/moby.png`" /></v-avatar></template
       ></v-tooltip>
     </template>
     <template #toolbar>
@@ -316,7 +316,7 @@ onBeforeUnmount(() => {
           v-show="!searching"
           v-for="matchedRom in filteredMatchedRoms"
         >
-          <common-game-card-base
+          <common-game-card
             @click="showSources(matchedRom)"
             :rom="matchedRom"
             title-on-footer
@@ -378,7 +378,7 @@ onBeforeUnmount(() => {
                     <v-img
                       :src="
                         !source.url_cover
-                          ? `/assets/default/cover/big_${theme.global.name.value}_missing_cover.png`
+                          ? `/images/default/cover/big_${theme.global.name.value}_missing_cover.png`
                           : source.url_cover
                       "
                       :aspect-ratio="2 / 3"
@@ -399,7 +399,7 @@ onBeforeUnmount(() => {
                       <v-row no-gutters class="text-white pa-1">
                         <v-avatar class="mr-1" size="30" rounded="1">
                           <v-img
-                            :src="`/assets/images/scrappers/${source.name}.png`"
+                            :src="`/images/scrappers/${source.name}.png`"
                           />
                         </v-avatar>
                       </v-row>

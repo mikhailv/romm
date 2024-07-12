@@ -13,15 +13,15 @@ const theme = useTheme();
     <v-img
       :src="
         collection.has_cover
-          ? `/assets/romm/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
+          ? `/images/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
           : collection.name?.toLowerCase() == 'favourites'
-          ? `/assets/default/cover/small_${theme.global.name.value}_fav.png`
-          : `/assets/default/cover/small_${theme.global.name.value}_collection.png`
+          ? `/images/default/cover/small_${theme.global.name.value}_fav.png`
+          : `/images/default/cover/small_${theme.global.name.value}_collection.png`
       "
     >
       <template #error>
         <v-img
-          :src="`assets/default/cover/big_${theme.global.name.value}_collection.png`"
+          :src="`/images/default/cover/big_${theme.global.name.value}_collection.png`"
         >
         </v-img>
       </template>

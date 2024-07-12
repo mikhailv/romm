@@ -14,7 +14,7 @@ defineProps<{ rom: SearchRomSchema }>();
       open-delay="500"
       ><template #activator="{ props }">
         <v-avatar v-bind="props" v-if="rom.igdb_id" size="30" rounded="1">
-          <v-img src="/assets/images/scrappers/igdb.png" /> </v-avatar></template
+          <v-img :src="`/images/scrappers/igdb.png`" /> </v-avatar></template
     ></v-tooltip>
     <v-tooltip
       location="top"
@@ -30,7 +30,7 @@ defineProps<{ rom: SearchRomSchema }>();
           size="30"
           rounded="1"
         >
-          <v-img src="/assets/images/scrappers/moby.png" /> </v-avatar></template
+          <v-img :src="`/images/scrappers/moby.png`" /> </v-avatar></template
     ></v-tooltip>
   </v-row>
 </template>

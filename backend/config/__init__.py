@@ -17,7 +17,7 @@ ROMM_BASE_PATH: Final = os.environ.get("ROMM_BASE_PATH", "/romm")
 LIBRARY_BASE_PATH: Final = f"{ROMM_BASE_PATH}/library"
 RESOURCES_BASE_PATH: Final = f"{ROMM_BASE_PATH}/resources"
 ASSETS_BASE_PATH: Final = f"{ROMM_BASE_PATH}/assets"
-FRONTEND_RESOURCES_PATH: Final = "/assets/romm/resources"
+FRONTEND_RESOURCES_PATH: Final = "/images/resources"
 
 # MARIADB
 DB_HOST: Final = os.environ.get("DB_HOST", "127.0.0.1")

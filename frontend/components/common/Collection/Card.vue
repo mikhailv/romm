@@ -51,19 +51,19 @@ const theme = useTheme();
           src
             ? src
             : collection.has_cover
-            ? `romm/resources/${collection.path_cover_l}?ts=${collection.updated_at}`
+            ? `/images/resources/${collection.path_cover_l}?ts=${collection.updated_at}`
             : collection.name && collection.name.toLowerCase() == 'favourites'
-            ? `images/cover/big_${theme.global.name.value}_fav.png`
-            : `images/default/cover/big_${theme.global.name.value}_collection.png`
+            ? `/images/cover/big_${theme.global.name.value}_fav.png`
+            : `/images/default/cover/big_${theme.global.name.value}_collection.png`
         "
         :lazy-src="
           src
             ? src
             : collection.has_cover
-            ? `romm/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
+            ? `/images/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
             : collection.name && collection.name.toLowerCase() == 'favourites'
-            ? `images/default/cover/small_${theme.global.name.value}_fav.png`
-            : `images/default/cover/small_${theme.global.name.value}_collection.png`
+            ? `/images/default/cover/small_${theme.global.name.value}_fav.png`
+            : `/images/default/cover/small_${theme.global.name.value}_collection.png`
         "
         :aspect-ratio="2 / 3"
       >
@@ -73,7 +73,7 @@ const theme = useTheme();
 
         <template #error>
           <v-img
-            :src="`images/default/cover/big_${theme.global.name.value}_missing_cover.png`"
+            :src="`/images/default/cover/big_${theme.global.name.value}_missing_cover.png`"
             cover
             :aspect-ratio="2 / 3"
           ></v-img>
