@@ -262,8 +262,7 @@ onBeforeUnmount(() => {
             size="30"
             rounded="1"
           >
-            <v-img
-              :src="`/images/scrappers/moby.png`" /></v-avatar></template
+            <v-img :src="`/images/scrappers/moby.png`" /></v-avatar></template
       ></v-tooltip>
     </template>
     <template #toolbar>

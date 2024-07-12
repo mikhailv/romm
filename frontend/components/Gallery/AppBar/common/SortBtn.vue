@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
-
-import { ref, inject } from "vue";
+import { ref } from "vue";
 
 // Props
 const emitter = useNuxtApp().$emitter;

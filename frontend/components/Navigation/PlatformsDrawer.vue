@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PlatformListItem from "@/components/common/Platform/ListItem.vue";
 import storeNavigation from "@/stores/navigation";
 import storePlatforms from "@/stores/platforms";
 import { storeToRefs } from "pinia";
@@ -41,7 +40,7 @@ function clear() {
       ></v-text-field>
     </template>
     <v-list lines="two" rounded="0" class="pa-0">
-      <platform-list-item
+      <common-platform-list-item
         v-for="platform in filteredPlatforms"
         :key="platform.slug"
         :platform="platform"

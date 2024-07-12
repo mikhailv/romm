@@ -5,9 +5,7 @@ import socket from "@/services/socket";
 import storeHeartbeat from "@/stores/heartbeat";
 import { type Platform } from "@/stores/platforms";
 import storeScanning from "@/stores/scanning";
-
 import { formatBytes } from "@/utils";
-
 import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 

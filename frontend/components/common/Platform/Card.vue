@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Platform } from "@/stores/platforms";
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
 
+// Props
 defineProps<{ platform: Platform }>();
 </script>
 
@@ -24,7 +24,7 @@ defineProps<{ platform: Platform }>();
           </div>
         </v-row>
         <v-row class="pa-1 justify-center">
-          <platform-icon
+          <common-platform-icon
             :key="platform.slug"
             :slug="platform.slug"
             :size="105"

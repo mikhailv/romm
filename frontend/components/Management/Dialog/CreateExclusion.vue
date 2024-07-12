@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import configApi from "@/services/api/config";
-
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 
 // Props
 const show = ref(false);

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import RelatedCard from "@/components/common/Game/Card/Related.vue";
 import type { DetailedRom } from "@/stores/roms";
 import { ref } from "vue";
 
+// Props
 const props = defineProps<{ rom: DetailedRom }>();
 const combined = ref([
   ...(props.rom.igdb_metadata?.expansions ?? []),
@@ -24,7 +24,7 @@ const combined = ref([
         :href="`https://www.igdb.com/games/${expansion.slug}`"
         target="_blank"
       >
-        <related-card :rom="expansion" />
+        <common-game-card-related-card :rom="expansion" />
       </a>
     </v-col>
   </v-row>

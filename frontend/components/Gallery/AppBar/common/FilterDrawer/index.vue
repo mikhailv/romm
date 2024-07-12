@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import FilterUnmatchedBtn from "@/components/Gallery/AppBar/common/FilterDrawer/FilterUnmatchedBtn.vue";
-import FilterFavouritesBtn from "@/components/Gallery/AppBar/common/FilterDrawer/FilterFavouritesBtn.vue";
 import storeGalleryFilter from "@/stores/galleryFilter";
-
-
 import { storeToRefs } from "pinia";
-import { inject, nextTick, ref } from "vue";
+import { nextTick, ref } from "vue";
 
 // Props
-const show = ref(false);
 const emitter = useNuxtApp().$emitter;
 const galleryFilterStore = storeGalleryFilter();
 const {
@@ -67,8 +62,10 @@ function resetFilters() {
   >
     <v-list>
       <v-list-item>
-        <filter-unmatched-btn />
-        <filter-favourites-btn class="mt-2" />
+        <gallery-app-bar-common-filter-drawer-filter-unmatched-btn />
+        <gallery-app-bar-common-filter-drawer-filter-favourites-btn
+          class="mt-2"
+        />
       </v-list-item>
       <v-list-item v-for="filter in filters">
         <v-autocomplete

@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import type { SaveSchema } from "@/__generated__";
-import UploadSavesDialog from "@/components/common/Game/Dialog/Asset/UploadSaves.vue";
 import { type DetailedRom } from "@/stores/roms";
-
 import { formatBytes, formatTimestamp } from "@/utils";
-
-import { inject, onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -195,7 +192,7 @@ onMounted(() => {
       </v-row>
     </template>
   </v-data-table>
-  <upload-saves-dialog />
+  <common-game-dialog-asset-upload-saves />
 </template>
 <style scoped>
 .name-row {

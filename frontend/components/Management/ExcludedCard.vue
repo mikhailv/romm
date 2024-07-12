@@ -1,9 +1,4 @@
 <script setup lang="ts">
-
-
-import { inject } from "vue";
-
-// Props
 const emitter = useNuxtApp().$emitter;
 defineProps<{
   set: string[];

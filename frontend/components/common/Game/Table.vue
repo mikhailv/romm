@@ -1,11 +1,7 @@
 <script setup lang="ts">
-import AdminMenu from "@/components/common/Game/AdminMenu.vue";
-import FavBtn from "@/components/common/Game/FavBtn.vue";
-import RAvatar from "@/components/common/Game/RAvatar.vue";
 import romApi from "@/services/api/rom";
 import storeDownload from "@/stores/download";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-
 import {
   formatBytes,
   isEmulationSupported,
@@ -13,9 +9,8 @@ import {
   regionToEmoji,
 } from "@/utils";
 import { isNull } from "lodash";
-
-import { inject, onMounted, ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -124,7 +119,7 @@ onMounted(() => {
       <td class="name-row">
         <v-list-item class="px-0">
           <template #prepend>
-            <r-avatar :rom="item" />
+            <common-game-r-avatar :rom="item" />
           </template>
           <v-row no-gutters
             ><v-col>{{ item.name }}</v-col></v-row
@@ -147,7 +142,7 @@ onMounted(() => {
       </td>
     </template>
     <template #item.is_fav="{ item }">
-      <fav-btn :rom="item" />
+      <common-game-fav-btn :rom="item" />
     </template>
     <template #item.file_size_bytes="{ item }">
       <v-chip size="x-small" label>{{
@@ -192,7 +187,7 @@ onMounted(() => {
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
-          <admin-menu :rom="item" />
+          <common-game-admin-menu :rom="item" />
         </v-menu>
       </v-btn-group>
     </template>

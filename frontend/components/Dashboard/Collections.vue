@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import CollectionCard from "@/components/common/Collection/Card.vue";
-import RSection from "@/components/common/RSection.vue";
 import storeCollections from "@/stores/collections";
 import { views } from "@/utils";
 
@@ -8,7 +6,7 @@ import { views } from "@/utils";
 const collections = storeCollections();
 </script>
 <template>
-  <r-section icon="mdi-bookmark-box-multiple" title="Collections">
+  <common-r-section icon="mdi-bookmark-box-multiple" title="Collections">
     <template #content>
       <v-row no-gutters>
         <v-col
@@ -21,7 +19,7 @@ const collections = storeCollections();
           :lg="views[0]['size-lg']"
           :xl="views[0]['size-xl']"
         >
-          <collection-card
+          <common-collection-card
             show-rom-count
             show-title
             transformScale
@@ -31,5 +29,5 @@ const collections = storeCollections();
         </v-col>
       </v-row>
     </template>
-  </r-section>
+  </common-r-section>
 </template>

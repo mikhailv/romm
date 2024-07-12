@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Collection } from "@/stores/collections";
-import RAvatar from "@/components/common/Collection/RAvatar.vue";
 
 // Props
 defineProps<{ collection: Collection }>();
@@ -13,7 +12,7 @@ defineProps<{ collection: Collection }>();
     :value="collection.name"
   >
     <template #prepend>
-      <r-avatar :collection="collection" />
+      <common-collection-r-avatar :collection="collection" />
     </template>
     <v-row no-gutters
       ><v-col

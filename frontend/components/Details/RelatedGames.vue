@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import RelatedCard from "@/components/common/Game/Card/Related.vue";
 import type { DetailedRom } from "@/stores/roms";
 import { ref } from "vue";
 
@@ -13,7 +12,7 @@ const combined = ref([
 <template>
   <v-row no-gutters>
     <v-col cols="4" sm="3" md="6" v-for="rom in combined">
-      <related-card :rom="rom" />
+      <common-game-card-related-card :rom="rom" />
     </v-col>
   </v-row>
 </template>

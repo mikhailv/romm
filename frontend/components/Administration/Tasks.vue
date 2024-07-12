@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import Task from "@/components/Settings/TaskOption.vue";
-import RSection from "@/components/common/RSection.vue";
 import { api } from "@/plugins/api.client.ts";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRunningTasks from "@/stores/runningTasks";
-
 import { convertCronExperssion } from "@/utils";
-
-import { computed, inject } from "vue";
+import { computed } from "vue";
 
 // Props
 const emitter = useNuxtApp().$emitter;
@@ -66,7 +62,7 @@ const runAllTasks = async () => {
 };
 </script>
 <template>
-  <r-section icon="mdi-pulse" title="Tasks">
+  <common-r-section icon="mdi-pulse" title="Tasks">
     <template #toolbar-append>
       <v-btn
         :disabled="runningTasks.value"
@@ -82,7 +78,7 @@ const runAllTasks = async () => {
     <template #content>
       <v-row no-gutters class="align-center">
         <v-col cols="12" md="6" v-for="task in tasks">
-          <task
+          <settings-task-option
             class="ma-3"
             :enabled="task.enabled"
             :title="task.title"
@@ -92,5 +88,5 @@ const runAllTasks = async () => {
         </v-col>
       </v-row>
     </template>
-  </r-section>
+  </common-r-section>
 </template>

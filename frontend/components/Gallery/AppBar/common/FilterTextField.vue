@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import storeGalleryFilter from "@/stores/galleryFilter";
-
 import { debounce } from "lodash";
-
 import { storeToRefs } from "pinia";
-import { inject, nextTick } from "vue";
+import { nextTick } from "vue";
 
 // Props
 const emitter = useNuxtApp().$emitter;

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import RommIso from "@/components/common/RommIso.vue";
 import storeNavigation from "@/stores/navigation";
 
+// Props
 const navigationStore = storeNavigation();
 </script>
 <template>
   <v-hover v-slot="{ isHovering, props: hoverProps }">
-    <romm-iso
+    <common-romm-iso
       @click="navigationStore.goHome"
       v-bind="hoverProps"
       class="pointer"

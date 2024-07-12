@@ -2,6 +2,7 @@
 import storeConfig from "@/stores/config";
 import { storeToRefs } from "pinia";
 
+// Props
 const props = withDefaults(
   defineProps<{ slug: string; size?: number; rounded?: number }>(),
   { size: 40, rounded: 0 }
@@ -19,7 +20,7 @@ const { config } = storeToRefs(configStore);
         props.slug.toLowerCase()
       }.ico`"
       ><template #error
-        ><v-img :src="`/images/default/platform.ico`"></v-img></template
+        ><v-img src="/images/default/platform.ico"></v-img></template
     ></v-img>
   </v-avatar>
 </template>

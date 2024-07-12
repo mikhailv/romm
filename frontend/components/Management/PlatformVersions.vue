@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import AddBtn from "@/components/Management/AddBtn.vue";
-import PlatformBindCard from "@/components/Management/PlatformBindCard.vue";
-import RSection from "@/components/common/RSection.vue";
 import storeAuth from "@/stores/auth";
 import storeConfig from "@/stores/config";
-
-
 import { storeToRefs } from "pinia";
-import { inject, ref } from "vue";
+import { ref } from "vue";
 
 // Props
 const emitter = useNuxtApp().$emitter;
@@ -18,7 +13,7 @@ const editable = ref(false);
 </script>
 
 <template>
-  <r-section icon="mdi-gamepad-variant" title="Platforms Versions">
+  <common-r-section icon="mdi-gamepad-variant" title="Platforms Versions">
     <template #toolbar-append>
       <v-btn
         v-if="authStore.scopes.includes('platforms.write')"
@@ -42,7 +37,7 @@ const editable = ref(false);
           lg="2"
           :title="slug"
         >
-          <platform-bind-card
+          <management-platform-bind-card
             :editable="authStore.scopes.includes('platforms.write') && editable"
             :slug="slug"
             :fs-slug="fsSlug"
@@ -61,7 +56,7 @@ const editable = ref(false);
           />
         </v-col>
         <v-col cols="6" sm="4" md="3" lg="2" class="px-1">
-          <add-btn
+          <management-add-btn
             :enabled="editable"
             @click="
               emitter?.emit('showCreatePlatformVersionDialog', {
@@ -73,5 +68,5 @@ const editable = ref(false);
         </v-col>
       </v-row>
     </template>
-  </r-section>
+  </common-r-section>
 </template>

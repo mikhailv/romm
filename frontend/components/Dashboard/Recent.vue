@@ -2,11 +2,10 @@
 import storeRoms, { type SimpleRom } from "@/stores/roms";
 import { views } from "@/utils";
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
 
 // Props
 const romsStore = storeRoms();
-const { recentRoms } = storeToRefs(romsStore)
+const { recentRoms } = storeToRefs(romsStore);
 const router = useRouter();
 
 // Functions

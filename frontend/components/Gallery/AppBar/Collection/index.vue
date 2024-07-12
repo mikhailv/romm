@@ -7,7 +7,6 @@ const auth = storeAuth();
 
 <template>
   <v-app-bar id="gallery-app-bar" elevation="0" density="compact">
-    <gallery-app-bar-platform-firmware-btn />
     <gallery-app-bar-common-filter-btn />
     <gallery-app-bar-common-filter-text-field />
     <gallery-app-bar-common-selecting-btn />
@@ -15,7 +14,7 @@ const auth = storeAuth();
     <v-menu location="bottom">
       <template #activator="{ props }">
         <v-btn
-          v-if="auth.scopes.includes('roms.write')"
+          v-if="auth.scopes.includes('collections.write')"
           v-bind="props"
           rounded="0"
           variant="text"
@@ -24,12 +23,11 @@ const auth = storeAuth();
           @click.stop
         />
       </template>
-      <gallery-app-bar-platform-admin-menu />
+      <gallery-app-bar-collection-admin-menu />
     </v-menu>
   </v-app-bar>
 
   <gallery-app-bar-common-filter-drawer />
-  <gallery-app-bar-platform-firmware-drawer />
 </template>
 
 <style scoped>

@@ -3,11 +3,10 @@ import romApi from "@/services/api/rom";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
 import { formatBytes } from "@/utils";
 import { ref, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { useDisplay, useTheme } from "vuetify";
+import { useRoute } from "vue-router";
+import { useDisplay } from "vuetify";
 
 // Props
-const theme = useTheme();
 const { smAndUp, mdAndUp } = useDisplay();
 const router = useRouter();
 const route = useRoute();

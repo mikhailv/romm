@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import type { SearchRomSchema } from "@/__generated__";
-import ActionBar from "@/components/common/Game/Card/ActionBar.vue";
-import GameCardFlags from "@/components/common/Game/Card/Flags.vue";
-import Sources from "@/components/common/Game/Card/Sources.vue";
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
 import storeCollections from "@/stores/collections";
 import storeDownload from "@/stores/download";
 import storeGalleryView from "@/stores/galleryView";
 import storeRoms from "@/stores/roms";
 import { type SimpleRom } from "@/stores/roms.js";
-import { storeToRefs } from "pinia";
-import { computed, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useTheme } from "vuetify";
 
 // Props
@@ -148,9 +143,12 @@ onMounted(() => {
                 </div>
               </v-expand-transition>
             </template>
-            <sources v-if="!romsStore.isSimpleRom(rom)" :rom="rom" />
+            <common-game-card-sources
+              v-if="!romsStore.isSimpleRom(rom)"
+              :rom="rom"
+            />
             <v-row no-gutters class="text-white px-1">
-              <game-card-flags
+              <common-game-card-flags
                 v-if="romsStore.isSimpleRom(rom) && showFlags"
                 :rom="rom"
               />
@@ -158,7 +156,7 @@ onMounted(() => {
             </v-row>
           </div>
           <div class="position-absolute append-inner-left">
-            <platform-icon
+            <common-platform-icon
               v-if="romsStore.isSimpleRom(rom) && showPlatformIcon"
               :size="25"
               :key="rom.platform_slug"
@@ -222,7 +220,7 @@ onMounted(() => {
         </v-row>
       </v-card-text>
       <slot name="footer"></slot>
-      <action-bar
+      <common-game-card-action-bar
         v-if="showActionBar && romsStore.isSimpleRom(rom)"
         :rom="rom"
       />

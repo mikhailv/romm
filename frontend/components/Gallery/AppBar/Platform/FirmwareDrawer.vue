@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import type { FirmwareSchema } from "@/__generated__";
-import DeleteFirmwareDialog from "@/components/common/Platform/Dialog/DeleteFirmware.vue";
-import UploadFirmwareDialog from "@/components/common/Platform/Dialog/UploadFirmware.vue";
 import storeAuth from "@/stores/auth";
 import storeGalleryView from "@/stores/galleryView";
 import storeRoms from "@/stores/roms";
-
 import { formatBytes } from "@/utils";
-
 import { storeToRefs } from "pinia";
-import { inject, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -210,6 +206,6 @@ watch(itemsPerPage, async () => {
       </template>
     </v-data-table>
   </v-navigation-drawer>
-  <upload-firmware-dialog />
-  <delete-firmware-dialog />
+  <common-platform-dialog-upload-firmware />
+  <common-platform-dialog-delete-firmware />
 </template>

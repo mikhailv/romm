@@ -2,7 +2,6 @@
 import romApi from "@/services/api/rom";
 import type { SimpleRom } from "@/stores/roms";
 import { onBeforeUnmount, ref } from "vue";
-import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Define types

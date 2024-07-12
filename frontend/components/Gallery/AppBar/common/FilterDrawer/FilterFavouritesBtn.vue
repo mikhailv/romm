@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import storeGalleryFilter from "@/stores/galleryFilter";
-
-
 import { storeToRefs } from "pinia";
-import { inject } from "vue";
 
 // Props
 const galleryFilterStore = storeGalleryFilter();

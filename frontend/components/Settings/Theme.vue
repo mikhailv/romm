@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import ThemeOption from "@/components/Settings/ThemeOption.vue";
-import RSection from "@/components/common/RSection.vue";
-import { autoThemeKey, themes } from "assets/styles/themes";
 import { isKeyof } from "@/types";
+import { autoThemeKey, themes } from "assets/styles/themes";
 import { computed, ref } from "vue";
 import { useTheme } from "vuetify";
 
+// Props
 const theme = useTheme();
 const storedTheme = parseInt(localStorage.getItem("settings.theme") ?? "");
 const selectedTheme = ref(isNaN(storedTheme) ? autoThemeKey : storedTheme);
@@ -37,7 +36,7 @@ function toggleTheme() {
 </script>
 
 <template>
-  <r-section icon="mdi-brush-variant" title="Theme">
+  <common-r-section icon="mdi-brush-variant" title="Theme">
     <template #content>
       <v-item-group
         v-model="selectedTheme"
@@ -52,7 +51,7 @@ function toggleTheme() {
             class="pa-2"
             v-for="theme in themeOptions"
           >
-            <theme-option
+            <settings-theme-option
               :key="theme.name"
               :text="theme.name"
               :icon="theme.icon"
@@ -61,5 +60,5 @@ function toggleTheme() {
         </v-row>
       </v-item-group>
     </template>
-  </r-section>
+  </common-r-section>
 </template>

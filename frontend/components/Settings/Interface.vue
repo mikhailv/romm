@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import InterfaceOption from "@/components/Settings/InterfaceOption.vue";
-import RSection from "@/components/common/RSection.vue";
 import { isNull } from "lodash";
 import { computed, ref } from "vue";
 
@@ -83,11 +81,11 @@ const options = computed(() => [
 </script>
 
 <template>
-  <r-section icon="mdi-palette-swatch-outline" title="Interface">
+  <common-r-section icon="mdi-palette-swatch-outline" title="Interface">
     <template #content>
       <v-row no-gutters>
         <v-col cols="12" md="6" v-for="option in options" :key="option.title">
-          <interface-option
+          <settings-interface-option
             class="mx-2"
             :disabled="option.disabled"
             :title="option.title"
@@ -101,5 +99,5 @@ const options = computed(() => [
         </v-col>
       </v-row>
     </template>
-  </r-section>
+  </common-r-section>
 </template>

@@ -5,7 +5,6 @@ import storeAuth from "@/stores/auth";
 import storeNavigation from "@/stores/navigation";
 import { defaultAvatarPath } from "@/utils";
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Props

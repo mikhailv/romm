@@ -4,7 +4,6 @@ import collectionApi, {
 } from "@/services/api/collection";
 import storeCollections from "@/stores/collections";
 import storeHeartbeat from "@/stores/heartbeat";
-
 import { ref } from "vue";
 import { useDisplay, useTheme } from "vuetify";
 

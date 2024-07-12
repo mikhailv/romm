@@ -1,6 +1,5 @@
 {
   "name": "romm",
-  "type": "module",
   "private": true,
   "version": "0.0.1",
   "author": "Zurdi <https://github.com/zurdi15>",
@@ -26,6 +25,7 @@
     "lint": "eslint . --fix",
     "postinstall": "cd node_modules/emulatorjs/data/minify/ && npm i && npm run build",
     "preview": "nuxt preview",
+    "prepare": "nuxt prepare",
     "build": "npm run typecheck && nuxt build"
   },
   "dependencies": {
@@ -53,6 +53,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^8.57.0",
+    "@nuxt/eslint": "^0.3.13",
+    "@nuxt/eslint-config": "^0.3.13",
     "@nuxt/types": "^2.18.1",
     "@nuxt/typescript-build": "^3.0.2",
     "@nuxtjs/vuetify": "^1.12.3",

@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import AdminMenu from "@/components/common/Game/AdminMenu.vue";
 import romApi from "@/services/api/rom";
 import storeDownload from "@/stores/download";
 import type { DetailedRom } from "@/stores/roms";
-
 import { getDownloadLink, isEmulationSupported } from "@/utils";
-
-import { inject, ref } from "vue";
+import { ref } from "vue";
 
 // Props
 const props = defineProps<{ rom: DetailedRom }>();
@@ -90,7 +87,7 @@ async function copyDownloadLink(rom: DetailedRom) {
           <v-icon icon="mdi-dots-vertical" size="large" />
         </v-btn>
       </template>
-      <admin-menu :rom="rom" />
+      <common-game-admin-menu :rom="rom" />
     </v-menu>
   </v-btn-group>
 </template>

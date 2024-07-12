@@ -1,5 +1,4 @@
 // ~/plugins/axios.ts
-import { defineNuxtPlugin, useRouter } from "#app";
 import axios from "axios";
 import { default as cookie, default as Cookies } from "js-cookie";
 import { debounce } from "lodash";

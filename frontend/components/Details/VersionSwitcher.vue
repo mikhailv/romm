@@ -3,7 +3,6 @@ import type { Platform } from "@/stores/platforms";
 import type { DetailedRom } from "@/stores/roms";
 import { languageToEmoji, regionToEmoji } from "@/utils";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 
 // Props
 const props = defineProps<{ rom: DetailedRom; platform: Platform }>();

@@ -8,7 +8,7 @@ import storeRoms, { type SimpleRom } from "@/stores/roms";
 import { normalizeString, views } from "@/utils";
 import { storeToRefs } from "pinia";
 import { onBeforeUnmount, onMounted, ref } from "vue";
-import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
+import { onBeforeRouteUpdate, useRoute } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Props

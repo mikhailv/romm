@@ -2,7 +2,6 @@
 import collectionApi from "@/services/api/collection";
 import type { Collection } from "@/stores/collections";
 import storeRoms, { type SimpleRom } from "@/stores/roms";
-
 import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AdminMenu from "@/components/common/Game/AdminMenu.vue";
 import romApi from "@/services/api/rom";
 import storeDownload from "@/stores/download";
 import type { SimpleRom } from "@/stores/roms";
@@ -50,7 +49,7 @@ const downloadStore = storeDownload();
           variant="text"
         />
       </template>
-      <admin-menu :rom="rom" />
+      <common-game-admin-menu :rom="rom" />
     </v-menu>
   </v-row>
 </template>

@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import EmptyFirmware from "@/components/common/EmptyFirmware.vue";
-import EmptyGame from "@/components/common/EmptyGame.vue";
-import EmptyPlatform from "@/components/common/EmptyPlatform.vue";
-import RommIso from "@/components/common/RommIso.vue";
 import { onMounted, ref, useSlots } from "vue";
 
 // Props
@@ -66,7 +62,7 @@ onMounted(() => {
     <v-card rounded="0" :height="height">
       <v-toolbar density="compact" class="bg-terciary">
         <v-icon v-if="icon" :icon="icon" class="ml-5" />
-        <romm-iso :size="30" class="mx-4" v-if="showRommIcon" />
+        <common-romm-iso :size="30" class="mx-4" v-if="showRommIcon" />
         <slot name="header"></slot>
         <template #append>
           <v-btn
@@ -112,9 +108,9 @@ onMounted(() => {
           class="justify-center align-center h-100"
           no-gutters
         >
-          <empty-game v-if="emptyStateType == 'game'" />
-          <empty-platform v-else-if="emptyStateType == 'platform'" />
-          <empty-firmware v-else-if="emptyStateType == 'firmware'" />
+          <common-empty-game v-if="emptyStateType == 'game'" />
+          <common-empty-platform v-else-if="emptyStateType == 'platform'" />
+          <common-empty-firmware v-else-if="emptyStateType == 'firmware'" />
           <slot v-else name="emptyState"></slot>
         </v-row>
 

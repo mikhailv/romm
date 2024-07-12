@@ -2,7 +2,6 @@
 import platformApi from "@/services/api/platform";
 import storePlatforms, { type Platform } from "@/stores/platforms";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Props

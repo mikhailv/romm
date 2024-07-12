@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import storeNotifications from "@/stores/notifications";
-import type { Events, SnackbarStatus } from "@/types/emitter";
-
-import { inject, ref } from "vue";
+import type { SnackbarStatus } from "@/types/emitter";
+import { ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import PlatformIcon from "@/components/common/Platform/Icon.vue";
 import type { Platform } from "@/stores/platforms";
 
 // Props
@@ -15,7 +14,7 @@ withDefaults(defineProps<{ platform: Platform; rail?: boolean }>(), {
     :value="platform.slug"
   >
     <template #prepend>
-      <platform-icon :key="platform.slug" :slug="platform.slug"
+      <common-platform-icon :key="platform.slug" :slug="platform.slug"
         ><v-tooltip
           location="bottom"
           class="tooltip"
@@ -31,7 +30,7 @@ withDefaults(defineProps<{ platform: Platform; rail?: boolean }>(), {
               ⚠️
             </div>
           </template>
-        </v-tooltip></platform-icon
+        </v-tooltip></common-platform-icon
       >
     </template>
     <v-row no-gutters

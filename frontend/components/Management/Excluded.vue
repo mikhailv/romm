@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import ExcludedCard from "@/components/Management/ExcludedCard.vue";
-import RSection from "@/components/common/RSection.vue";
 import storeAuth from "@/stores/auth";
 import storeConfig from "@/stores/config";
 import { ref } from "vue";
@@ -49,7 +47,7 @@ const exclusions = [
 const editable = ref(false);
 </script>
 <template>
-  <r-section icon="mdi-cancel" title="Excluded">
+  <common-r-section icon="mdi-cancel" title="Excluded">
     <template #toolbar-append>
       <v-btn
         v-if="authStore.scopes.includes('platforms.write')"
@@ -64,7 +62,7 @@ const editable = ref(false);
       />
     </template>
     <template #content>
-      <excluded-card
+      <management-excluded-card
         v-for="exclusion in exclusions"
         class="mb-1"
         :set="exclusion.set"
@@ -74,5 +72,5 @@ const editable = ref(false);
         :editable="editable && authStore.scopes.includes('platforms.write')"
       />
     </template>
-  </r-section>
+  </common-r-section>
 </template>

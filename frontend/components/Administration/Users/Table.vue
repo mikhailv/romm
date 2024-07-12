@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import RSection from "@/components/common/RSection.vue";
 import userApi from "@/services/api/user";
 import storeAuth from "@/stores/auth";
 import storeUsers, { type User } from "@/stores/users";
-
 import { defaultAvatarPath, formatTimestamp } from "@/utils";
-
 import { storeToRefs } from "pinia";
-import { inject, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -89,7 +86,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <r-section icon="mdi-account" title="Users">
+  <common-r-section icon="mdi-account" title="Users">
     <template #content>
       <v-text-field
         v-model="userSearch"
@@ -194,5 +191,5 @@ onMounted(() => {
         </template>
       </v-data-table>
     </template>
-  </r-section>
+  </common-r-section>
 </template>

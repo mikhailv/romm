@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import VersionSwitcher from "@/components/Details/VersionSwitcher.vue";
-import RAvatar from "@/components/common/Collection/RAvatar.vue";
 import romApi from "@/services/api/rom";
 import storeAuth from "@/stores/auth";
 import type { Collection } from "@/stores/collections";
@@ -69,7 +67,7 @@ watch(
         </v-col>
         <v-col>
           <v-row class="align-center" no-gutters>
-            <version-switcher :rom="rom" :platform="platform" />
+            <details-version-switcher :rom="rom" :platform="platform" />
             <v-tooltip
               location="top"
               class="tooltip"
@@ -178,7 +176,7 @@ watch(
             label
           >
             <template #prepend>
-              <r-avatar :size="25" :collection="collection" />
+              <common-collection-r-avatar :size="25" :collection="collection" />
             </template>
             <span class="ml-2">{{ collection.name }}</span>
           </v-chip>

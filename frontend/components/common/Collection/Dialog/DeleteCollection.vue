@@ -2,7 +2,6 @@
 import collectionApi from "@/services/api/collection";
 import storeCollections, { type Collection } from "@/stores/collections";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { useDisplay } from "vuetify";
 
 // Props

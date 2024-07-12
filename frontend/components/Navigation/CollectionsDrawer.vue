@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CollectionListItem from "@/components/common/Collection/ListItem.vue";
 import storeCollections from "@/stores/collections";
 import storeNavigation from "@/stores/navigation";
 import { storeToRefs } from "pinia";
@@ -45,7 +44,7 @@ function clear() {
       ></v-text-field>
     </template>
     <v-list lines="two" rounded="0" class="pa-0">
-      <collection-list-item
+      <common-collection-list-item
         v-for="collection in filteredCollections"
         :collection="collection"
       />
