@@ -30,7 +30,7 @@ const downloadStore = storeDownload();
         size="x-small"
         @click="
           $router.push({
-            name: 'index-play-id',
+            name: 'play-id',
             params: { id: rom?.id },
           })
         "

@@ -151,7 +151,7 @@ function onGameClick(emitData: { rom: SimpleRom; event: MouseEvent }) {
       romsStore.updateLastSelected(index);
     }
   } else {
-    router.push({ name: "index-rom-id", params: { id: emitData.rom.id } });
+    router.push({ name: "rom-id", params: { id: emitData.rom.id } });
   }
 }
 

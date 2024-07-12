@@ -39,7 +39,7 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
     no-gutters
   >
     <v-col>
-      <v-chip :to="{ name: 'index-platform-id', params: { id: platform.id } }">
+      <v-chip :to="{ name: 'platform-id', params: { id: platform.id } }">
         {{ platform.name }}
         <platform-icon
           :key="platform.slug"

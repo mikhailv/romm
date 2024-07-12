@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
       :size="20"
       indeterminate
     />
-    <v-icon v-else :color="$route.name == 'index-scan' ? 'romm-accent-1' : ''"
+    <v-icon v-else :color="$route.name == 'scan' ? 'romm-accent-1' : ''"
       >mdi-magnify-scan</v-icon
     >
   </v-btn>

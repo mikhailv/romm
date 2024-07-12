@@ -44,7 +44,7 @@ async function logout() {
         <v-img
           :src="
             user?.avatar_path
-              ? `/assets/romm/assets/${user?.avatar_path}?ts=${user?.updated_at}`
+              ? `assets/${user?.avatar_path}?ts=${user?.updated_at}`
               : defaultAvatarPath
           "
           cover
@@ -69,18 +69,18 @@ async function logout() {
         append-icon="mdi-account"
         >Profile</v-list-item
       >
-      <v-list-item :to="{ name: 'index-settings' }" append-icon="mdi-palette"
+      <v-list-item :to="{ name: 'settings' }" append-icon="mdi-palette"
         >UI Settings</v-list-item
       >
       <v-list-item
         v-if="scopes.includes('platforms.write')"
         append-icon="mdi-table-cog"
-        :to="{ name: 'index-management' }"
+        :to="{ name: 'management' }"
         >Library Management
       </v-list-item>
       <v-list-item
         v-if="scopes.includes('users.write')"
-        :to="{ name: 'index-administration' }"
+        :to="{ name: 'administration' }"
         append-icon="mdi-security"
         >Administration</v-list-item
       >

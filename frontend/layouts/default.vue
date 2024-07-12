@@ -58,16 +58,12 @@ onBeforeMount(async () => {
 
 <template>
   <navigation-main-drawer v-if="!smAndDown" />
-
   <navigation-main-app-bar v-if="smAndDown" />
-
   <navigation-platforms-drawer />
-
   <navigation-collections-drawer />
-
   <navigation-settings-drawer />
-
   <common-new-version />
+
   <slot />
 
   <common-platform-dialog-delete-platform />

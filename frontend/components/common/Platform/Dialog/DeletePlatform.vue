@@ -41,7 +41,7 @@ async function deletePlatform() {
       return;
     });
 
-  await router.push({ name: "index-dashboard" });
+  await router.push({ name: "index" });
 
   platformsStore.remove(platform.value);
   emitter?.emit("refreshDrawer", null);
@@ -64,7 +64,7 @@ function closeDialog() {
     <template #content>
       <v-row class="justify-center align-center pa-2" no-gutters>
         <span class="mr-1">Removing platform</span>
-        <common-common-platform-icon :slug="platform.slug" />
+        <common-platform-icon :slug="platform.slug" />
         <span class="ml-1"
           >{{ platform.name }} - [<span class="text-romm-accent-1">{{
             platform.fs_slug

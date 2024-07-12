@@ -12,7 +12,7 @@ defineProps<{ platform: Platform }>();
       class="bg-terciary transform-scale"
       :class="{ 'on-hover': isHovering }"
       :elevation="isHovering ? 20 : 3"
-      :to="{ name: 'index-platform-id', params: { id: platform.id } }"
+      :to="{ name: 'platform-id', params: { id: platform.id } }"
     >
       <v-card-text>
         <v-row class="pa-1 justify-center bg-primary">

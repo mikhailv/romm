@@ -5,14 +5,13 @@ import storeHeartbeat from "@/stores/heartbeat";
 const heartbeat = storeHeartbeat();
 </script>
 <template>
-  <v-container class="fill-height justify-center">
-    <span id="bg" />
-    <slot />
+  <span id="bg" />
 
-    <div id="version" class="position-absolute">
-      <span class="text-white">{{ heartbeat.value.VERSION }}</span>
-    </div>
-  </v-container>
+  <slot />
+
+  <div id="version" class="position-absolute">
+    <span class="text-white">{{ heartbeat.value.VERSION }}</span>
+  </div>
 </template>
 
 <style>

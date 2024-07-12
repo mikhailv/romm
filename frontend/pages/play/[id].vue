@@ -317,7 +317,7 @@ onMounted(async () => {
             prepend-icon="mdi-arrow-left"
             @click="
               $router.push({
-                name: 'index-rom-id',
+                name: 'rom-id',
                 params: { id: rom?.id },
               })
             "
@@ -332,7 +332,7 @@ onMounted(async () => {
             prepend-icon="mdi-arrow-left"
             @click="
               $router.push({
-                name: 'index-platform-id',
+                name: 'platform-id',
                 params: { id: rom?.platform_id },
               })
             "

@@ -49,7 +49,7 @@ function closeDialog() {
     <template #content>
       <v-row class="justify-center pa-2 align-center" no-gutters>
         <span class="mr-1">Deleting platform binding</span>
-        <common-common-common-platform-icon
+        <common-platform-icon
           class="mx-2"
           :key="slugToDelete"
           :slug="slugToDelete"

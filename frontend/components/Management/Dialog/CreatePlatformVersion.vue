@@ -128,7 +128,7 @@ function closeDialog() {
                 :title="item.raw.name ?? ''"
               >
                 <template #prepend>
-                  <common-common-common-common-platform-icon
+                  <common-platform-icon
                     :key="item.raw.slug"
                     :size="35"
                     :slug="item.raw.slug"
@@ -139,7 +139,7 @@ function closeDialog() {
             <template #selection="{ item }">
               <v-list-item class="px-0" :title="item.raw.name ?? ''">
                 <template #prepend>
-                  <common-common-common-common-platform-icon
+                  <common-platform-icon
                     :size="35"
                     :key="item.raw.slug"
                     :slug="item.raw.slug"

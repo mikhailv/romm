@@ -65,7 +65,7 @@ window.EJS_pathtodata = "/assets/emulatorjs/";
 window.EJS_color = "#A453FF";
 window.EJS_alignStartButton = "center";
 window.EJS_startOnLoaded = true;
-window.EJS_backgroundImage = "/assets/images/emulatorjs/loading_black.png";
+window.EJS_backgroundImage = "images/emulatorjs/loading_black.png";
 window.EJS_defaultOptions = { "save-state-location": "browser" };
 if (romRef.value.name) window.EJS_gameName = romRef.value.name;
 

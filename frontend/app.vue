@@ -56,9 +56,8 @@ onBeforeMount(async () => {
 <template>
   <v-app>
     <v-main>
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
+      <NuxtLayout />
+      <NuxtPage />
     </v-main>
   </v-app>
 </template>

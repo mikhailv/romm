@@ -33,7 +33,7 @@ const theme = useTheme();
       :elevation="isHovering && transformScale ? 20 : 3"
       :to="
         withLink && collection
-          ? { name: 'index-collection-id', params: { id: collection.id } }
+          ? { name: 'collection-id', params: { id: collection.id } }
           : ''
       "
     >
@@ -51,19 +51,19 @@ const theme = useTheme();
           src
             ? src
             : collection.has_cover
-            ? `/assets/romm/resources/${collection.path_cover_l}?ts=${collection.updated_at}`
+            ? `romm/resources/${collection.path_cover_l}?ts=${collection.updated_at}`
             : collection.name && collection.name.toLowerCase() == 'favourites'
-            ? `/assets/default/cover/big_${theme.global.name.value}_fav.png`
-            : `/assets/default/cover/big_${theme.global.name.value}_collection.png`
+            ? `images/cover/big_${theme.global.name.value}_fav.png`
+            : `images/default/cover/big_${theme.global.name.value}_collection.png`
         "
         :lazy-src="
           src
             ? src
             : collection.has_cover
-            ? `/assets/romm/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
+            ? `romm/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
             : collection.name && collection.name.toLowerCase() == 'favourites'
-            ? `/assets/default/cover/small_${theme.global.name.value}_fav.png`
-            : `/assets/default/cover/small_${theme.global.name.value}_collection.png`
+            ? `images/default/cover/small_${theme.global.name.value}_fav.png`
+            : `images/default/cover/small_${theme.global.name.value}_collection.png`
         "
         :aspect-ratio="2 / 3"
       >
@@ -73,7 +73,7 @@ const theme = useTheme();
 
         <template #error>
           <v-img
-            :src="`/assets/default/cover/big_${theme.global.name.value}_missing_cover.png`"
+            :src="`images/default/cover/big_${theme.global.name.value}_missing_cover.png`"
             cover
             :aspect-ratio="2 / 3"
           ></v-img>

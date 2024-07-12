@@ -22,7 +22,7 @@ const { activeCollectionsDrawer } = storeToRefs(navigationStore);
     :color="activeCollectionsDrawer ? 'terciary' : ''"
     icon
     @click="navigationStore.switchActiveCollectionsDrawer"
-    ><v-icon :color="$route.name == 'index-collection-id' ? 'romm-accent-1' : ''"
+    ><v-icon :color="$route.name == 'collection-id' ? 'romm-accent-1' : ''"
       >mdi-bookmark-box-multiple</v-icon
     ></v-btn
   >

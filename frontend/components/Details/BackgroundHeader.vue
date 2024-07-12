@@ -15,15 +15,15 @@ const { currentRom } = storeToRefs(romsStore);
       id="background-header"
       :src="
         !currentRom.igdb_id && !currentRom.moby_id && !currentRom.has_cover
-          ? `/assets/default/cover/big_${theme.global.name.value}_unmatched.png`
-          : `/assets/romm/resources/${currentRom.path_cover_l}?ts=${currentRom.updated_at}`
+          ? `images/default/cover/big_${theme.global.name.value}_unmatched.png`
+          : `resources/${currentRom.path_cover_l}?ts=${currentRom.updated_at}`
       "
       lazy
       cover
     >
       <template #error>
         <v-img
-          :src="`/assets/default/cover/big_${theme.global.name.value}_missing_cover.png`"
+          :src="`images/default/cover/big_${theme.global.name.value}_missing_cover.png`"
         />
       </template>
       <template #placeholder>

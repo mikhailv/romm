@@ -22,7 +22,7 @@ const { user } = storeToRefs(auth);
       <v-img
         :src="
           user?.avatar_path
-            ? `/assets/romm/assets/${user?.avatar_path}?ts=${user?.updated_at}`
+            ? `assets/${user?.avatar_path}?ts=${user?.updated_at}`
             : defaultAvatarPath
         "
       >

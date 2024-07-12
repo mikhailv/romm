@@ -77,7 +77,7 @@ async function searchRoms() {
 }
 
 function onGameClick(emitData: { rom: SimpleRom; event: MouseEvent }) {
-  router.push({ name: "index-rom-id", params: { id: emitData.rom.id } });
+  router.push({ name: "rom-id", params: { id: emitData.rom.id } });
   closeDialog();
 }
 
@@ -187,7 +187,7 @@ onBeforeUnmount(() => {
           v-show="!searching"
           v-for="rom in filteredRoms"
         >
-          <common-common-game-card-base-base
+          <common-game-card-base
             :rom="rom"
             @click="onGameClick({ rom, event: $event })"
             title-on-hover

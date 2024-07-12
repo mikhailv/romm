@@ -262,7 +262,7 @@ async function stopScan() {
       rounded="4"
       height="40"
       class="ml-2"
-      :to="{ name: 'index-management' }"
+      :to="{ name: 'management' }"
     >
       Manage
     </v-btn>
