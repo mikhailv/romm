@@ -62,12 +62,21 @@ watch(
         class="align-center my-3"
         no-gutters
       >
-        <v-col cols="3" xl="2">
+        <v-col
+          cols="3"
+          xl="2"
+        >
           <span>Version</span>
         </v-col>
         <v-col>
-          <v-row class="align-center" no-gutters>
-            <details-version-switcher :rom="rom" :platform="platform" />
+          <v-row
+            class="align-center"
+            no-gutters
+          >
+            <details-version-switcher
+              :rom="rom"
+              :platform="platform"
+            />
             <v-tooltip
               location="top"
               class="tooltip"
@@ -82,31 +91,47 @@ watch(
                   rounded="0"
                   size="small"
                   @click="toggleMainSibling"
-                  ><v-icon
+                >
+                  <v-icon
                     :class="romUser.is_main_sibling ? '' : 'mr-1'"
                     :color="romUser.is_main_sibling ? 'romm-accent-1' : ''"
-                    >{{
+                  >
+                    {{
                       romUser.is_main_sibling
                         ? "mdi-checkbox-outline"
                         : "mdi-checkbox-blank-outline"
-                    }}</v-icon
-                  >{{ romUser.is_main_sibling ? "" : "Default" }}</v-btn
-                >
-              </template></v-tooltip
-            >
+                    }}
+                  </v-icon>{{ romUser.is_main_sibling ? "" : "Default" }}
+                </v-btn>
+              </template>
+            </v-tooltip>
           </v-row>
         </v-col>
       </v-row>
-      <v-row v-if="!rom.multi" class="align-center my-3" no-gutters>
-        <v-col cols="3" xl="2">
+      <v-row
+        v-if="!rom.multi"
+        class="align-center my-3"
+        no-gutters
+      >
+        <v-col
+          cols="3"
+          xl="2"
+        >
           <span>File</span>
         </v-col>
         <v-col>
           <span class="text-body-1">{{ rom.file_name }}</span>
         </v-col>
       </v-row>
-      <v-row v-if="rom.multi" class="align-center my-3" no-gutters>
-        <v-col cols="3" xl="2">
+      <v-row
+        v-if="rom.multi"
+        class="align-center my-3"
+        no-gutters
+      >
+        <v-col
+          cols="3"
+          xl="2"
+        >
           <span>Files</span>
         </v-col>
         <v-col>
@@ -126,18 +151,36 @@ watch(
           />
         </v-col>
       </v-row>
-      <v-row no-gutters class="align-center my-3">
-        <v-col cols="3" xl="2">
+      <v-row
+        no-gutters
+        class="align-center my-3"
+      >
+        <v-col
+          cols="3"
+          xl="2"
+        >
           <span>Size</span>
         </v-col>
         <v-col>
-          <v-chip size="small" label>{{
-            formatBytes(rom.file_size_bytes)
-          }}</v-chip>
+          <v-chip
+            size="small"
+            label
+          >
+            {{
+              formatBytes(rom.file_size_bytes)
+            }}
+          </v-chip>
         </v-col>
       </v-row>
-      <v-row v-if="rom.tags.length > 0" class="align-center my-3" no-gutters>
-        <v-col cols="3" xl="2">
+      <v-row
+        v-if="rom.tags.length > 0"
+        class="align-center my-3"
+        no-gutters
+      >
+        <v-col
+          cols="3"
+          xl="2"
+        >
           <span>Tags</span>
         </v-col>
         <v-col>
@@ -157,12 +200,15 @@ watch(
       <v-row
         v-if="
           rom.user_collections &&
-          collectionsWithoutFavourites(rom.user_collections).length > 0
+            collectionsWithoutFavourites(rom.user_collections).length > 0
         "
         no-gutters
         class="align-center my-3"
       >
-        <v-col cols="3" xl="2">
+        <v-col
+          cols="3"
+          xl="2"
+        >
           <span>Collections</span>
         </v-col>
         <v-col>
@@ -176,7 +222,10 @@ watch(
             label
           >
             <template #prepend>
-              <common-collection-r-avatar :size="25" :collection="collection" />
+              <common-collection-r-avatar
+                :size="25"
+                :collection="collection"
+              />
             </template>
             <span class="ml-2">{{ collection.name }}</span>
           </v-chip>

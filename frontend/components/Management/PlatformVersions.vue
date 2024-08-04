@@ -13,7 +13,10 @@ const editable = ref(false);
 </script>
 
 <template>
-  <common-r-section icon="mdi-gamepad-variant" title="Platforms Versions">
+  <common-r-section
+    icon="mdi-gamepad-variant"
+    title="Platforms Versions"
+  >
     <template #toolbar-append>
       <v-btn
         v-if="authStore.scopes.includes('platforms.write')"
@@ -27,7 +30,10 @@ const editable = ref(false);
       />
     </template>
     <template #content>
-      <v-row no-gutters class="align-center">
+      <v-row
+        no-gutters
+        class="align-center"
+      >
         <v-col
           v-for="(slug, fsSlug) in config.PLATFORMS_VERSIONS"
           :key="slug"
@@ -55,7 +61,13 @@ const editable = ref(false);
             "
           />
         </v-col>
-        <v-col cols="6" sm="4" md="3" lg="2" class="px-1">
+        <v-col
+          cols="6"
+          sm="4"
+          md="3"
+          lg="2"
+          class="px-1"
+        >
           <management-add-btn
             :enabled="editable"
             @click="

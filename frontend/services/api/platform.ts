@@ -1,5 +1,5 @@
 import type { MessageResponse } from "@/__generated__";
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 import type { Platform } from "@/stores/platforms";
 
 export const platformApi = api;

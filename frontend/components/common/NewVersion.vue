@@ -43,8 +43,8 @@ onMounted(async () => {
       <v-card
         v-if="
           GITHUB_VERSION &&
-          semver.gt(GITHUB_VERSION, VERSION) &&
-          !latestVersionDismissed
+            semver.gt(GITHUB_VERSION, VERSION) &&
+            !latestVersionDismissed
         "
         class="pa-1 border-romm-accent-1"
         rounded="0"
@@ -53,17 +53,18 @@ onMounted(async () => {
         <v-card-text class="py-2 px-4">
           <span class="text-white text-shadow">New version available</span>
           <span class="text-romm-accent-1 ml-1">v{{ GITHUB_VERSION }}</span>
-          <v-row class="text-center mt-1" no-gutters>
+          <v-row
+            class="text-center mt-1"
+            no-gutters
+          >
             <v-col>
-              <span class="pointer text-grey" @click="dismissVersionBanner"
-                >Dismiss</span
-              ><span class="ml-4"
-                ><a
-                  target="_blank"
-                  :href="`https://github.com/rommapp/romm/releases/tag/${GITHUB_VERSION}`"
-                  >See what's new!</a
-                ></span
-              >
+              <span
+                class="pointer text-grey"
+                @click="dismissVersionBanner"
+              >Dismiss</span><span class="ml-4"><a
+                target="_blank"
+                :href="`https://github.com/rommapp/romm/releases/tag/${GITHUB_VERSION}`"
+              >See what's new!</a></span>
             </v-col>
           </v-row>
         </v-card-text>

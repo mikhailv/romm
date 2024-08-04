@@ -104,14 +104,17 @@ function closeDialog() {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
     scroll-content
     :width="mdAndUp ? '50vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #header>
-      <v-row no-gutters class="justify-center">
+      <v-row
+        no-gutters
+        class="justify-center"
+      >
         <span>Removing</span>
         <span class="text-romm-accent-1 mx-1">{{ assets.length }}</span>
         <span>{{ assetType.slice(5) }} of</span>
@@ -121,23 +124,21 @@ function closeDialog() {
     </template>
     <template #prepend>
       <v-list-item class="text-caption text-center">
-        <span
-          >Select the {{ assetType.slice(5) }} you want to remove from your
+        <span>Select the {{ assetType.slice(5) }} you want to remove from your
           filesystem, otherwise they will only be deleted from RomM
-          database.</span
-        >
+          database.</span>
       </v-list-item>
     </template>
     <template #content>
       <v-data-table
+        v-model="assetsToDeleteFromFs"
+        v-model:page="page"
         :item-value="(item) => item.id"
         :items="assets"
         :width="mdAndUp ? '60vw' : '95vw'"
         :items-per-page="itemsPerPage"
         :items-per-page-options="PER_PAGE_OPTIONS"
         :headers="HEADERS"
-        v-model="assetsToDeleteFromFs"
-        v-model:page="page"
         show-select
       >
         <template #item.file_name="{ item }">
@@ -158,15 +159,19 @@ function closeDialog() {
             <v-row no-gutters>
               <v-col>
                 <template v-if="!smAndUp">
-                  <v-chip size="x-small" label
-                    >{{ formatBytes(item.file_size_bytes) }}
+                  <v-chip
+                    size="x-small"
+                    label
+                  >
+                    {{ formatBytes(item.file_size_bytes) }}
                   </v-chip>
                   <v-chip
                     v-if="item.emulator"
                     size="x-small"
                     class="ml-1 text-orange"
                     label
-                    >{{ item.emulator }}
+                  >
+                    {{ item.emulator }}
                   </v-chip>
                 </template>
                 <v-chip
@@ -186,10 +191,15 @@ function closeDialog() {
                   size="x-small"
                   class="text-orange"
                   label
-                  >{{ item.emulator }}
+                >
+                  {{ item.emulator }}
                 </v-chip>
-                <v-chip class="ml-1" size="x-small" label
-                  >{{ formatBytes(item.file_size_bytes) }}
+                <v-chip
+                  class="ml-1"
+                  size="x-small"
+                  label
+                >
+                  {{ formatBytes(item.file_size_bytes) }}
                 </v-chip>
               </template>
             </template>
@@ -197,7 +207,10 @@ function closeDialog() {
         </template>
         <template #bottom>
           <v-divider />
-          <v-row no-gutters class="pt-2 align-center justify-center">
+          <v-row
+            no-gutters
+            class="pt-2 align-center justify-center"
+          >
             <v-col class="px-6">
               <v-pagination
                 v-model="page"
@@ -207,7 +220,11 @@ function closeDialog() {
                 :length="pageCount"
               />
             </v-col>
-            <v-col cols="5" sm="3" xl="2">
+            <v-col
+              cols="5"
+              sm="3"
+              xl="2"
+            >
               <v-select
                 v-model="itemsPerPage"
                 class="pa-2"
@@ -223,7 +240,10 @@ function closeDialog() {
       </v-data-table>
     </template>
     <template #append>
-      <v-row v-if="assetsToDeleteFromFs.length > 0" no-gutters>
+      <v-row
+        v-if="assetsToDeleteFromFs.length > 0"
+        no-gutters
+      >
         <v-col>
           <v-list-item class="text-center mt-2">
             <span class="text-romm-red text-body-1">WARNING:</span>
@@ -231,16 +251,21 @@ function closeDialog() {
             <span class="text-romm-red text-body-1 ml-1">{{
               assetsToDeleteFromFs.length
             }}</span>
-            <span class="text-body-2 ml-1"
-              >{{ assetType.slice(5) }} from your filesystem. This action can't
-              be reverted!</span
-            >
+            <span class="text-body-2 ml-1">{{ assetType.slice(5) }} from your filesystem. This action can't
+              be reverted!</span>
           </v-list-item>
         </v-col>
       </v-row>
       <v-row class="justify-center my-2">
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog" variant="flat">
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            variant="flat"
+            @click="closeDialog"
+          >
             Cancel
           </v-btn>
           <v-btn

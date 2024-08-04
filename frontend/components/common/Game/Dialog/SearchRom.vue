@@ -102,23 +102,33 @@ onBeforeUnmount(() => {
     :height="lgAndUp ? '90vh' : '775px'"
   >
     <template #toolbar>
-      <v-row class="align-center" no-gutters>
-        <v-col cols="5" md="6" lg="7">
+      <v-row
+        class="align-center"
+        no-gutters
+      >
+        <v-col
+          cols="5"
+          md="6"
+          lg="7"
+        >
           <v-text-field
-            autofocus
             id="search-text-field"
-            @keyup.enter="searchRoms"
-            @click:clear="searchRoms"
             v-model="searchValue"
+            autofocus
             :disabled="searching"
             label="Search"
             hide-details
             class="bg-terciary"
+            @keyup.enter="searchRoms"
+            @click:clear="searchRoms"
           />
         </v-col>
-        <v-col cols="5" lg="4">
+        <v-col
+          cols="5"
+          lg="4"
+        >
           <v-select
-            @click:clear="clearFilter"
+            v-model="selectedPlatform"
             label="Platform"
             class="bg-terciary"
             item-title="platform_name"
@@ -127,9 +137,9 @@ onBeforeUnmount(() => {
             clearable
             single-line
             return-object
-            v-model="selectedPlatform"
-            @update:model-value="filterRoms"
             :items="platforms"
+            @click:clear="clearFilter"
+            @update:model-value="filterRoms"
           >
             <template #item="{ props, item }">
               <v-list-item
@@ -139,8 +149,8 @@ onBeforeUnmount(() => {
               >
                 <template #prepend>
                   <common-platform-icon
-                    :size="35"
                     :key="(item as SelectItem).raw.platform_slug"
+                    :size="35"
                     :slug="(item as SelectItem).raw.platform_slug"
                   />
                 </template>
@@ -153,8 +163,8 @@ onBeforeUnmount(() => {
               >
                 <template #prepend>
                   <common-platform-icon
-                    :size="35"
                     :key="(item as SelectItem).raw.platform_slug"
+                    :size="35"
                     :slug="(item as SelectItem).raw.platform_slug"
                   />
                 </template>
@@ -165,13 +175,13 @@ onBeforeUnmount(() => {
         <v-col>
           <v-btn
             type="submit"
-            @click="searchRoms"
             class="bg-terciary"
             rounded="0"
             variant="text"
             icon="mdi-magnify"
             block
             :disabled="searching"
+            @click="searchRoms"
           />
         </v-col>
       </v-row>
@@ -179,21 +189,21 @@ onBeforeUnmount(() => {
     <template #content>
       <v-row no-gutters>
         <v-col
+          v-for="rom in filteredRoms"
+          v-show="!searching"
           class="pa-1"
           cols="4"
           sm="3"
           md="2"
-          v-show="!searching"
-          v-for="rom in filteredRoms"
         >
           <common-game-card
             :rom="rom"
-            @click="onGameClick({ rom, event: $event })"
             title-on-hover
             show-flags
             transform-scale
             show-common-platform-icon
             show-fav
+            @click="onGameClick({ rom, event: $event })"
           />
         </v-col>
       </v-row>

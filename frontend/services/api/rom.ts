@@ -3,7 +3,7 @@ import type {
   MessageResponse,
   SearchRomSchema,
 } from "@/__generated__";
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 import socket from "@/services/socket";
 import storeDownload from "@/stores/download";
 import type { DetailedRom, SimpleRom } from "@/stores/roms";

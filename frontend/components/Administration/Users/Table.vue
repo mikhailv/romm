@@ -86,7 +86,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <common-r-section icon="mdi-account" title="Users">
+  <common-r-section
+    icon="mdi-account"
+    title="Users"
+  >
     <template #content>
       <v-text-field
         v-model="userSearch"
@@ -145,7 +148,10 @@ onMounted(() => {
           />
         </template>
         <template #item.actions="{ item }">
-          <v-btn-group divided density="compact">
+          <v-btn-group
+            divided
+            density="compact"
+          >
             <v-btn
               size="small"
               @click="emitter?.emit('showEditUserDialog', item)"
@@ -165,11 +171,19 @@ onMounted(() => {
         <template #bottom>
           <v-divider />
           <div>
-            <v-row no-gutters class="pa-1 align-center justify-center">
-              <v-col cols="8" sm="9" md="10" class="px-3">
+            <v-row
+              no-gutters
+              class="pa-1 align-center justify-center"
+            >
+              <v-col
+                cols="8"
+                sm="9"
+                md="10"
+                class="px-3"
+              >
                 <v-pagination
-                  :show-first-last-page="!xs"
                   v-model="page"
+                  :show-first-last-page="!xs"
                   rounded="0"
                   active-color="romm-accent-1"
                   :length="pageCount"

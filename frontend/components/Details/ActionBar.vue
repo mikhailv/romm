@@ -39,7 +39,12 @@ async function copyDownloadLink(rom: DetailedRom) {
 </script>
 
 <template>
-  <v-btn-group divided density="compact" rounded="0" class="d-flex flex-row">
+  <v-btn-group
+    divided
+    density="compact"
+    rounded="0"
+    class="d-flex flex-row"
+  >
     <v-btn
       class="flex-grow-1"
       :disabled="downloadStore.value.includes(rom.id)"
@@ -55,18 +60,26 @@ async function copyDownloadLink(rom: DetailedRom) {
         location="top"
         transition="fade-transition"
         open-delay="1000"
-        >Download game</v-tooltip
       >
-      <v-icon icon="mdi-download" size="large" />
+        Download game
+      </v-tooltip>
+      <v-icon
+        icon="mdi-download"
+        size="large"
+      />
     </v-btn>
-    <v-btn class="flex-grow-1" @click="copyDownloadLink(rom)">
+    <v-btn
+      class="flex-grow-1"
+      @click="copyDownloadLink(rom)"
+    >
       <v-tooltip
         activator="parent"
         location="top"
         transition="fade-transition"
         open-delay="1000"
-        >Copy download link</v-tooltip
       >
+        Copy download link
+      </v-tooltip>
       <v-icon icon="mdi-content-copy" />
     </v-btn>
     <v-btn
@@ -83,8 +96,14 @@ async function copyDownloadLink(rom: DetailedRom) {
     </v-btn>
     <v-menu location="bottom">
       <template #activator="{ props: menuProps }">
-        <v-btn class="flex-grow-1" v-bind="menuProps">
-          <v-icon icon="mdi-dots-vertical" size="large" />
+        <v-btn
+          class="flex-grow-1"
+          v-bind="menuProps"
+        >
+          <v-icon
+            icon="mdi-dots-vertical"
+            size="large"
+          />
         </v-btn>
       </template>
       <common-game-admin-menu :rom="rom" />

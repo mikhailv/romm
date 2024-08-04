@@ -23,7 +23,10 @@ const showSiblings = isNull(localStorage.getItem("settings.showSiblings"))
     :class="{ 'emoji-collection': rom.regions.length > 3 }"
     density="compact"
   >
-    <span class="emoji" v-for="region in rom.regions.slice(0, 3)">
+    <span
+      v-for="region in rom.regions.slice(0, 3)"
+      class="emoji"
+    >
       {{ regionToEmoji(region) }}
     </span>
   </v-chip>
@@ -34,7 +37,10 @@ const showSiblings = isNull(localStorage.getItem("settings.showSiblings"))
     :class="{ 'emoji-collection': rom.languages.length > 3 }"
     density="compact"
   >
-    <span class="emoji" v-for="language in rom.languages.slice(0, 3)">
+    <span
+      v-for="language in rom.languages.slice(0, 3)"
+      class="emoji"
+    >
       {{ languageToEmoji(language) }}
     </span>
   </v-chip>

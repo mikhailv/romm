@@ -27,15 +27,15 @@ const downloadStore = storeDownload();
         v-if="isEmulationSupported(rom.platform_slug)"
         class="action-bar-btn-small"
         size="x-small"
+        icon="mdi-play"
+        rounded="0"
+        variant="text"
         @click="
           $router.push({
             name: 'play-id',
             params: { id: rom?.id },
           })
         "
-        icon="mdi-play"
-        rounded="0"
-        variant="text"
       />
     </v-col>
     <v-menu location="bottom">

@@ -43,13 +43,26 @@ async function login() {
 
 <template>
   <v-container class="main-secondary-container fill-height justify-center">
-    <v-card class="translucent-dark py-8 px-5" width="500">
+    <v-card
+      class="translucent-dark py-8 px-5"
+      width="500"
+    >
       <v-row no-gutters>
         <v-col>
-          <v-img :src="`/images/isotipo.svg`" class="mx-auto" width="150" />
+          <v-img
+            :src="`/images/isotipo.svg`"
+            class="mx-auto"
+            width="150"
+          />
 
-          <v-row class="text-white justify-center mt-2" no-gutters>
-            <v-col cols="10" md="8">
+          <v-row
+            class="text-white justify-center mt-2"
+            no-gutters
+          >
+            <v-col
+              cols="10"
+              md="8"
+            >
               <v-form @submit.prevent>
                 <v-text-field
                   v-model="username"
@@ -58,8 +71,8 @@ async function login() {
                   type="text"
                   label="Username"
                   variant="underlined"
-                  @keyup.enter="login()"
                   autocomplete="on"
+                  @keyup.enter="login()"
                 />
                 <v-text-field
                   v-model="password"
@@ -71,9 +84,9 @@ async function login() {
                   :append-inner-icon="
                     visiblePassword ? 'mdi-eye-off' : 'mdi-eye'
                   "
+                  autocomplete="on"
                   @keyup.enter="login()"
                   @click:append-inner="visiblePassword = !visiblePassword"
-                  autocomplete="on"
                 />
                 <v-btn
                   type="submit"
@@ -86,9 +99,9 @@ async function login() {
                 >
                   <span>Login</span>
                   <template #append>
-                    <v-icon class="text-romm-accent-1"
-                      >mdi-chevron-right-circle-outline</v-icon
-                    >
+                    <v-icon class="text-romm-accent-1">
+                      mdi-chevron-right-circle-outline
+                    </v-icon>
                   </template>
                   <template #loader>
                     <v-progress-circular

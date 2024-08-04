@@ -81,11 +81,20 @@ const options = computed(() => [
 </script>
 
 <template>
-  <common-r-section icon="mdi-palette-swatch-outline" title="Interface">
+  <common-r-section
+    icon="mdi-palette-swatch-outline"
+    title="Interface"
+  >
     <template #content>
       <v-row no-gutters>
-        <v-col cols="12" md="6" v-for="option in options" :key="option.title">
+        <v-col
+          v-for="option in options"
+          :key="option.title"
+          cols="12"
+          md="6"
+        >
           <settings-interface-option
+            v-model="option.model.value"
             class="mx-2"
             :disabled="option.disabled"
             :title="option.title"
@@ -93,7 +102,6 @@ const options = computed(() => [
             :icon="
               option.model.value ? option.iconEnabled : option.iconDisabled
             "
-            v-model="option.model.value"
             @update:model-value="option.modelTrigger"
           />
         </v-col>

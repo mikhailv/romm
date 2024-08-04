@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 import storeHeartbeat from "@/stores/heartbeat";
 import storeRunningTasks from "@/stores/runningTasks";
 import { convertCronExperssion } from "@/utils";
@@ -62,7 +62,10 @@ const runAllTasks = async () => {
 };
 </script>
 <template>
-  <common-r-section icon="mdi-pulse" title="Tasks">
+  <common-r-section
+    icon="mdi-pulse"
+    title="Tasks"
+  >
     <template #toolbar-append>
       <v-btn
         :disabled="runningTasks.value"
@@ -76,8 +79,15 @@ const runAllTasks = async () => {
       </v-btn>
     </template>
     <template #content>
-      <v-row no-gutters class="align-center">
-        <v-col cols="12" md="6" v-for="task in tasks">
+      <v-row
+        no-gutters
+        class="align-center"
+      >
+        <v-col
+          v-for="task in tasks"
+          cols="12"
+          md="6"
+        >
           <settings-task-option
             class="ma-3"
             :enabled="task.enabled"

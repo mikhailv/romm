@@ -37,7 +37,10 @@ const theme = useTheme();
           : ''
       "
     >
-      <v-row v-if="showTitle" class="pa-1 justify-center bg-primary">
+      <v-row
+        v-if="showTitle"
+        class="pa-1 justify-center bg-primary"
+      >
         <div
           :title="collection.name?.toString()"
           class="py-4 px-6 text-truncate text-caption"
@@ -51,24 +54,24 @@ const theme = useTheme();
           src
             ? src
             : collection.has_cover
-            ? `/images/resources/${collection.path_cover_l}?ts=${collection.updated_at}`
-            : collection.name && collection.name.toLowerCase() == 'favourites'
-            ? `/images/cover/big_${theme.global.name.value}_fav.png`
-            : `/images/default/cover/big_${theme.global.name.value}_collection.png`
+              ? `/images/resources/${collection.path_cover_l}?ts=${collection.updated_at}`
+              : collection.name && collection.name.toLowerCase() == 'favourites'
+                ? `/images/cover/big_${theme.global.name.value}_fav.png`
+                : `/images/default/cover/big_${theme.global.name.value}_collection.png`
         "
         :lazy-src="
           src
             ? src
             : collection.has_cover
-            ? `/images/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
-            : collection.name && collection.name.toLowerCase() == 'favourites'
-            ? `/images/default/cover/small_${theme.global.name.value}_fav.png`
-            : `/images/default/cover/small_${theme.global.name.value}_collection.png`
+              ? `/images/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
+              : collection.name && collection.name.toLowerCase() == 'favourites'
+                ? `/images/default/cover/small_${theme.global.name.value}_fav.png`
+                : `/images/default/cover/small_${theme.global.name.value}_collection.png`
         "
         :aspect-ratio="2 / 3"
       >
         <div class="position-absolute append-inner">
-          <slot name="append-inner"></slot>
+          <slot name="append-inner" />
         </div>
 
         <template #error>
@@ -76,7 +79,7 @@ const theme = useTheme();
             :src="`/images/default/cover/big_${theme.global.name.value}_missing_cover.png`"
             cover
             :aspect-ratio="2 / 3"
-          ></v-img>
+          />
         </template>
         <template #placeholder>
           <div class="d-flex align-center justify-center fill-height">

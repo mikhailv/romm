@@ -68,29 +68,36 @@ async function finishWizard() {
 
 <template>
   <v-container class="main-secondary-container fill-height justify-center">
-    <v-card class="translucent-dark px-3" elevation="0">
-      <v-img :src="`/images/isotipo.svg`" class="mx-auto mt-4" width="70" />
+    <v-card
+      class="translucent-dark px-3"
+      elevation="0"
+    >
+      <v-img
+        :src="`/images/isotipo.svg`"
+        class="mx-auto mt-4"
+        width="70"
+      />
       <v-stepper
+        v-model="step"
         :mobile="smAndDown"
         class="bg-transparent"
         :width="xs ? '' : smAndDown ? 400 : 700"
         max-width="700"
-        v-model="step"
         flat
       >
-        <template v-slot:default="{ prev, next }">
+        <template #default="{ prev, next }">
           <v-stepper-header>
             <v-stepper-item
               title="Create an admin user"
               :value="1"
-            ></v-stepper-item>
+            />
 
-            <v-divider></v-divider>
+            <v-divider />
 
             <v-stepper-item
               title="Check metadata sources"
               :value="2"
-            ></v-stepper-item>
+            />
 
             <!-- <v-divider></v-divider> -->
 
@@ -98,16 +105,29 @@ async function finishWizard() {
           </v-stepper-header>
 
           <v-stepper-window>
-            <v-stepper-window-item :value="1" :key="1">
+            <v-stepper-window-item
+              :key="1"
+              :value="1"
+            >
               <v-row no-gutters>
                 <v-col>
-                  <v-row v-if="smAndDown" no-gutters class="text-center mb-6">
+                  <v-row
+                    v-if="smAndDown"
+                    no-gutters
+                    class="text-center mb-6"
+                  >
                     <v-col>
                       <span>Create an admin user</span>
                     </v-col>
                   </v-row>
-                  <v-row class="text-white justify-center mt-3" no-gutters>
-                    <v-col cols="10" md="8">
+                  <v-row
+                    class="text-white justify-center mt-3"
+                    no-gutters
+                  >
+                    <v-col
+                      cols="10"
+                      md="8"
+                    >
                       <v-form @submit.prevent>
                         <v-text-field
                           v-model="defaultAdminUser.username"
@@ -138,15 +158,25 @@ async function finishWizard() {
               </v-row>
             </v-stepper-window-item>
 
-            <v-stepper-window-item :value="2" :key="2">
+            <v-stepper-window-item
+              :key="2"
+              :value="2"
+            >
               <v-row no-gutters>
                 <v-col>
-                  <v-row v-if="smAndDown" no-gutters class="text-center mb-6">
+                  <v-row
+                    v-if="smAndDown"
+                    no-gutters
+                    class="text-center mb-6"
+                  >
                     <v-col>
                       <span>Check metadata sources</span>
                     </v-col>
                   </v-row>
-                  <v-row class="justify-center align-center" no-gutters>
+                  <v-row
+                    class="justify-center align-center"
+                    no-gutters
+                  >
                     <v-col id="sources">
                       <v-list-item
                         v-for="source in metadataOptions"
@@ -156,13 +186,22 @@ async function finishWizard() {
                         "
                       >
                         <template #prepend>
-                          <v-avatar size="30" rounded="1">
+                          <v-avatar
+                            size="30"
+                            rounded="1"
+                          >
                             <v-img :src="source.logo_path" />
                           </v-avatar>
                         </template>
                         <template #append>
-                          <span class="ml-2" v-if="source.disabled">❌</span>
-                          <span class="ml-2" v-else>✅</span>
+                          <span
+                            v-if="source.disabled"
+                            class="ml-2"
+                          >❌</span>
+                          <span
+                            v-else
+                            class="ml-2"
+                          >✅</span>
                         </template>
                       </v-list-item>
                     </v-col>
@@ -182,14 +221,22 @@ async function finishWizard() {
 
           <v-stepper-actions :disabled="!filledAdminUser">
             <template #prev>
-              <v-btn :ripple="false" :disabled="isFirstStep" @click="prev">{{
-                isFirstStep ? "" : "previous"
-              }}</v-btn>
+              <v-btn
+                :ripple="false"
+                :disabled="isFirstStep"
+                @click="prev"
+              >
+                {{
+                  isFirstStep ? "" : "previous"
+                }}
+              </v-btn>
             </template>
             <template #next>
-              <v-btn @click="!isLastStep ? next() : finishWizard()">{{
-                !isLastStep ? "Next" : "Finish"
-              }}</v-btn>
+              <v-btn @click="!isLastStep ? next() : finishWizard()">
+                {{
+                  !isLastStep ? "Next" : "Finish"
+                }}
+              </v-btn>
             </template>
           </v-stepper-actions>
         </template>

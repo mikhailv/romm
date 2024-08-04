@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 import userApi from "@/services/api/user";
 import storeAuth from "@/stores/auth";
 import storeConfig from "@/stores/config";

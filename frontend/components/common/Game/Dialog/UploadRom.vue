@@ -167,15 +167,22 @@ watch(itemsPerPage, async () => {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-upload"
     :width="mdAndUp ? '50vw' : '95vw'"
     scroll-content
+    @close="closeDialog"
   >
     <template #toolbar>
-      <v-row class="align-center" no-gutters>
-        <v-col cols="10" sm="8" lg="9">
+      <v-row
+        class="align-center"
+        no-gutters
+      >
+        <v-col
+          cols="10"
+          sm="8"
+          lg="9"
+        >
           <v-autocomplete
             v-model="selectedPlatform"
             label="Platform"
@@ -202,11 +209,14 @@ watch(itemsPerPage, async () => {
               </v-list-item>
             </template>
             <template #selection="{ item }">
-              <v-list-item class="px-0" :title="item.raw.name ?? ''">
+              <v-list-item
+                class="px-0"
+                :title="item.raw.name ?? ''"
+              >
                 <template #prepend>
                   <common-platform-icon
-                    :size="35"
                     :key="item.raw.slug"
+                    :size="35"
                     :slug="item.raw.slug"
                   />
                 </template>
@@ -223,16 +233,17 @@ watch(itemsPerPage, async () => {
             variant="text"
             @click="triggerFileInput"
           >
-            <v-icon :class="{ 'mr-2': !xs }"> mdi-plus </v-icon
-            ><span v-if="!xs">Add</span>
+            <v-icon :class="{ 'mr-2': !xs }">
+              mdi-plus
+            </v-icon><span v-if="!xs">Add</span>
           </v-btn>
           <v-file-input
             id="file-input"
             v-model="romsToUpload"
-            @update:model-value="updateDataTablePages"
             class="file-input"
             multiple
             required
+            @update:model-value="updateDataTablePages"
           />
         </v-col>
       </v-row>
@@ -240,13 +251,13 @@ watch(itemsPerPage, async () => {
     <template #content>
       <v-data-table
         v-if="romsToUpload.length > 0"
+        v-model:page="page"
         :item-value="(item) => item.name"
         :items="romsToUpload"
         :width="mdAndUp ? '60vw' : '95vw'"
         :items-per-page="itemsPerPage"
         :items-per-page-options="PER_PAGE_OPTIONS"
         :headers="HEADERS"
-        v-model:page="page"
         hide-default-header
       >
         <template #item.name="{ item }">
@@ -256,30 +267,53 @@ watch(itemsPerPage, async () => {
                 {{ item.name }}
               </v-col>
             </v-row>
-            <v-row no-gutters v-if="!smAndUp">
+            <v-row
+              v-if="!smAndUp"
+              no-gutters
+            >
               <v-col>
-                <v-chip size="x-small" label>{{
-                  formatBytes(item.size)
-                }}</v-chip>
+                <v-chip
+                  size="x-small"
+                  label
+                >
+                  {{
+                    formatBytes(item.size)
+                  }}
+                </v-chip>
               </v-col>
             </v-row>
             <template #append>
-              <v-chip v-if="smAndUp" class="ml-2" size="x-small" label>{{
-                formatBytes(item.size)
-              }}</v-chip>
+              <v-chip
+                v-if="smAndUp"
+                class="ml-2"
+                size="x-small"
+                label
+              >
+                {{
+                  formatBytes(item.size)
+                }}
+              </v-chip>
             </template>
           </v-list-item>
         </template>
         <template #item.actions="{ item }">
-          <v-btn-group divided density="compact">
+          <v-btn-group
+            divided
+            density="compact"
+          >
             <v-btn @click="removeRomFromList(item.name)">
-              <v-icon class="text-romm-red"> mdi-close </v-icon>
+              <v-icon class="text-romm-red">
+                mdi-close
+              </v-icon>
             </v-btn>
           </v-btn-group>
         </template>
         <template #bottom>
           <v-divider />
-          <v-row no-gutters class="pt-2 align-center justify-center">
+          <v-row
+            no-gutters
+            class="pt-2 align-center justify-center"
+          >
             <v-col class="px-6">
               <v-pagination
                 v-model="page"
@@ -289,7 +323,11 @@ watch(itemsPerPage, async () => {
                 :length="pageCount"
               />
             </v-col>
-            <v-col cols="5" sm="3" xl="2">
+            <v-col
+              cols="5"
+              sm="3"
+              xl="2"
+            >
               <v-select
                 v-model="itemsPerPage"
                 class="pa-2"
@@ -305,9 +343,20 @@ watch(itemsPerPage, async () => {
       </v-data-table>
     </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             class="bg-terciary text-romm-green"
             :disabled="romsToUpload.length == 0 || selectedPlatform == null"

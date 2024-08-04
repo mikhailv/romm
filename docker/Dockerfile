@@ -30,7 +30,7 @@ ENV POETRY_NO_INTERACTION=1 \
 
 WORKDIR /src
 
-COPY ./pyproject.toml ./poetry.lock /src/
+COPY ./backend/pyproject.toml ./backend/poetry.lock /src/
 RUN poetry install --no-ansi --no-cache --only main
 
 # Setup frontend and backend
@@ -38,14 +38,13 @@ FROM nginx:${NGINX_VERSION}-alpine${ALPINE_VERSION}-slim AS production-stage
 ARG WEBSERVER_FOLDER=/var/www/html
 
 COPY --from=front-build-stage /front/dist ${WEBSERVER_FOLDER}
-COPY ./frontend/assets/default ${WEBSERVER_FOLDER}/assets/default
-COPY ./frontend/assets/emulatorjs ${WEBSERVER_FOLDER}/assets/emulatorjs
-COPY ./frontend/assets/images/scrappers ${WEBSERVER_FOLDER}/assets/images/scrappers
-COPY ./frontend/assets/platforms ${WEBSERVER_FOLDER}/assets/platforms
-COPY ./frontend/assets/webrcade/feed ${WEBSERVER_FOLDER}/assets/webrcade/feed
-RUN mkdir -p ${WEBSERVER_FOLDER}/assets/romm && \
-    ln -s /romm/resources ${WEBSERVER_FOLDER}/assets/romm/resources && \
-    ln -s /romm/assets ${WEBSERVER_FOLDER}/assets/romm/assets
+COPY ./frontend/public/images/default ${WEBSERVER_FOLDER}/public/images/default
+COPY ./frontend/public/images/emulatorjs ${WEBSERVER_FOLDER}/public/images/emulatorjs
+COPY ./frontend/public/images/scrappers ${WEBSERVER_FOLDER}/public/images/scrappers
+COPY ./frontend/public/images/platforms ${WEBSERVER_FOLDER}/public/images/platforms
+COPY ./frontend/public/images/webrcade/feed ${WEBSERVER_FOLDER}/public/images/webrcade/feed
+RUN ln -s /romm/resources ${WEBSERVER_FOLDER}/public/images/resources && \
+    ln -s /romm/assets ${WEBSERVER_FOLDER}/public/assets/assets
 
 # Install required packages and dependencies
 RUN apk add --no-cache \

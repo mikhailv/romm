@@ -9,14 +9,23 @@ defineProps<{
 }>();
 </script>
 <template>
-  <v-card rounded="0" color="terciary">
-    <v-card-title class="text-body-2 align-center justify-center"
-      ><v-icon class="mr-2">{{ icon }}</v-icon
-      >{{ title }}</v-card-title
-    >
+  <v-card
+    rounded="0"
+    color="terciary"
+  >
+    <v-card-title class="text-body-2 align-center justify-center">
+      <v-icon class="mr-2">
+        {{ icon }}
+      </v-icon>{{ title }}
+    </v-card-title>
     <v-divider />
     <v-card-text class="pa-2">
-      <v-chip v-for="excluded in set" :key="excluded" label class="ma-1">
+      <v-chip
+        v-for="excluded in set"
+        :key="excluded"
+        label
+        class="ma-1"
+      >
         {{ excluded }}
       </v-chip>
       <v-expand-transition>

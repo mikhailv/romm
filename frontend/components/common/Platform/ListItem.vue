@@ -14,14 +14,18 @@ withDefaults(defineProps<{ platform: Platform; rail?: boolean }>(), {
     :value="platform.slug"
   >
     <template #prepend>
-      <common-platform-icon :key="platform.slug" :slug="platform.slug"
-        ><v-tooltip
+      <common-platform-icon
+        :key="platform.slug"
+        :slug="platform.slug"
+      >
+        <v-tooltip
           location="bottom"
           class="tooltip"
           transition="fade-transition"
           text="Not found"
           open-delay="500"
-          ><template #activator="{ props }">
+        >
+          <template #activator="{ props }">
             <div
               v-if="!platform.igdb_id && !platform.moby_id"
               v-bind="props"
@@ -30,21 +34,25 @@ withDefaults(defineProps<{ platform: Platform; rail?: boolean }>(), {
               ⚠️
             </div>
           </template>
-        </v-tooltip></common-platform-icon
-      >
+        </v-tooltip>
+      </common-platform-icon>
     </template>
-    <v-row no-gutters
-      ><v-col
-        ><span class="text-body-1">{{ platform.name }}</span></v-col
-      ></v-row
-    >
+    <v-row no-gutters>
+      <v-col>
+        <span class="text-body-1">{{ platform.name }}</span>
+      </v-col>
+    </v-row>
     <v-row no-gutters>
       <v-col>
         <span class="text-caption text-grey">{{ platform.fs_slug }}</span>
       </v-col>
     </v-row>
     <template #append>
-      <v-chip class="ml-2" size="x-small" label>
+      <v-chip
+        class="ml-2"
+        size="x-small"
+        label
+      >
         {{ platform.rom_count }}
       </v-chip>
     </template>

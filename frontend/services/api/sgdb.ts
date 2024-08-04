@@ -1,5 +1,5 @@
 import type { SearchCoverSchema } from "@/__generated__";
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 
 export const romApi = api;
 

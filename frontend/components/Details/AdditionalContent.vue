@@ -12,19 +12,19 @@ const combined = ref([
 <template>
   <v-row no-gutters>
     <v-col
+      v-for="expansion in combined"
       class="pa-0"
       cols="4"
       sm="3"
       lg="6"
       xxl="4"
-      v-for="expansion in combined"
     >
       <a
         style="text-decoration: none; color: inherit"
         :href="`https://www.igdb.com/games/${expansion.slug}`"
         target="_blank"
       >
-        <common-game-card-related-card :rom="expansion" />
+        <common-game-card-related :rom="expansion" />
       </a>
     </v-col>
   </v-row>

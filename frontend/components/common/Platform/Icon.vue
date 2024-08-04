@@ -12,15 +12,20 @@ const { config } = storeToRefs(configStore);
 </script>
 
 <template>
-  <v-avatar :size="size" :rounded="rounded">
+  <v-avatar
+    :size="size"
+    :rounded="rounded"
+  >
     <!-- TODO: nuxt3 not rendering dynamic src -->
     <v-img
       :src="`/images/platforms/${
         config.PLATFORMS_VERSIONS?.[props.slug]?.toLowerCase() ??
         props.slug.toLowerCase()
       }.ico`"
-      ><template #error
-        ><v-img src="/images/default/platform.ico"></v-img></template
-    ></v-img>
+    >
+      <template #error>
+        <v-img src="/images/default/platform.ico" />
+      </template>
+    </v-img>
   </v-avatar>
 </template>

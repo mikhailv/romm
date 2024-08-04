@@ -54,11 +54,11 @@ function resetFilters() {
 
 <template>
   <v-navigation-drawer
-    @update:model-value="galleryFilterStore.switchActiveFilterDrawer()"
+    v-model="activeFilterDrawer"
     floating
     width="300"
-    v-model="activeFilterDrawer"
     mobile
+    @update:model-value="galleryFilterStore.switchActiveFilterDrawer()"
   >
     <v-list>
       <v-list-item>
@@ -69,8 +69,8 @@ function resetFilters() {
       </v-list-item>
       <v-list-item v-for="filter in filters">
         <v-autocomplete
-          rounded="0"
           v-model="filter.selected.value"
+          rounded="0"
           hide-details
           clearable
           :label="filter.label"
@@ -81,9 +81,13 @@ function resetFilters() {
         />
       </v-list-item>
       <v-list-item class="justify-center d-flex">
-        <v-btn size="small" variant="tonal" @click="resetFilters">
-          Reset filters</v-btn
+        <v-btn
+          size="small"
+          variant="tonal"
+          @click="resetFilters"
         >
+          Reset filters
+        </v-btn>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>

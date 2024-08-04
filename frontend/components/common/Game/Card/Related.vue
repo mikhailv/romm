@@ -21,8 +21,9 @@ const theme = useTheme();
       class="tooltip"
       transition="fade-transition"
       open-delay="1000"
-      >{{ rom.name }}</v-tooltip
     >
+      {{ rom.name }}
+    </v-tooltip>
     <v-img
       v-bind="props"
       :src="
@@ -33,7 +34,8 @@ const theme = useTheme();
       :aspect-ratio="2 / 3"
       cover
       lazy
-      ><v-chip
+    >
+      <v-chip
         class="px-2 position-absolute chip-type text-white translucent-dark"
         density="compact"
         label
@@ -41,8 +43,8 @@ const theme = useTheme();
         <span>
           {{ rom.type }}
         </span>
-      </v-chip></v-img
-    >
+      </v-chip>
+    </v-img>
   </v-card>
 </template>
 <style scoped>

@@ -70,43 +70,48 @@ watch(
       <v-list-item class="pl-2 pr-0">
         <span class="text-h6">My notes</span>
         <template #append>
-          <v-btn-group divided density="compact">
+          <v-btn-group
+            divided
+            density="compact"
+          >
             <v-tooltip
               location="top"
               class="tooltip"
               transition="fade-transition"
               :text="romUser.note_is_public ? 'Make private' : 'Make public'"
               open-delay="500"
-              ><template #activator="{ props: tooltipProps }">
+            >
+              <template #activator="{ props: tooltipProps }">
                 <v-btn
-                  @click="togglePublic"
                   v-bind="tooltipProps"
                   class="bg-terciary"
+                  @click="togglePublic"
                 >
                   <v-icon size="large">
                     {{ romUser.note_is_public ? "mdi-eye" : "mdi-eye-off" }}
                   </v-icon>
                 </v-btn>
-              </template></v-tooltip
-            >
+              </template>
+            </v-tooltip>
             <v-tooltip
               location="top"
               class="tooltip"
               transition="fade-transition"
               text="Edit note"
               open-delay="500"
-              ><template #activator="{ props: tooltipProps }">
+            >
+              <template #activator="{ props: tooltipProps }">
                 <v-btn
-                  @click="editNote"
                   v-bind="tooltipProps"
                   class="bg-terciary"
+                  @click="editNote"
                 >
                   <v-icon size="large">
                     {{ editingNote ? "mdi-check" : "mdi-pencil" }}
                   </v-icon>
                 </v-btn>
-              </template></v-tooltip
-            >
+              </template>
+            </v-tooltip>
           </v-btn-group>
         </template>
       </v-list-item>
@@ -131,7 +136,11 @@ watch(
     </v-card-text>
   </v-card>
 
-  <v-card rounded="0" v-if="publicNotes && publicNotes.length > 0" class="mt-2">
+  <v-card
+    v-if="publicNotes && publicNotes.length > 0"
+    rounded="0"
+    class="mt-2"
+  >
     <v-card-title class="bg-terciary">
       <v-list-item class="pl-2 pr-0">
         <span class="text-h6">Public notes</span>
@@ -141,7 +150,12 @@ watch(
     <v-divider />
 
     <v-card-text class="pa-0">
-      <v-expansion-panels multiple flat rounded="0" variant="accordion">
+      <v-expansion-panels
+        multiple
+        flat
+        rounded="0"
+        variant="accordion"
+      >
         <v-expansion-panel v-for="note in publicNotes">
           <v-expansion-panel-title class="bg-terciary">
             <span class="text-body-1">{{ note.username }}</span>

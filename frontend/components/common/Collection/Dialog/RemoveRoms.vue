@@ -86,14 +86,17 @@ function closeDialog() {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-bookmark-remove-outline"
     scroll-content
     :width="mdAndUp ? '45vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #header>
-      <v-row no-gutters class="justify-center">
+      <v-row
+        no-gutters
+        class="justify-center"
+      >
         <span>Removing</span>
         <span class="text-romm-accent-1 mx-1">{{ roms.length }}</span>
         <span>games from</span>
@@ -105,13 +108,13 @@ function closeDialog() {
     </template>
     <template #content>
       <v-data-table
+        v-model:page="page"
         :item-value="(item) => item.id"
         :items="roms"
         :width="mdAndUp ? '60vw' : '95vw'"
         :items-per-page="itemsPerPage"
         :items-per-page-options="PER_PAGE_OPTIONS"
         :headers="HEADERS"
-        v-model:page="page"
         hide-default-header
       >
         <template #item.name="{ item }">
@@ -119,14 +122,17 @@ function closeDialog() {
             <template #prepend>
               <common-game-r-avatar :rom="item" />
             </template>
-            <v-row no-gutters
-              ><v-col>{{ item.name }}</v-col></v-row
-            >
+            <v-row no-gutters>
+              <v-col>{{ item.name }}</v-col>
+            </v-row>
           </v-list-item>
         </template>
         <template #bottom>
           <v-divider />
-          <v-row no-gutters class="pt-2 align-center justify-center">
+          <v-row
+            no-gutters
+            class="pt-2 align-center justify-center"
+          >
             <v-col class="px-6">
               <v-pagination
                 v-model="page"
@@ -136,7 +142,10 @@ function closeDialog() {
                 :length="pageCount"
               />
             </v-col>
-            <v-col cols="5" sm="3">
+            <v-col
+              cols="5"
+              sm="3"
+            >
               <v-select
                 v-model="itemsPerPage"
                 class="pa-2"
@@ -153,8 +162,15 @@ function closeDialog() {
     </template>
     <template #append>
       <v-row class="justify-center my-2">
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog" variant="flat">
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            variant="flat"
+            @click="closeDialog"
+          >
             Cancel
           </v-btn>
           <v-btn

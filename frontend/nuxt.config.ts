@@ -1,5 +1,6 @@
 import { fileURLToPath } from "url";
 import { transformAssetUrls } from "vite-plugin-vuetify";
+import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
@@ -18,17 +19,17 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   plugins: [
-    "~/plugins/api.client.ts",
-    "~/plugins/emitter.client.ts",
-    "~/plugins/vuetify.client.ts",
-    "~/plugins/webfontloader.client.ts",
+    "@/plugins/api.client",
+    "@/plugins/emitter.client.ts",
+    "@/plugins/vuetify.client.ts",
+    "@/plugins/webfontloader.client.ts",
   ],
   define: {
     "process.env": {},
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: true,
   },
   alias: {
-    "@": fileURLToPath(new URL(".", import.meta.url)),
+    "@": fileURLToPath(new URL("./", import.meta.url)),
   },
   nitro: {
     devProxy: {

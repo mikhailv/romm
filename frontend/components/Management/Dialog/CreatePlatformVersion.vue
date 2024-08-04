@@ -78,32 +78,50 @@ function closeDialog() {
 </script>
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     :width="mdAndUp ? '45vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #header>
-      <v-row class="align-center" no-gutters>
+      <v-row
+        class="align-center"
+        no-gutters
+      >
         <v-col cols="10">
-          <v-icon icon="mdi-gamepad-variant" class="ml-5" />
-          <v-icon icon="mdi-menu-right" class="ml-1 text-romm-gray" />
-          <v-icon icon="mdi-controller" class="ml-1 text-romm-accent-1" />
+          <v-icon
+            icon="mdi-gamepad-variant"
+            class="ml-5"
+          />
+          <v-icon
+            icon="mdi-menu-right"
+            class="ml-1 text-romm-gray"
+          />
+          <v-icon
+            icon="mdi-controller"
+            class="ml-1 text-romm-accent-1"
+          />
         </v-col>
       </v-row>
     </template>
     <template #content>
-      <v-row class="py-2 px-4 align-center" no-gutters>
+      <v-row
+        class="py-2 px-4 align-center"
+        no-gutters
+      >
         <v-col cols="6">
           <v-select
-            :items="heartbeat.value.FS_PLATFORMS"
             v-model="fsSlugToCreate"
+            :items="heartbeat.value.FS_PLATFORMS"
             label="Platform version"
             variant="outlined"
             required
             hide-details
           >
             <template #append>
-              <v-icon icon="mdi-menu-right" class="mr-4 text-romm-gray" />
+              <v-icon
+                icon="mdi-menu-right"
+                class="mr-4 text-romm-gray"
+              />
             </template>
           </v-select>
         </v-col>
@@ -137,11 +155,14 @@ function closeDialog() {
               </v-list-item>
             </template>
             <template #selection="{ item }">
-              <v-list-item class="px-0" :title="item.raw.name ?? ''">
+              <v-list-item
+                class="px-0"
+                :title="item.raw.name ?? ''"
+              >
                 <template #prepend>
                   <common-platform-icon
-                    :size="35"
                     :key="item.raw.slug"
+                    :size="35"
                     :slug="item.raw.slug"
                   />
                 </template>
@@ -152,9 +173,20 @@ function closeDialog() {
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             class="bg-terciary text-romm-green"
             :disabled="fsSlugToCreate == '' || selectedPlatform?.slug == ''"

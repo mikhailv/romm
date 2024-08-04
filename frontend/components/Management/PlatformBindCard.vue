@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const emitter = useNuxtApp().$emitter;
-const emit = defineEmits(["clickEdit", "clickDelete"]);
+defineEmits(["clickEdit", "clickDelete"]);
 defineProps<{
   slug: string;
   fsSlug: string;
@@ -8,11 +7,18 @@ defineProps<{
 }>();
 </script>
 <template>
-  <v-card rounded="0" elevation="0">
+  <v-card
+    rounded="0"
+    elevation="0"
+  >
     <v-card-text class="pa-1">
       <v-list-item class="bg-terciary pa-1 text-truncate">
         <template #prepend>
-          <common-platform-icon class="mx-2" :key="slug" :slug="slug" />
+          <common-platform-icon
+            :key="slug"
+            class="mx-2"
+            :slug="slug"
+          />
         </template>
         <v-list-item class="bg-primary pr-2 pl-2">
           <span>{{ fsSlug }}</span>

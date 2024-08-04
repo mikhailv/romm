@@ -100,7 +100,6 @@ onBeforeUnmount(() => {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-image-search-outline"
     :loading-condition="searching"
@@ -109,42 +108,52 @@ onBeforeUnmount(() => {
     scroll-content
     :width="lgAndUp ? '60vw' : '95vw'"
     :height="lgAndUp ? '90vh' : '775px'"
+    @close="closeDialog"
   >
     <template #toolbar>
-      <v-row class="align-center" no-gutters>
-        <v-col cols="8" sm="9">
+      <v-row
+        class="align-center"
+        no-gutters
+      >
+        <v-col
+          cols="8"
+          sm="9"
+        >
           <v-text-field
             id="search-text-field"
-            @keyup.enter="searchCovers()"
-            @click:clear="searchTerm = ''"
-            class="bg-terciary"
             v-model="searchTerm"
+            class="bg-terciary"
             :disabled="searching"
             label="Search"
             hide-details
             clearable
+            @keyup.enter="searchCovers()"
+            @click:clear="searchTerm = ''"
           />
         </v-col>
-        <v-col cols="2" sm="2">
+        <v-col
+          cols="2"
+          sm="2"
+        >
           <v-select
-            :disabled="searching"
             v-model="coverType"
+            :disabled="searching"
             hide-details
             label="Type"
-            @update:model-value="filterCovers"
             :items="['all', 'static', 'animated']"
+            @update:model-value="filterCovers"
           />
         </v-col>
         <v-col>
           <v-btn
             type="submit"
-            @click="searchCovers()"
             class="bg-terciary"
             rounded="0"
             variant="text"
             icon="mdi-search-web"
             block
             :disabled="searching"
+            @click="searchCovers()"
           />
         </v-col>
       </v-row>
@@ -157,37 +166,45 @@ onBeforeUnmount(() => {
         rounded="0"
         variant="accordion"
       >
-        <v-expansion-panel v-for="game in filteredCovers" :key="game.name">
+        <v-expansion-panel
+          v-for="game in filteredCovers"
+          :key="game.name"
+        >
           <v-expansion-panel-title class="bg-terciary">
-            <v-row no-gutters class="justify-center">
-              <v-list-item class="pa-0">{{ game.name }}</v-list-item>
+            <v-row
+              no-gutters
+              class="justify-center"
+            >
+              <v-list-item class="pa-0">
+                {{ game.name }}
+              </v-list-item>
             </v-row>
           </v-expansion-panel-title>
           <v-expansion-panel-text class="pa-0">
             <v-row no-gutters>
               <v-col
+                v-for="resource in game.resources"
                 class="pa-1"
                 cols="4"
                 sm="3"
                 md="2"
-                v-for="resource in game.resources"
               >
                 <v-hover v-slot="{ isHovering, props: hoverProps }">
                   <v-img
                     v-bind="hoverProps"
                     :class="{ 'on-hover': isHovering }"
                     class="transform-scale pointer"
-                    @click="selectCover(resource.url)"
                     :aspect-ratio="2 / 3"
                     :src="resource.thumb"
                     cover
+                    @click="selectCover(resource.url)"
                   >
                     <template #error>
                       <v-img
                         :src="resource.url"
                         cover
                         :aspect-ratio="2 / 3"
-                      ></v-img>
+                      />
                     </template>
                     <template #placeholder>
                       <div

@@ -6,7 +6,10 @@ import { views } from "@/utils";
 const platforms = storePlatforms();
 </script>
 <template>
-  <common-r-section icon="mdi-controller" title="Platforms">
+  <common-r-section
+    icon="mdi-controller"
+    title="Platforms"
+  >
     <template #content>
       <v-row no-gutters>
         <v-col
@@ -19,7 +22,10 @@ const platforms = storePlatforms();
           :lg="views[0]['size-lg']"
           :xl="views[0]['size-xl']"
         >
-          <common-platform-card :key="platform.slug" :platform="platform" />
+          <common-platform-card
+            :key="platform.slug"
+            :platform="platform"
+          />
         </v-col>
       </v-row>
     </template>

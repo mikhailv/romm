@@ -21,20 +21,28 @@ function closeDialog() {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-content-copy"
     :width="lgAndUp ? '60vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="justify-center text-center pa-2" no-gutters>
-        <v-list-item
-          >Can't copy link to clipboard, copy it manually:</v-list-item
-        >
+      <v-row
+        class="justify-center text-center pa-2"
+        no-gutters
+      >
+        <v-list-item>
+          Can't copy link to clipboard, copy it manually:
+        </v-list-item>
       </v-row>
-      <v-row class="justify-center text-center pa-2 mb-3" no-gutters>
-        <v-list-item class="bg-terciary">{{ link }}</v-list-item>
+      <v-row
+        class="justify-center text-center pa-2 mb-3"
+        no-gutters
+      >
+        <v-list-item class="bg-terciary">
+          {{ link }}
+        </v-list-item>
       </v-row>
-    </template></common-r-dialog
-  >
+    </template>
+  </common-r-dialog>
 </template>

@@ -52,32 +52,50 @@ function closeDialog() {
 <template>
   <common-r-dialog
     v-if="user"
-    @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
     :width="lgAndUp ? '45vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="justify-center align-center pa-2" no-gutters>
+      <v-row
+        class="justify-center align-center pa-2"
+        no-gutters
+      >
         <span>Deleting</span>
-        <v-avatar size="40" class="ml-1">
+        <v-avatar
+          size="40"
+          class="ml-1"
+        >
           <v-img
             :src="
               user.avatar_path
                 ? `/assets/${user.avatar_path}?ts=${user.updated_at}`
                 : defaultAvatarPath
             "
-          >
-          </v-img> </v-avatar
-        ><span class="text-romm-accent-1 ml-1">{{ user.username }}</span
-        ><span class="ml-1">user. Do you confirm?</span>
-      </v-row></template
-    >
+          />
+        </v-avatar><span class="text-romm-accent-1 ml-1">{{ user.username }}</span><span class="ml-1">user. Do you confirm?</span>
+      </v-row>
+    </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
-          <v-btn class="bg-terciary text-romm-red" @click="deleteUser()">
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            class="bg-terciary text-romm-red"
+            @click="deleteUser()"
+          >
             Confirm
           </v-btn>
         </v-btn-group>

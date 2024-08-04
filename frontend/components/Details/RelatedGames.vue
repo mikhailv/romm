@@ -11,8 +11,13 @@ const combined = ref([
 </script>
 <template>
   <v-row no-gutters>
-    <v-col cols="4" sm="3" md="6" v-for="rom in combined">
-      <common-game-card-related-card :rom="rom" />
+    <v-col
+      v-for="rom in combined"
+      cols="4"
+      sm="3"
+      md="6"
+    >
+      <common-game-card-related :rom="rom" />
     </v-col>
   </v-row>
 </template>

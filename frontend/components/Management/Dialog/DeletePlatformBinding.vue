@@ -41,23 +41,25 @@ function closeDialog() {
 </script>
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
     :width="lgAndUp ? '45vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="justify-center pa-2 align-center" no-gutters>
+      <v-row
+        class="justify-center pa-2 align-center"
+        no-gutters
+      >
         <span class="mr-1">Deleting platform binding</span>
         <common-platform-icon
-          class="mx-2"
           :key="platformBindingSlugToDelete"
+          class="mx-2"
           :slug="platformBindingSlugToDelete"
         />
         <span>[</span>
         <span class="text-romm-accent-1 ml-1">
-          {{ platformBindingFSSlugToDelete }}</span
-        >
+          {{ platformBindingFSSlugToDelete }}</span>
         <span class="mx-1">:</span>
         <span class="text-romm-accent-1">{{
           platformBindingSlugToDelete
@@ -67,10 +69,24 @@ function closeDialog() {
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
-          <v-btn class="bg-terciary text-romm-red" @click="deleteBindPlatform">
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            class="bg-terciary text-romm-red"
+            @click="deleteBindPlatform"
+          >
             Confirm
           </v-btn>
         </v-btn-group>

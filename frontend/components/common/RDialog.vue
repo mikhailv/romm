@@ -50,39 +50,60 @@ onMounted(() => {
 
 <template>
   <v-dialog
-    @click:outside="closeDialog"
-    @keydown.esc="closeDialog"
     :model-value="modelValue"
     :scrim="true"
     :width="width"
     scroll-strategy="block"
     no-click-animation
     persistent
+    @click:outside="closeDialog"
+    @keydown.esc="closeDialog"
   >
-    <v-card rounded="0" :height="height">
-      <v-toolbar density="compact" class="bg-terciary">
-        <v-icon v-if="icon" :icon="icon" class="ml-5" />
-        <common-romm-iso :size="30" class="mx-4" v-if="showRommIcon" />
-        <slot name="header"></slot>
+    <v-card
+      rounded="0"
+      :height="height"
+    >
+      <v-toolbar
+        density="compact"
+        class="bg-terciary"
+      >
+        <v-icon
+          v-if="icon"
+          :icon="icon"
+          class="ml-5"
+        />
+        <common-romm-iso
+          v-if="showRommIcon"
+          :size="30"
+          class="mx-4"
+        />
+        <slot name="header" />
         <template #append>
           <v-btn
-            @click="closeDialog"
             rounded="0"
             variant="text"
             icon="mdi-close"
+            @click="closeDialog"
           />
         </template>
       </v-toolbar>
 
       <v-divider />
 
-      <v-toolbar v-if="hasToolbarSlot" density="compact" class="bg-terciary">
-        <slot name="toolbar"></slot>
+      <v-toolbar
+        v-if="hasToolbarSlot"
+        density="compact"
+        class="bg-terciary"
+      >
+        <slot name="toolbar" />
       </v-toolbar>
       <v-divider />
 
-      <v-card-text v-if="hasPrependSlot" class="pa-1">
-        <slot name="prepend"></slot>
+      <v-card-text
+        v-if="hasPrependSlot"
+        class="pa-1"
+      >
+        <slot name="prepend" />
       </v-card-text>
 
       <v-card-text
@@ -111,19 +132,28 @@ onMounted(() => {
           <common-empty-game v-if="emptyStateType == 'game'" />
           <common-empty-platform v-else-if="emptyStateType == 'platform'" />
           <common-empty-firmware v-else-if="emptyStateType == 'firmware'" />
-          <slot v-else name="emptyState"></slot>
+          <slot
+            v-else
+            name="emptyState"
+          />
         </v-row>
 
-        <slot name="content"></slot>
+        <slot name="content" />
       </v-card-text>
-      <v-card-text v-if="hasAppendSlot" class="pa-1">
-        <slot name="append"></slot>
+      <v-card-text
+        v-if="hasAppendSlot"
+        class="pa-1"
+      >
+        <slot name="append" />
       </v-card-text>
 
       <template v-if="hasFooterSlot">
         <v-divider />
-        <v-toolbar class="bg-terciary" density="compact">
-          <slot name="footer"></slot>
+        <v-toolbar
+          class="bg-terciary"
+          density="compact"
+        >
+          <slot name="footer" />
         </v-toolbar>
       </template>
     </v-card>

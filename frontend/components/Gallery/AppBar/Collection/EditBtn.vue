@@ -21,7 +21,10 @@ const roms = storeRoms();
     "
   >
     <v-list-item-title class="d-flex">
-      <v-icon icon="mdi-pencil-box" class="mr-2" />
+      <v-icon
+        icon="mdi-pencil-box"
+        class="mr-2"
+      />
       Edit collection
     </v-list-item-title>
   </v-list-item>

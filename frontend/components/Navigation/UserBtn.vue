@@ -12,11 +12,11 @@ const { user } = storeToRefs(auth);
 <template>
   <v-hover v-slot="{ isHovering, props: hoverProps }">
     <v-avatar
-      @click="navigationStore.switchActiveSettingsDrawer"
       class="pointer"
       size="35"
       v-bind="hoverProps"
       :class="{ 'border-romm-accent-1': isHovering }"
+      @click="navigationStore.switchActiveSettingsDrawer"
     >
       <!-- TODO: nuxt3 not rendering dynamic src -->
       <v-img

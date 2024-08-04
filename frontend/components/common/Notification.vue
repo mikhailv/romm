@@ -27,13 +27,13 @@ function closeDialog() {
 
 <template>
   <v-snackbar
-    transition="scroll-y-transition"
     v-model="show"
+    transition="scroll-y-transition"
     :timeout="snackbarStatus.timeout || 3000"
-    @timeout="closeDialog"
     absolute
     :location="xs ? 'top' : 'top right'"
     color="tooltip"
+    @timeout="closeDialog"
   >
     <v-icon
       :icon="snackbarStatus.icon"
@@ -42,7 +42,10 @@ function closeDialog() {
     />
     {{ snackbarStatus.msg }}
     <template #actions>
-      <v-btn variant="text" @click="closeDialog">
+      <v-btn
+        variant="text"
+        @click="closeDialog"
+      >
         <v-icon icon="mdi-close" />
       </v-btn>
     </template>

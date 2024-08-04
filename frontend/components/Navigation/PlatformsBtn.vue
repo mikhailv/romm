@@ -22,8 +22,9 @@ const { activePlatformsDrawer } = storeToRefs(navigationStore);
     :color="activePlatformsDrawer ? 'terciary' : ''"
     icon
     @click="navigationStore.switchActivePlatformsDrawer"
-    ><v-icon :color="$route.name == 'platform-id' ? 'romm-accent-1' : ''"
-      >mdi-controller</v-icon
-    ></v-btn
   >
+    <v-icon :color="$route.name == 'platform-id' ? 'romm-accent-1' : ''">
+      mdi-controller
+    </v-icon>
+  </v-btn>
 </template>

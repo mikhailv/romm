@@ -58,25 +58,45 @@ function closeDialog() {
 <template>
   <common-r-dialog
     v-if="collection"
-    @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
     scroll-content
     :width="lgAndUp ? '50vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="justify-center align-center pa-2" no-gutters>
+      <v-row
+        class="justify-center align-center pa-2"
+        no-gutters
+      >
         <span>Removing collection</span>
-        <common-collection-r-avatar class="ml-1" :collection="collection" />
+        <common-collection-r-avatar
+          class="ml-1"
+          :collection="collection"
+        />
         <span class="ml-1 text-romm-accent-1">{{ collection.name }}</span>
         <span class="ml-1">from RomM. Do you confirm?</span>
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center pa-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
-          <v-btn class="bg-terciary text-romm-red" @click="deleteCollection">
+      <v-row
+        class="justify-center pa-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            class="bg-terciary text-romm-red"
+            @click="deleteCollection"
+          >
             Confirm
           </v-btn>
         </v-btn-group>

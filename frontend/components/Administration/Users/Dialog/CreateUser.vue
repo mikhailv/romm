@@ -44,15 +44,21 @@ function closeDialog() {
 </script>
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-account"
     :width="lgAndUp ? '60vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row no-gutters class="px-4">
+      <v-row
+        no-gutters
+        class="px-4"
+      >
         <v-col>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-text-field
                 v-model="user.username"
@@ -65,7 +71,10 @@ function closeDialog() {
               />
             </v-col>
           </v-row>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-text-field
                 v-model="user.password"
@@ -78,7 +87,10 @@ function closeDialog() {
               />
             </v-col>
           </v-row>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-select
                 v-model="user.role"
@@ -95,9 +107,20 @@ function closeDialog() {
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             :disabled="!user.username || !user.password"
             :variant="!user.username || !user.password ? 'plain' : 'flat'"

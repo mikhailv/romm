@@ -20,7 +20,10 @@ withDefaults(defineProps<{ text: string; icon: string }>(), {
         <v-icon>
           {{ icon }}
         </v-icon>
-        <span class="ml-2" v-if="!xs">{{ text }}</span>
+        <span
+          v-if="!xs"
+          class="ml-2"
+        >{{ text }}</span>
       </div>
     </v-card>
   </v-item>

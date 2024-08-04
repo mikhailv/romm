@@ -202,7 +202,6 @@ onBeforeUnmount(() => {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-search-web"
     :loading-condition="searching"
@@ -211,6 +210,7 @@ onBeforeUnmount(() => {
     scroll-content
     :width="lgAndUp ? '60vw' : '95vw'"
     :height="lgAndUp ? '90vh' : '775px'"
+    @close="closeDialog"
   >
     <template #header>
       <span class="ml-4">Filter:</span>
@@ -224,9 +224,9 @@ onBeforeUnmount(() => {
             : 'IGDB source is not enabled'
         "
         open-delay="500"
-        ><template #activator="{ props }">
+      >
+        <template #activator="{ props }">
           <v-avatar
-            @click="toggleSourceFilter('IGDB')"
             v-bind="props"
             class="ml-3 source-filter"
             :class="{
@@ -235,6 +235,7 @@ onBeforeUnmount(() => {
             }"
             size="30"
             rounded="1"
+            @click="toggleSourceFilter('IGDB')"
           >
             <v-img :src="`/images/scrappers/igdb.png`" />
           </v-avatar>
@@ -250,9 +251,9 @@ onBeforeUnmount(() => {
             : 'Mobygames source is not enabled'
         "
         open-delay="500"
-        ><template #activator="{ props }">
+      >
+        <template #activator="{ props }">
           <v-avatar
-            @click="toggleSourceFilter('Mobygames')"
             v-bind="props"
             class="ml-3 source-filter"
             :class="{
@@ -261,66 +262,81 @@ onBeforeUnmount(() => {
             }"
             size="30"
             rounded="1"
+            @click="toggleSourceFilter('Mobygames')"
           >
-            <v-img :src="`/images/scrappers/moby.png`" /></v-avatar></template
-      ></v-tooltip>
+            <v-img :src="`/images/scrappers/moby.png`" />
+          </v-avatar>
+        </template>
+      </v-tooltip>
     </template>
     <template #toolbar>
-      <v-row class="align-center" no-gutters>
-        <v-col cols="6" sm="8">
+      <v-row
+        class="align-center"
+        no-gutters
+      >
+        <v-col
+          cols="6"
+          sm="8"
+        >
           <v-text-field
-            autofocus
             id="search-text-field"
-            @keyup.enter="searchRom()"
-            @click:clear="searchTerm = ''"
-            class="bg-terciary"
             v-model="searchTerm"
+            autofocus
+            class="bg-terciary"
             :disabled="searching"
             label="Search"
             hide-details
             clearable
+            @keyup.enter="searchRom()"
+            @click:clear="searchTerm = ''"
           />
         </v-col>
-        <v-col cols="4" sm="3">
+        <v-col
+          cols="4"
+          sm="3"
+        >
           <v-select
+            v-model="searchBy"
             :disabled="searching"
             label="by"
             class="bg-terciary"
             :items="['ID', 'Name']"
-            v-model="searchBy"
             hide-details
           />
         </v-col>
         <v-col>
           <v-btn
             type="submit"
-            @click="searchRom()"
             class="bg-terciary"
             rounded="0"
             variant="text"
             icon="mdi-search-web"
             block
             :disabled="searching"
+            @click="searchRom()"
           />
         </v-col>
       </v-row>
     </template>
     <template #content>
-      <v-row v-show="!showSelectSource" no-gutters>
+      <v-row
+        v-show="!showSelectSource"
+        no-gutters
+      >
         <v-col
+          v-for="matchedRom in filteredMatchedRoms"
+          v-show="!searching"
           class="pa-1"
           cols="4"
           sm="3"
           md="2"
-          v-show="!searching"
-          v-for="matchedRom in filteredMatchedRoms"
         >
           <common-game-card
-            @click="showSources(matchedRom)"
             :rom="matchedRom"
             title-on-footer
             transform-scale
             title-on-hover
+            @click="showSources(matchedRom)"
           />
         </v-col>
       </v-row>
@@ -335,8 +351,8 @@ onBeforeUnmount(() => {
                   rounded="0"
                   variant="flat"
                   size="small"
-                  @click="backToMatched"
                   style="float: left"
+                  @click="backToMatched"
                 />
                 {{ selectedMatchRom?.name }}
               </v-card-title>
@@ -346,21 +362,27 @@ onBeforeUnmount(() => {
             </v-card>
           </v-col>
           <v-col cols="12">
-            <v-row no-gutters class="mt-4 justify-center text-center">
+            <v-row
+              no-gutters
+              class="mt-4 justify-center text-center"
+            >
               <v-col>
                 <span class="text-body-1">Select a cover image</span>
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="12">
-            <v-row class="justify-center mt-4" no-gutters>
+            <v-row
+              class="justify-center mt-4"
+              no-gutters
+            >
               <v-col
+                v-for="source in sources"
                 :class="{
                   'source-cover-desktop': !xs,
                   'source-cover-mobile': xs,
                 }"
                 class="pa-1"
-                v-for="source in sources"
               >
                 <v-hover v-slot="{ isHovering, props }">
                   <v-card
@@ -395,8 +417,15 @@ onBeforeUnmount(() => {
                           />
                         </div>
                       </template>
-                      <v-row no-gutters class="text-white pa-1">
-                        <v-avatar class="mr-1" size="30" rounded="1">
+                      <v-row
+                        no-gutters
+                        class="text-white pa-1"
+                      >
+                        <v-avatar
+                          class="mr-1"
+                          size="30"
+                          rounded="1"
+                        >
                           <v-img
                             :src="`/images/scrappers/${source.name}.png`"
                           />
@@ -409,48 +438,57 @@ onBeforeUnmount(() => {
             </v-row>
           </v-col>
           <v-col cols="12">
-            <v-row class="mt-4 text-center" no-gutters>
+            <v-row
+              class="mt-4 text-center"
+              no-gutters
+            >
               <v-col>
                 <v-chip
-                  @click="toggleRenameAsSource"
                   :variant="renameAsSource ? 'flat' : 'outlined'"
                   :color="renameAsSource ? 'romm-accent-1' : ''"
                   :disabled="selectedCover == undefined"
-                  ><v-icon class="mr-1">{{
-                    selectedCover && renameAsSource
-                      ? "mdi-checkbox-outline"
-                      : "mdi-checkbox-blank-outline"
-                  }}</v-icon
-                  >Rename file to match {{ selectedCover?.name }} title</v-chip
+                  @click="toggleRenameAsSource"
                 >
-                <v-list-item v-if="renameAsSource" class="mt-2">
+                  <v-icon class="mr-1">
+                    {{
+                      selectedCover && renameAsSource
+                        ? "mdi-checkbox-outline"
+                        : "mdi-checkbox-blank-outline"
+                    }}
+                  </v-icon>Rename file to match {{ selectedCover?.name }} title
+                </v-chip>
+                <v-list-item
+                  v-if="renameAsSource"
+                  class="mt-2"
+                >
                   <span>File will be renamed</span>
-                  <br />
-                  <span>from</span
-                  ><span class="text-romm-accent-1 ml-1"
-                    >{{ rom?.file_name_no_tags }}.{{
-                      rom?.file_extension
-                    }}</span
-                  >
-                  <br />
-                  <span class="mx-1">to</span
-                  ><span class="text-romm-accent-2"
-                    >{{ selectedMatchRom?.name }}.{{
-                      rom?.file_extension
-                    }}</span
-                  >
-                  <br />
-                  <span class="text-caption font-italic font-weight-bold"
-                    >*File name tags won't be affected</span
-                  >
+                  <br>
+                  <span>from</span><span class="text-romm-accent-1 ml-1">{{ rom?.file_name_no_tags }}.{{
+                    rom?.file_extension
+                  }}</span>
+                  <br>
+                  <span class="mx-1">to</span><span class="text-romm-accent-2">{{ selectedMatchRom?.name }}.{{
+                    rom?.file_extension
+                  }}</span>
+                  <br>
+                  <span class="text-caption font-italic font-weight-bold">*File name tags won't be affected</span>
                 </v-list-item>
               </v-col>
             </v-row>
           </v-col>
           <v-col cols="12">
-            <v-row no-gutters class="my-4 justify-center">
-              <v-btn-group divided density="compact">
-                <v-btn class="bg-terciary" @click="backToMatched">
+            <v-row
+              no-gutters
+              class="my-4 justify-center"
+            >
+              <v-btn-group
+                divided
+                density="compact"
+              >
+                <v-btn
+                  class="bg-terciary"
+                  @click="backToMatched"
+                >
                   Cancel
                 </v-btn>
                 <v-btn
@@ -468,12 +506,23 @@ onBeforeUnmount(() => {
       </template>
     </template>
     <template #footer>
-      <v-row no-gutters class="text-center">
+      <v-row
+        no-gutters
+        class="text-center"
+      >
         <v-col>
-          <v-chip variant="text">Results found:</v-chip>
-          <v-chip size="small" class="ml-1 text-romm-accent-1" label>{{
-            matchedRoms.length
-          }}</v-chip>
+          <v-chip variant="text">
+            Results found:
+          </v-chip>
+          <v-chip
+            size="small"
+            class="ml-1 text-romm-accent-1"
+            label
+          >
+            {{
+              matchedRoms.length
+            }}
+          </v-chip>
         </v-col>
       </v-row>
     </template>

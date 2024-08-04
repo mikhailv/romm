@@ -5,7 +5,7 @@ withDefaults(
   }>(),
   { enabled: false }
 );
-const emit = defineEmits(["click"]);
+defineEmits(["click"]);
 </script>
 <template>
   <v-expand-transition>

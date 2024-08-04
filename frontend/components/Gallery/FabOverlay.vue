@@ -19,7 +19,7 @@ const { scrolledToTop, currentView } = storeToRefs(galleryViewStore);
 const { selectedRoms } = storeToRefs(romsStore);
 const emitter = useNuxtApp().$emitter;
 const fabMenu = ref(false);
-emitter?.on("openFabMenu", (open) => {
+emitter?.on("openFabMenu", (open: boolean) => {
   fabMenu.value = open;
 });
 const auth = storeAuth();
@@ -141,18 +141,24 @@ function onDownload() {
   >
     <v-scroll-y-reverse-transition>
       <v-btn
-        icon
         v-show="!scrolledToTop && currentView != 2"
+        icon
         class="border-romm-accent-1"
         color="primary"
         elevation="8"
         size="large"
         @click="scrollToTop()"
-        ><v-icon color="romm-accent-1">mdi-chevron-up</v-icon></v-btn
       >
+        <v-icon color="romm-accent-1">
+          mdi-chevron-up
+        </v-icon>
+      </v-btn>
     </v-scroll-y-reverse-transition>
 
-    <v-speed-dial v-model="fabMenu" transition="slide-y-transition">
+    <v-speed-dial
+      v-model="fabMenu"
+      transition="slide-y-transition"
+    >
       <template #activator="{ props: menuProps }">
         <v-fab-transition>
           <v-btn
@@ -163,25 +169,28 @@ function onDownload() {
             elevation="8"
             icon
             size="large"
-            >{{ selectedRoms.length }}</v-btn
           >
+            {{ selectedRoms.length }}
+          </v-btn>
         </v-fab-transition>
       </template>
 
       <v-btn
-        key="1"
         v-if="auth.scopes.includes('roms.write')"
+        key="1"
         color="terciary"
         elevation="8"
         icon
         size="default"
         @click="emitter?.emit('showDeleteRomDialog', romsStore.selectedRoms)"
       >
-        <v-icon color="romm-red"> mdi-delete </v-icon>
+        <v-icon color="romm-red">
+          mdi-delete
+        </v-icon>
       </v-btn>
       <v-btn
-        key="2"
         v-if="auth.scopes.includes('roms.write')"
+        key="2"
         color="terciary"
         elevation="8"
         icon="mdi-magnify-scan"
@@ -210,9 +219,9 @@ function onDownload() {
           $route.name == 'platform'
             ? emitter?.emit('showAddToCollectionDialog', romsStore.selectedRoms)
             : emitter?.emit(
-                'showRemoveFromCollectionDialog',
-                romsStore.selectedRoms
-              )
+              'showRemoveFromCollectionDialog',
+              romsStore.selectedRoms
+            )
         "
       />
       <v-btn

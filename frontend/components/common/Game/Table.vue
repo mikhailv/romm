@@ -101,19 +101,19 @@ onMounted(() => {
 
 <template>
   <v-data-table
-    @click:row="rowClick"
+    v-model="romsStore._selectedIDs"
+    v-model:page="page"
     :items-per-page="itemsPerPage"
     :items-per-page-options="PER_PAGE_OPTIONS"
     :item-value="(item) => item.id"
     :items="romsStore.filteredRoms"
     :headers="HEADERS"
-    v-model="romsStore._selectedIDs"
-    v-model:page="page"
     show-select
     fixed-header
     fixed-footer
     hide-default-footer
     hover
+    @click:row="rowClick"
   >
     <template #item.name="{ item }">
       <td class="name-row">
@@ -121,14 +121,16 @@ onMounted(() => {
           <template #prepend>
             <common-game-r-avatar :rom="item" />
           </template>
-          <v-row no-gutters
-            ><v-col>{{ item.name }}</v-col></v-row
-          >
-          <v-row no-gutters
-            ><v-col class="text-romm-accent-1">{{
-              item.file_name
-            }}</v-col></v-row
-          >
+          <v-row no-gutters>
+            <v-col>{{ item.name }}</v-col>
+          </v-row>
+          <v-row no-gutters>
+            <v-col class="text-romm-accent-1">
+              {{
+                item.file_name
+              }}
+            </v-col>
+          </v-row>
           <template #append>
             <v-chip
               v-if="item.siblings && item.siblings.length > 0 && showSiblings"
@@ -145,22 +147,36 @@ onMounted(() => {
       <common-game-fav-btn :rom="item" />
     </template>
     <template #item.file_size_bytes="{ item }">
-      <v-chip size="x-small" label>{{
-        formatBytes(item.file_size_bytes)
-      }}</v-chip>
+      <v-chip
+        size="x-small"
+        label
+      >
+        {{
+          formatBytes(item.file_size_bytes)
+        }}
+      </v-chip>
     </template>
     <template #item.regions="{ item }">
-      <span class="px-1" v-for="region in item.regions">
+      <span
+        v-for="region in item.regions"
+        class="px-1"
+      >
         {{ regionToEmoji(region) }}
       </span>
     </template>
     <template #item.languages="{ item }">
-      <span class="px-1" v-for="language in item.languages">
+      <span
+        v-for="language in item.languages"
+        class="px-1"
+      >
         {{ languageToEmoji(language) }}
       </span>
     </template>
     <template #item.actions="{ item }">
-      <v-btn-group divided density="compact">
+      <v-btn-group
+        divided
+        density="compact"
+      >
         <v-btn
           :disabled="downloadStore.value.includes(item.id)"
           download
@@ -183,7 +199,10 @@ onMounted(() => {
         </v-btn>
         <v-menu location="bottom">
           <template #activator="{ props }">
-            <v-btn v-bind="props" size="small">
+            <v-btn
+              v-bind="props"
+              size="small"
+            >
               <v-icon>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
@@ -195,15 +214,23 @@ onMounted(() => {
     <template #bottom>
       <v-divider />
       <div>
-        <v-row no-gutters class="pa-1 align-center justify-center">
-          <v-col cols="8" sm="9" md="10" class="px-3">
+        <v-row
+          no-gutters
+          class="pa-1 align-center justify-center"
+        >
+          <v-col
+            cols="8"
+            sm="9"
+            md="10"
+            class="px-3"
+          >
             <v-pagination
-              :show-first-last-page="!xs"
               v-model="page"
-              @update:model-value="updateUrlHash"
+              :show-first-last-page="!xs"
               rounded="0"
               active-color="romm-accent-1"
               :length="pageCount"
+              @update:model-value="updateUrlHash"
             />
           </v-col>
           <v-col>

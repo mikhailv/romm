@@ -26,7 +26,10 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
     <v-col>
       <v-list-item class="text-h5 font-weight-bold pl-0">
         <span>{{ rom.name }}</span>
-        <common-game-fav-btn class="ml-1" :rom="rom" />
+        <common-game-fav-btn
+          class="ml-1"
+          :rom="rom"
+        />
       </v-list-item>
     </v-col>
   </v-row>
@@ -62,12 +65,16 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
       </v-chip>
       <template v-if="!smAndDown">
         <v-chip
-          class="ml-1"
           v-if="rom.regions.filter(identity).length > 0"
+          class="ml-1"
           size="small"
           :title="`Regions: ${rom.regions.join(', ')}`"
         >
-          <span v-for="region in rom.regions" :key="region" class="px-1">{{
+          <span
+            v-for="region in rom.regions"
+            :key="region"
+            class="px-1"
+          >{{
             regionToEmoji(region)
           }}</span>
         </v-chip>
@@ -81,10 +88,13 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
             v-for="language in rom.languages"
             :key="language"
             class="px-1"
-            >{{ languageToEmoji(language) }}</span
-          >
+          >{{ languageToEmoji(language) }}</span>
         </v-chip>
-        <v-chip v-if="rom.revision" size="small" class="ml-1">
+        <v-chip
+          v-if="rom.revision"
+          size="small"
+          class="ml-1"
+        >
           Revision {{ rom.revision }}
         </v-chip>
       </template>
@@ -94,21 +104,25 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
   <v-row
     v-if="
       smAndDown &&
-      rom.regions.filter(identity).length > 0 &&
-      rom.languages.filter(identity).length > 0 &&
-      rom.revision
+        rom.regions.filter(identity).length > 0 &&
+        rom.languages.filter(identity).length > 0 &&
+        rom.revision
     "
     class="text-white text-shadow mt-2 text-center"
     no-gutters
   >
     <v-col>
       <v-chip
-        class="ml-1"
         v-if="rom.regions.filter(identity).length > 0"
+        class="ml-1"
         size="small"
         :title="`Regions: ${rom.regions.join(', ')}`"
       >
-        <span v-for="region in rom.regions" :key="region" class="px-1">{{
+        <span
+          v-for="region in rom.regions"
+          :key="region"
+          class="px-1"
+        >{{
           regionToEmoji(region)
         }}</span>
       </v-chip>
@@ -118,11 +132,19 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
         class="ml-1"
         :title="`Languages: ${rom.languages.join(', ')}`"
       >
-        <span v-for="language in rom.languages" :key="language" class="px-1">{{
+        <span
+          v-for="language in rom.languages"
+          :key="language"
+          class="px-1"
+        >{{
           languageToEmoji(language)
         }}</span>
       </v-chip>
-      <v-chip v-if="rom.revision" size="small" class="ml-1">
+      <v-chip
+        v-if="rom.revision"
+        size="small"
+        class="ml-1"
+      >
         Revision {{ rom.revision }}
       </v-chip>
     </v-col>
@@ -141,11 +163,20 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
         :href="`https://www.igdb.com/games/${rom.slug}`"
         target="_blank"
       >
-        <v-chip size="x-small" @click.stop>
+        <v-chip
+          size="x-small"
+          @click.stop
+        >
           <span>IGDB</span>
-          <v-divider class="mx-2 border-opacity-25" vertical />
+          <v-divider
+            class="mx-2 border-opacity-25"
+            vertical
+          />
           <span>ID: {{ rom.igdb_id }}</span>
-          <v-divider class="mx-2 border-opacity-25" vertical />
+          <v-divider
+            class="mx-2 border-opacity-25"
+            vertical
+          />
           <span>Rating: {{ rom.igdb_metadata?.total_rating }}</span>
         </v-chip>
       </a>
@@ -156,11 +187,20 @@ const hasReleaseDate = Number(props.rom.first_release_date) > 0;
         target="_blank"
         :class="{ 'ml-1': rom.igdb_id }"
       >
-        <v-chip size="x-small" @click.stop>
+        <v-chip
+          size="x-small"
+          @click.stop
+        >
           <span>Mobygames</span>
-          <v-divider class="mx-2 border-opacity-25" vertical />
+          <v-divider
+            class="mx-2 border-opacity-25"
+            vertical
+          />
           <span>ID: {{ rom.moby_id }}</span>
-          <v-divider class="mx-2 border-opacity-25" vertical />
+          <v-divider
+            class="mx-2 border-opacity-25"
+            vertical
+          />
           <span>Rating: {{ rom.moby_metadata?.moby_score }}</span>
         </v-chip>
       </a>

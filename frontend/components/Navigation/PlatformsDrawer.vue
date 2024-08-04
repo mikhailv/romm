@@ -18,12 +18,12 @@ function clear() {
 </script>
 <template>
   <v-navigation-drawer
+    v-model="activePlatformsDrawer"
     :location="smAndDown ? 'top' : 'left'"
     mobile
-    @update:model-value="clear"
     width="400"
-    v-model="activePlatformsDrawer"
     class="bg-terciary"
+    @update:model-value="clear"
   >
     <template #prepend>
       <v-text-field
@@ -31,15 +31,19 @@ function clear() {
         prepend-inner-icon="mdi-filter-outline"
         clearable
         hide-details
-        @click:clear="clear"
-        @update:model-value=""
         single-line
         label="Search platform"
         variant="solo-filled"
         rounded="0"
-      ></v-text-field>
+        @click:clear="clear"
+        @update:model-value=""
+      />
     </template>
-    <v-list lines="two" rounded="0" class="pa-0">
+    <v-list
+      lines="two"
+      rounded="0"
+      class="pa-0"
+    >
       <common-platform-list-item
         v-for="platform in filteredPlatforms"
         :key="platform.slug"

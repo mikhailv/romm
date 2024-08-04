@@ -41,17 +41,20 @@ function closeDialog() {
 </script>
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-delete"
     :width="lgAndUp ? '45vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="justify-center pa-2 align-center" no-gutters>
+      <v-row
+        class="justify-center pa-2 align-center"
+        no-gutters
+      >
         <span class="mr-1">Deleting platform binding</span>
         <common-platform-icon
-          class="mx-2"
           :key="slugToDelete"
+          class="mx-2"
           :slug="slugToDelete"
         />
         <span>[</span>
@@ -63,9 +66,20 @@ function closeDialog() {
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             class="bg-terciary text-romm-red"
             @click="deleteVersionPlatform"

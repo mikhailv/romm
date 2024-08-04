@@ -21,7 +21,11 @@ const roms = storeRoms();
     "
   >
     <v-list-item-title class="d-flex">
-      <v-icon icon="mdi-delete" color="red" class="mr-2" />
+      <v-icon
+        icon="mdi-delete"
+        color="red"
+        class="mr-2"
+      />
       Delete collection
     </v-list-item-title>
   </v-list-item>

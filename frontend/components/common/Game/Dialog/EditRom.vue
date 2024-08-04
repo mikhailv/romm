@@ -114,15 +114,26 @@ function closeDialog() {
 <template>
   <common-r-dialog
     v-if="rom"
-    @close="closeDialog"
     v-model="show"
     icon="mdi-pencil-box"
     :width="lgAndUp ? '65vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="align-center pa-2" no-gutters>
-        <v-col cols="12" md="8" lg="8" xl="9">
-          <v-row class="pa-2" no-gutters>
+      <v-row
+        class="align-center pa-2"
+        no-gutters
+      >
+        <v-col
+          cols="12"
+          md="8"
+          lg="8"
+          xl="9"
+        >
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-text-field
                 v-model="rom.name"
@@ -135,7 +146,10 @@ function closeDialog() {
               />
             </v-col>
           </v-row>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-text-field
                 v-model="rom.file_name"
@@ -152,7 +166,10 @@ function closeDialog() {
               />
             </v-col>
           </v-row>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-textarea
                 v-model="rom.summary"
@@ -167,11 +184,21 @@ function closeDialog() {
           </v-row>
         </v-col>
         <v-col>
-          <v-row class="pa-2 justify-center" no-gutters>
+          <v-row
+            class="pa-2 justify-center"
+            no-gutters
+          >
             <v-col class="cover">
-              <common-game-card :rom="rom" :src="imagePreviewUrl">
+              <common-game-card
+                :rom="rom"
+                :src="imagePreviewUrl"
+              >
                 <template #append-inner-right>
-                  <v-btn-group rounded="0" divided density="compact">
+                  <v-btn-group
+                    rounded="0"
+                    divided
+                    density="compact"
+                  >
                     <v-btn
                       :disabled="
                         !heartbeat.value.METADATA_SOURCES?.STEAMGRIDDB_ENABLED
@@ -185,14 +212,18 @@ function closeDialog() {
                         )
                       "
                     >
-                      <v-icon size="large">mdi-image-search-outline</v-icon>
+                      <v-icon size="large">
+                        mdi-image-search-outline
+                      </v-icon>
                     </v-btn>
                     <v-btn
                       size="small"
                       class="translucent-dark"
                       @click="triggerFileInput"
                     >
-                      <v-icon size="large">mdi-pencil</v-icon>
+                      <v-icon size="large">
+                        mdi-pencil
+                      </v-icon>
                       <v-file-input
                         id="file-input"
                         v-model="rom.artwork"
@@ -207,9 +238,12 @@ function closeDialog() {
                       class="translucent-dark"
                       @click="removeArtwork"
                     >
-                      <v-icon size="large" class="text-romm-red"
-                        >mdi-delete</v-icon
+                      <v-icon
+                        size="large"
+                        class="text-romm-red"
                       >
+                        mdi-delete
+                      </v-icon>
                     </v-btn>
                   </v-btn-group>
                 </template>
@@ -220,10 +254,24 @@ function closeDialog() {
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center mt-4 mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
-          <v-btn class="text-romm-green bg-terciary" @click="updateRom">
+      <v-row
+        class="justify-center mt-4 mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            class="text-romm-green bg-terciary"
+            @click="updateRom"
+          >
             Apply
           </v-btn>
         </v-btn-group>

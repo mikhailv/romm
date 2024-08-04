@@ -73,6 +73,8 @@ onMounted(() => {
 
 <template>
   <v-data-table
+    v-model="selectedSaves"
+    v-model:page="page"
     :items="rom.user_saves"
     :width="mdAndUp ? '60vw' : '95vw'"
     :items-per-page="itemsPerPage"
@@ -80,12 +82,13 @@ onMounted(() => {
     :headers="HEADERS"
     return-object
     class="bg-secondary"
-    v-model="selectedSaves"
-    v-model:page="page"
     show-select
   >
     <template #header.actions>
-      <v-btn-group divided density="compact">
+      <v-btn-group
+        divided
+        density="compact"
+      >
         <v-btn
           class="bg-secondary"
           size="small"
@@ -109,13 +112,13 @@ onMounted(() => {
           }"
           :disabled="!selectedSaves.length"
           :variant="selectedSaves.length > 0 ? 'flat' : 'plain'"
+          size="small"
           @click="
             emitter?.emit('showDeleteSavesDialog', {
               rom: props.rom,
               saves: selectedSaves,
             })
           "
-          size="small"
         >
           <v-icon>mdi-delete</v-icon>
         </v-btn>
@@ -127,23 +130,38 @@ onMounted(() => {
       </td>
     </template>
     <template #item.emulator="{ item }">
-      <v-chip size="x-small" color="orange" label>{{ item.emulator }} </v-chip>
+      <v-chip
+        size="x-small"
+        color="orange"
+        label
+      >
+        {{ item.emulator }}
+      </v-chip>
     </template>
     <template #item.updated_at="{ item }">
-      <v-chip size="x-small" label>
+      <v-chip
+        size="x-small"
+        label
+      >
         {{ formatTimestamp(item.updated_at) }}
       </v-chip>
     </template>
     <template #item.file_size_bytes="{ item }">
-      <v-chip size="x-small" label
-        >{{ formatBytes(item.file_size_bytes) }}
+      <v-chip
+        size="x-small"
+        label
+      >
+        {{ formatBytes(item.file_size_bytes) }}
       </v-chip>
     </template>
-    <template #no-data
-      ><span>No saves found for {{ rom.name }}</span></template
-    >
+    <template #no-data>
+      <span>No saves found for {{ rom.name }}</span>
+    </template>
     <template #item.actions="{ item }">
-      <v-btn-group divided density="compact">
+      <v-btn-group
+        divided
+        density="compact"
+      >
         <v-btn
           class="bg-secondary"
           :href="item.download_path"
@@ -162,17 +180,27 @@ onMounted(() => {
             })
           "
         >
-          <v-icon class="text-romm-red">mdi-delete</v-icon>
+          <v-icon class="text-romm-red">
+            mdi-delete
+          </v-icon>
         </v-btn>
       </v-btn-group>
     </template>
     <template #bottom>
       <v-divider />
-      <v-row no-gutters class="pa-1 align-center justify-center">
-        <v-col cols="8" sm="9" md="10" class="px-3">
+      <v-row
+        no-gutters
+        class="pa-1 align-center justify-center"
+      >
+        <v-col
+          cols="8"
+          sm="9"
+          md="10"
+          class="px-3"
+        >
           <v-pagination
-            :show-first-last-page="!xs"
             v-model="page"
+            :show-first-last-page="!xs"
             rounded="0"
             active-color="romm-accent-1"
             :length="pageCount"

@@ -1,5 +1,5 @@
 import type { MessageResponse, UserSchema } from "@/__generated__";
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 import type { User } from "@/stores/users";
 
 export const userApi = api;

@@ -36,7 +36,10 @@ function toggleTheme() {
 </script>
 
 <template>
-  <common-r-section icon="mdi-brush-variant" title="Theme">
+  <common-r-section
+    icon="mdi-brush-variant"
+    title="Theme"
+  >
     <template #content>
       <v-item-group
         v-model="selectedTheme"
@@ -45,11 +48,11 @@ function toggleTheme() {
       >
         <v-row no-gutters>
           <v-col
+            v-for="theme in themeOptions"
             cols="4"
             sm="3"
             md="2"
             class="pa-2"
-            v-for="theme in themeOptions"
           >
             <settings-theme-option
               :key="theme.name"

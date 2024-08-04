@@ -79,15 +79,24 @@ function closeDialog() {
 <template>
   <common-r-dialog
     v-if="user"
-    @close="closeDialog"
     v-model="show"
     icon="mdi-pencil-box"
     :width="lgAndUp ? '45vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="align-center pa-2" no-gutters>
-        <v-col cols="12" sm="8">
-          <v-row class="pa-2" no-gutters>
+      <v-row
+        class="align-center pa-2"
+        no-gutters
+      >
+        <v-col
+          cols="12"
+          sm="8"
+        >
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-text-field
                 v-model="user.username"
@@ -100,7 +109,10 @@ function closeDialog() {
               />
             </v-col>
           </v-row>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-text-field
                 v-model="user.password"
@@ -113,7 +125,10 @@ function closeDialog() {
               />
             </v-col>
           </v-row>
-          <v-row class="pa-2" no-gutters>
+          <v-row
+            class="pa-2"
+            no-gutters
+          >
             <v-col>
               <v-select
                 v-model="user.role"
@@ -127,17 +142,27 @@ function closeDialog() {
             </v-col>
           </v-row>
         </v-col>
-        <v-col cols="12" sm="4">
-          <v-row class="pa-2 justify-center" no-gutters>
+        <v-col
+          cols="12"
+          sm="4"
+        >
+          <v-row
+            class="pa-2 justify-center"
+            no-gutters
+          >
             <v-hover v-slot="{ isHovering, props }">
-              <v-avatar size="190" class="ml-4" v-bind="props">
+              <v-avatar
+                size="190"
+                class="ml-4"
+                v-bind="props"
+              >
                 <v-img
                   :src="
                     imagePreviewUrl
                       ? imagePreviewUrl
                       : user.avatar_path
-                      ? `/assets/${user.avatar_path}?ts=${user.updated_at}`
-                      : defaultAvatarPath
+                        ? `/assets/${user.avatar_path}?ts=${user.updated_at}`
+                        : defaultAvatarPath
                   "
                 >
                   <v-fade-transition>
@@ -168,9 +193,20 @@ function closeDialog() {
       </v-row>
     </template>
     <template #append>
-      <v-row class="justify-center mb-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+      <v-row
+        class="justify-center mb-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             :variant="!user.username ? 'plain' : 'flat'"
             :disabled="!user.username"

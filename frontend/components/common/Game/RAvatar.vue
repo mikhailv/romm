@@ -7,14 +7,17 @@ const theme = useTheme();
 </script>
 
 <template>
-  <v-avatar :rounded="0" :size="size">
+  <v-avatar
+    :rounded="0"
+    :size="size"
+  >
     <v-img
       :src="
         !rom.igdb_id && !rom.moby_id && !rom.has_cover
           ? `/images/default/cover/small_${theme.global.name.value}_unmatched.png`
           : rom.has_cover
-          ? `/images/resources/${rom.path_cover_s}?ts=${rom.updated_at}`
-          : `/images/default/cover/small_${theme.global.name.value}_missing_cover.png`
+            ? `/images/resources/${rom.path_cover_s}?ts=${rom.updated_at}`
+            : `/images/default/cover/small_${theme.global.name.value}_missing_cover.png`
       "
     />
   </v-avatar>

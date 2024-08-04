@@ -1,5 +1,5 @@
 import type { SaveSchema, UploadedSavesResponse } from "@/__generated__";
-import { api } from "@/plugins/api.client.ts";
+import { api } from "@/plugins/api.client";
 import type { DetailedRom } from "@/stores/roms";
 
 export const saveApi = api;

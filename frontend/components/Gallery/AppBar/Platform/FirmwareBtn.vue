@@ -23,6 +23,8 @@ const { activeFirmwareDrawer } = storeToRefs(galleryViewStore);
         v-bind="props"
         icon="mdi-memory"
         :color="activeFirmwareDrawer ? 'romm-accent-1' : ''"
-        @click="galleryViewStore.switchActiveFirmwareDrawer()" /></template
-  ></v-tooltip>
+        @click="galleryViewStore.switchActiveFirmwareDrawer()"
+      />
+    </template>
+  </v-tooltip>
 </template>

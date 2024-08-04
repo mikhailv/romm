@@ -94,13 +94,21 @@ async function stopScan() {
 </script>
 
 <template>
-  <v-row class="align-center pt-4 px-4" no-gutters>
+  <v-row
+    class="align-center pt-4 px-4"
+    no-gutters
+  >
     <!-- Platform selector -->
-    <v-col cols="12" md="5" lg="6" class="px-1">
+    <v-col
+      cols="12"
+      md="5"
+      lg="6"
+      class="px-1"
+    >
       <v-select
+        v-model="platformsToScan"
         :menu-props="{ maxHeight: 650 }"
         prepend-inner-icon="mdi-controller"
-        v-model="platformsToScan"
         label="Platforms"
         item-title="name"
         :items="platforms.all"
@@ -127,7 +135,11 @@ async function stopScan() {
               />
             </template>
             <template #append>
-              <v-chip class="ml-2" size="x-small" label>
+              <v-chip
+                class="ml-2"
+                size="x-small"
+                label
+              >
                 {{ item.raw.rom_count }}
               </v-chip>
             </template>
@@ -148,10 +160,16 @@ async function stopScan() {
     </v-col>
 
     <!-- Source options -->
-    <v-col class="px-1" cols="12" md="5" lg="4" :class="{ 'mt-3': smAndDown }">
+    <v-col
+      class="px-1"
+      cols="12"
+      md="5"
+      lg="4"
+      :class="{ 'mt-3': smAndDown }"
+    >
       <v-select
-        prepend-inner-icon="mdi-database-search"
         v-model="metadataSources"
+        prepend-inner-icon="mdi-database-search"
         label="Metadata sources"
         item-title="name"
         :items="metadataOptions"
@@ -171,7 +189,10 @@ async function stopScan() {
             :disabled="item.raw.disabled"
           >
             <template #prepend>
-              <v-avatar size="25" rounded="1">
+              <v-avatar
+                size="25"
+                rounded="1"
+              >
                 <v-img :src="item.raw.logo_path" />
               </v-avatar>
             </template>
@@ -179,7 +200,11 @@ async function stopScan() {
         </template>
         <template #chip="{ item }">
           <v-chip>
-            <v-avatar class="mr-2" size="15" rounded="1">
+            <v-avatar
+              class="mr-2"
+              size="15"
+              rounded="1"
+            >
               <v-img
                 :src="`/images/scrappers/${item.raw.name
                   .slice(0, 4)
@@ -192,10 +217,15 @@ async function stopScan() {
       </v-select>
     </v-col>
     <!-- Scan options -->
-    <v-col class="px-1" cols="12" md="2" :class="{ 'mt-3': smAndDown }">
+    <v-col
+      class="px-1"
+      cols="12"
+      md="2"
+      :class="{ 'mt-3': smAndDown }"
+    >
       <v-select
-        prepend-inner-icon="mdi-magnify-scan"
         v-model="scanType"
+        prepend-inner-icon="mdi-magnify-scan"
         hide-details
         density="comfortable"
         variant="outlined"
@@ -203,7 +233,10 @@ async function stopScan() {
         :items="scanOptions"
       >
         <template #item="{ props, item }">
-          <v-list-item v-bind="props" :subtitle="item.raw.subtitle" />
+          <v-list-item
+            v-bind="props"
+            :subtitle="item.raw.subtitle"
+          />
         </template>
       </v-select>
     </v-col>
@@ -227,15 +260,15 @@ async function stopScan() {
           :color="
             scanning || metadataSources.length == 0 ? '' : 'romm-accent-1'
           "
-          >mdi-magnify-scan</v-icon
         >
+          mdi-magnify-scan
+        </v-icon>
       </template>
       <span
         :class="{
           'text-romm-accent-1': !(scanning || metadataSources.length == 0),
         }"
-        >Scan</span
-      >
+      >Scan</span>
       <template #loader>
         <v-progress-circular
           color="romm-accent-1"
@@ -253,7 +286,9 @@ async function stopScan() {
       @click="stopScan()"
     >
       <template #prepend>
-        <v-icon :color="scanning ? 'red' : ''">mdi-alert-octagon</v-icon>
+        <v-icon :color="scanning ? 'red' : ''">
+          mdi-alert-octagon
+        </v-icon>
       </template>
       <span :class="{ 'text-romm-red': scanning }">Abort</span>
     </v-btn>
@@ -273,8 +308,7 @@ async function stopScan() {
     class="mt-3 justify-center"
   >
     <v-list-item class="text-caption text-yellow py-0">
-      <v-icon>mdi-alert</v-icon
-      ><span class="ml-2">Please select at least one metadata source.</span>
+      <v-icon>mdi-alert</v-icon><span class="ml-2">Please select at least one metadata source.</span>
     </v-list-item>
   </v-row>
 
@@ -306,8 +340,14 @@ async function stopScan() {
           <v-expansion-panel-title>
             <v-list-item class="pa-0">
               <template #prepend>
-                <v-avatar :rounded="0" size="40">
-                  <common-platform-icon :key="platform.slug" :slug="platform.slug" />
+                <v-avatar
+                  :rounded="0"
+                  size="40"
+                >
+                  <common-platform-icon
+                    :key="platform.slug"
+                    :slug="platform.slug"
+                  />
                 </v-avatar>
               </template>
               {{ platform.name }}
@@ -317,8 +357,9 @@ async function stopScan() {
                   color="romm-accent-1"
                   size="x-small"
                   label
-                  >{{ platform.roms.length }}</v-chip
                 >
+                  {{ platform.roms.length }}
+                </v-chip>
               </template>
             </v-list-item>
           </v-expansion-panel-title>
@@ -335,9 +376,11 @@ async function stopScan() {
               <v-row no-gutters>
                 <span
                   :class="{ 'text-romm-red': !rom.igdb_id && !rom.moby_id }"
-                  >{{ rom.name }}</span
-                >
-                <span v-if="!rom.igdb_id && !rom.moby_id" class="ml-1">❌</span>
+                >{{ rom.name }}</span>
+                <span
+                  v-if="!rom.igdb_id && !rom.moby_id"
+                  class="ml-1"
+                >❌</span>
               </v-row>
               <v-row no-gutters>
                 <v-col class="text-romm-accent-1">
@@ -363,8 +406,15 @@ async function stopScan() {
     :elevation="0"
     height="40"
     class="text-caption align-center"
-    ><v-chip variant="outlined" color="terciary" class="px-1">
-      <v-icon class="text-white"> mdi-information </v-icon>
+  >
+    <v-chip
+      variant="outlined"
+      color="terciary"
+      class="px-1"
+    >
+      <v-icon class="text-white">
+        mdi-information
+      </v-icon>
       <v-chip
         v-if="scanningPlatforms.length > 0"
         color="romm-accent-1"
@@ -372,12 +422,12 @@ async function stopScan() {
         size="small"
         class="ml-1 my-1"
       >
-        <v-icon left>mdi-controller</v-icon>
+        <v-icon left>
+          mdi-controller
+        </v-icon>
         <span>&nbsp;Platforms: {{ scanningPlatforms.length }} scanned</span>
         <span v-if="!xs">, with {{ scanStats.added_platforms }} new</span>
-        <span v-if="!xs"
-          >&nbsp;and {{ scanStats.metadata_platforms }} identified</span
-        >
+        <span v-if="!xs">&nbsp;and {{ scanStats.metadata_platforms }} identified</span>
       </v-chip>
       <v-chip
         v-if="scanningPlatforms.length > 0"
@@ -386,12 +436,12 @@ async function stopScan() {
         text-color="white"
         class="ml-1 my-1"
       >
-        <v-icon left> mdi-disc </v-icon>
+        <v-icon left>
+          mdi-disc
+        </v-icon>
         <span>&nbsp; Roms: {{ scanStats.scanned_roms }} scanned</span>
         <span v-if="!xs">, with {{ scanStats.added_roms }} new</span>
-        <span v-if="!xs"
-          >&nbsp;and {{ scanStats.metadata_roms }} identified</span
-        >
+        <span v-if="!xs">&nbsp;and {{ scanStats.metadata_roms }} identified</span>
       </v-chip>
     </v-chip>
   </v-bottom-navigation>

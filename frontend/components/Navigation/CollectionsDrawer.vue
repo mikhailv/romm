@@ -23,10 +23,10 @@ function clear() {
 </script>
 <template>
   <v-navigation-drawer
+    v-model="activeCollectionsDrawer"
     :location="smAndDown ? 'top' : 'left'"
     mobile
     width="400"
-    v-model="activeCollectionsDrawer"
     class="bg-terciary"
   >
     <template #prepend>
@@ -35,15 +35,19 @@ function clear() {
         prepend-inner-icon="mdi-filter-outline"
         clearable
         hide-details
-        @click:clear="clear"
-        @update:model-value=""
         single-line
         label="Search collection"
         variant="solo-filled"
         rounded="0"
-      ></v-text-field>
+        @click:clear="clear"
+        @update:model-value=""
+      />
     </template>
-    <v-list lines="two" rounded="0" class="pa-0">
+    <v-list
+      lines="two"
+      rounded="0"
+      class="pa-0"
+    >
       <common-collection-list-item
         v-for="collection in filteredCollections"
         :collection="collection"
@@ -51,15 +55,16 @@ function clear() {
     </v-list>
     <template #append>
       <v-btn
-        @click="addCollection()"
         variant="tonal"
         color="romm-accent-1"
         prepend-icon="mdi-plus"
         size="large"
         rounded="0"
         block
-        >Add Collection</v-btn
+        @click="addCollection()"
       >
+        Add Collection
+      </v-btn>
     </template>
   </v-navigation-drawer>
 </template>

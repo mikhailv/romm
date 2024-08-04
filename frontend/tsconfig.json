@@ -15,7 +15,7 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["/*"]
+      "@/*": ["./*"]
     },
     "types": ["@nuxt/types", "./types/pinia.d.ts"],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]

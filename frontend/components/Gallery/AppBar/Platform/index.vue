@@ -6,7 +6,11 @@ const auth = storeAuth();
 </script>
 
 <template>
-  <v-app-bar id="gallery-app-bar" elevation="0" density="compact">
+  <v-app-bar
+    id="gallery-app-bar"
+    elevation="0"
+    density="compact"
+  >
     <gallery-app-bar-platform-firmware-btn />
     <gallery-app-bar-common-filter-btn />
     <gallery-app-bar-common-filter-text-field />

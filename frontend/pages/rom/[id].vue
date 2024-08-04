@@ -113,11 +113,18 @@ watch(
       >
         <common-game-card
           :key="currentRom.updated_at"
-          :pointerOnHover="false"
+          :pointer-on-hover="false"
           :rom="currentRom"
         />
-        <action-bar class="mt-2" :rom="currentRom" />
-        <related-games v-if="mdAndUp" class="mt-3" :rom="currentRom" />
+        <action-bar
+          class="mt-2"
+          :rom="currentRom"
+        />
+        <related-games
+          v-if="mdAndUp"
+          class="mt-3"
+          :rom="currentRom"
+        />
       </v-col>
 
       <v-col
@@ -136,7 +143,10 @@ watch(
             'justify-center': smAndDown,
           }"
         >
-          <title-info :rom="currentRom" :platform="platform" />
+          <title-info
+            :rom="currentRom"
+            :platform="platform"
+          />
         </div>
         <v-row
           :class="{
@@ -144,16 +154,40 @@ watch(
           }"
           no-gutters
         >
-          <v-tabs v-model="tab" slider-color="romm-accent-1" rounded="0">
-            <v-tab value="details" rounded="0"> Details </v-tab>
-            <v-tab value="saves" rounded="0"> Saves </v-tab>
-            <v-tab value="states" rounded="0"> States </v-tab>
-            <v-tab value="notes" rounded="0"> Notes </v-tab>
+          <v-tabs
+            v-model="tab"
+            slider-color="romm-accent-1"
+            rounded="0"
+          >
+            <v-tab
+              value="details"
+              rounded="0"
+            >
+              Details
+            </v-tab>
+            <v-tab
+              value="saves"
+              rounded="0"
+            >
+              Saves
+            </v-tab>
+            <v-tab
+              value="states"
+              rounded="0"
+            >
+              States
+            </v-tab>
+            <v-tab
+              value="notes"
+              rounded="0"
+            >
+              Notes
+            </v-tab>
             <v-tab
               v-if="
                 mdAndDown &&
-                ((currentRom.igdb_metadata?.expansions ?? []).length > 0 ||
-                  (currentRom.igdb_metadata?.dlcs ?? []).length > 0)
+                  ((currentRom.igdb_metadata?.expansions ?? []).length > 0 ||
+                    (currentRom.igdb_metadata?.dlcs ?? []).length > 0)
               "
               value="additionalcontent"
               rounded="0"
@@ -165,9 +199,9 @@ watch(
             <v-tab
               v-if="
                 smAndDown &&
-                ((currentRom.igdb_metadata?.remakes ?? []).length > 0 ||
-                  (currentRom.igdb_metadata?.remasters ?? []).length > 0 ||
-                  (currentRom.igdb_metadata?.expanded_games ?? []).length > 0)
+                  ((currentRom.igdb_metadata?.remakes ?? []).length > 0 ||
+                    (currentRom.igdb_metadata?.remasters ?? []).length > 0 ||
+                    (currentRom.igdb_metadata?.expanded_games ?? []).length > 0)
               "
               value="relatedgames"
               rounded="0"
@@ -176,13 +210,26 @@ watch(
             </v-tab>
           </v-tabs>
         </v-row>
-        <v-row no-gutters class="mb-4">
+        <v-row
+          no-gutters
+          class="mb-4"
+        >
           <v-col cols="12">
-            <v-window disabled v-model="tab" class="py-2">
+            <v-window
+              v-model="tab"
+              disabled
+              class="py-2"
+            >
               <v-window-item value="details">
-                <v-row no-gutters :class="{ 'mx-2': mdAndUp }">
+                <v-row
+                  no-gutters
+                  :class="{ 'mx-2': mdAndUp }"
+                >
                   <v-col>
-                    <file-info :rom="currentRom" :platform="platform" />
+                    <file-info
+                      :rom="currentRom"
+                      :platform="platform"
+                    />
                     <game-info :rom="currentRom" />
                   </v-col>
                 </v-row>
@@ -199,8 +246,8 @@ watch(
               <v-window-item
                 v-if="
                   mdAndDown &&
-                  (currentRom.igdb_metadata?.expansions ||
-                    currentRom.igdb_metadata?.dlcs)
+                    (currentRom.igdb_metadata?.expansions ||
+                      currentRom.igdb_metadata?.dlcs)
                 "
                 value="additionalcontent"
               >
@@ -213,9 +260,9 @@ watch(
               <v-window-item
                 v-if="
                   smAndDown &&
-                  (currentRom.igdb_metadata?.remakes ||
-                    currentRom.igdb_metadata?.remasters ||
-                    currentRom.igdb_metadata?.expanded_games)
+                    (currentRom.igdb_metadata?.remakes ||
+                      currentRom.igdb_metadata?.remasters ||
+                      currentRom.igdb_metadata?.expanded_games)
                 "
                 value="relatedgames"
               >

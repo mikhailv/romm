@@ -60,13 +60,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-row v-if="rom" class="align-center justify-center scroll" no-gutters>
+  <v-row
+    v-if="rom"
+    class="align-center justify-center scroll"
+    no-gutters
+  >
     <v-col
       v-if="gameRunning"
+      id="game-wrapper"
       cols="12"
       md="8"
       xl="10"
-      id="game-wrapper"
       class="bg-primary"
       rounded
     >
@@ -85,7 +89,10 @@ onMounted(async () => {
       :md="!gameRunning ? 8 : 4"
       :xl="!gameRunning ? 6 : 2"
     >
-      <v-row class="px-3 mt-6" no-gutters>
+      <v-row
+        class="px-3 mt-6"
+        no-gutters
+      >
         <v-col>
           <v-img
             class="mx-auto"
@@ -97,20 +104,22 @@ onMounted(async () => {
             <template #prepend>
               <r-avatar :rom="rom" />
             </template>
-            <v-row no-gutters
-              ><v-col>{{ rom.name }}</v-col></v-row
-            >
-            <v-row no-gutters
-              ><v-col class="text-romm-accent-1">{{
-                rom.file_name
-              }}</v-col></v-row
-            >
+            <v-row no-gutters>
+              <v-col>{{ rom.name }}</v-col>
+            </v-row>
+            <v-row no-gutters>
+              <v-col class="text-romm-accent-1">
+                {{
+                  rom.file_name
+                }}
+              </v-col>
+            </v-row>
           </v-list-item>
           <v-divider class="my-4" />
           <v-select
             v-if="supportedCores.length > 1"
-            :disabled="gameRunning"
             v-model="coreRef"
+            :disabled="gameRunning"
             class="my-1"
             rounded="0"
             hide-details
@@ -158,16 +167,34 @@ onMounted(async () => {
             "
           >
             <template #selection="{ item }">
-              <v-list-item class="py-4" :title="item.value.file_name ?? ''">
+              <v-list-item
+                class="py-4"
+                :title="item.value.file_name ?? ''"
+              >
                 <template #append>
-                  <v-chip size="x-small" class="ml-1" color="orange" label>{{
-                    item.value.emulator
-                  }}</v-chip>
-                  <v-chip size="x-small" class="ml-1" label>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    color="orange"
+                    label
+                  >
+                    {{
+                      item.value.emulator
+                    }}
+                  </v-chip>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    label
+                  >
                     {{ formatTimestamp(item.value.updated_at) }}
                   </v-chip>
-                  <v-chip size="x-small" class="ml-1" label
-                    >{{ formatBytes(item.value.file_size_bytes) }}
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    label
+                  >
+                    {{ formatBytes(item.value.file_size_bytes) }}
                   </v-chip>
                 </template>
               </v-list-item>
@@ -179,14 +206,29 @@ onMounted(async () => {
                 :title="item.value.file_name ?? ''"
               >
                 <template #append>
-                  <v-chip size="x-small" class="ml-1" color="orange" label>{{
-                    item.value.emulator
-                  }}</v-chip>
-                  <v-chip size="x-small" class="ml-1" label>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    color="orange"
+                    label
+                  >
+                    {{
+                      item.value.emulator
+                    }}
+                  </v-chip>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    label
+                  >
                     {{ formatTimestamp(item.value.updated_at) }}
                   </v-chip>
-                  <v-chip size="x-small" class="ml-1" label
-                    >{{ formatBytes(item.value.file_size_bytes) }}
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    label
+                  >
+                    {{ formatBytes(item.value.file_size_bytes) }}
                   </v-chip>
                 </template>
               </v-list-item>
@@ -210,17 +252,35 @@ onMounted(async () => {
             "
           >
             <template #selection="{ item }">
-              <v-list-item class="pa-0" :title="item.value.file_name ?? ''">
+              <v-list-item
+                class="pa-0"
+                :title="item.value.file_name ?? ''"
+              >
                 <template #append>
-                  <v-chip size="x-small" class="ml-1" color="orange" label>{{
-                    item.value.emulator
-                  }}</v-chip>
-                  <v-chip size="x-small" class="ml-1" label
-                  >{{ formatBytes(item.value.file_size_bytes) }}
-                </v-chip>
-                <v-chip size="small" class="ml-1" label>
-                  {{ formatTimestamp(item.value.updated_at) }}
-                </v-chip>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    color="orange"
+                    label
+                  >
+                    {{
+                      item.value.emulator
+                    }}
+                  </v-chip>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    label
+                  >
+                    {{ formatBytes(item.value.file_size_bytes) }}
+                  </v-chip>
+                  <v-chip
+                    size="small"
+                    class="ml-1"
+                    label
+                  >
+                    {{ formatTimestamp(item.value.updated_at) }}
+                  </v-chip>
                 </template>
               </v-list-item>
             </template>
@@ -231,15 +291,30 @@ onMounted(async () => {
                 :title="item.value.file_name ?? ''"
               >
                 <template #append>
-                  <v-chip size="x-small" class="ml-1" color="orange" label>{{
-                    item.value.emulator
-                  }}</v-chip>
-                  <v-chip size="x-small" class="ml-1" label
-                  >{{ formatBytes(item.value.file_size_bytes) }}
-                </v-chip>
-                <v-chip size="small" class="ml-1" label>
-                  {{ formatTimestamp(item.value.updated_at) }}
-                </v-chip>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    color="orange"
+                    label
+                  >
+                    {{
+                      item.value.emulator
+                    }}
+                  </v-chip>
+                  <v-chip
+                    size="x-small"
+                    class="ml-1"
+                    label
+                  >
+                    {{ formatBytes(item.value.file_size_bytes) }}
+                  </v-chip>
+                  <v-chip
+                    size="small"
+                    class="ml-1"
+                    label
+                  >
+                    {{ formatTimestamp(item.value.updated_at) }}
+                  </v-chip>
                 </template>
               </v-list-item>
             </template>
@@ -259,26 +334,34 @@ onMounted(async () => {
           /> -->
         </v-col>
       </v-row>
-      <v-row class="px-3 py-3 text-center" no-gutters>
+      <v-row
+        class="px-3 py-3 text-center"
+        no-gutters
+      >
         <v-col>
           <v-divider class="my-4" />
-          <v-row class="align-center" no-gutters>
+          <v-row
+            class="align-center"
+            no-gutters
+          >
             <v-col>
               <v-btn
                 block
                 size="large"
                 rounded="0"
-                @click="onFullScreenChange"
                 :disabled="gameRunning"
                 :variant="fullScreenOnPlay ? 'flat' : 'outlined'"
                 :color="fullScreenOnPlay ? 'romm-accent-1' : ''"
-                ><v-icon class="mr-1">{{
-                  fullScreenOnPlay
-                    ? "mdi-checkbox-outline"
-                    : "mdi-checkbox-blank-outline"
-                }}</v-icon
-                >Full screen</v-btn
+                @click="onFullScreenChange"
               >
+                <v-icon class="mr-1">
+                  {{
+                    fullScreenOnPlay
+                      ? "mdi-checkbox-outline"
+                      : "mdi-checkbox-blank-outline"
+                  }}
+                </v-icon>Full screen
+              </v-btn>
             </v-col>
             <v-col
               cols="12"
@@ -294,7 +377,8 @@ onMounted(async () => {
                 size="large"
                 prepend-icon="mdi-play"
                 @click="onPlay()"
-                >Play
+              >
+                Play
               </v-btn>
             </v-col>
           </v-row>
@@ -306,7 +390,8 @@ onMounted(async () => {
             size="large"
             prepend-icon="mdi-refresh"
             @click="$router.go(0)"
-            >Reset session
+          >
+            Reset session
           </v-btn>
           <v-btn
             class="mt-4"
@@ -321,7 +406,8 @@ onMounted(async () => {
                 params: { id: rom?.id },
               })
             "
-            >Back to game details
+          >
+            Back to game details
           </v-btn>
           <v-btn
             class="mt-4"
@@ -336,7 +422,8 @@ onMounted(async () => {
                 params: { id: rom?.platform_id },
               })
             "
-            >Back to gallery
+          >
+            Back to gallery
           </v-btn>
         </v-col>
       </v-row>

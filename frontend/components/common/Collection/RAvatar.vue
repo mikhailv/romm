@@ -9,21 +9,23 @@ const theme = useTheme();
 </script>
 
 <template>
-  <v-avatar :rounded="0" :size="size">
+  <v-avatar
+    :rounded="0"
+    :size="size"
+  >
     <v-img
       :src="
         collection.has_cover
           ? `/images/resources/${collection.path_cover_s}?ts=${collection.updated_at}`
           : collection.name?.toLowerCase() == 'favourites'
-          ? `/images/default/cover/small_${theme.global.name.value}_fav.png`
-          : `/images/default/cover/small_${theme.global.name.value}_collection.png`
+            ? `/images/default/cover/small_${theme.global.name.value}_fav.png`
+            : `/images/default/cover/small_${theme.global.name.value}_collection.png`
       "
     >
       <template #error>
         <v-img
           :src="`/images/default/cover/big_${theme.global.name.value}_collection.png`"
-        >
-        </v-img>
+        />
       </template>
     </v-img>
   </v-avatar>

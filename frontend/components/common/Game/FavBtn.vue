@@ -85,14 +85,17 @@ async function switchFromFavourites() {
 
 <template>
   <v-btn
-    @click.stop="switchFromFavourites"
     class="translucent text-shadow"
     rouded="0"
     size="x-small"
     variant="text"
     icon
-    ><v-icon color="romm-accent-1">{{
-      collectionsStore.isFav(rom) ? "mdi-star" : "mdi-star-outline"
-    }}</v-icon></v-btn
+    @click.stop="switchFromFavourites"
   >
+    <v-icon color="romm-accent-1">
+      {{
+        collectionsStore.isFav(rom) ? "mdi-star" : "mdi-star-outline"
+      }}
+    </v-icon>
+  </v-btn>
 </template>

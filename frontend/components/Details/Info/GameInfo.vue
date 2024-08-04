@@ -13,13 +13,20 @@ const show = ref(false);
   <v-row no-gutters>
     <v-col>
       <v-divider class="mx-2 my-4" />
-      <template v-for="filter in galleryFilter.filters" :key="filter">
+      <template
+        v-for="filter in galleryFilter.filters"
+        :key="filter"
+      >
         <v-row
           v-if="rom[filter].length > 0"
           class="align-center my-3"
           no-gutters
         >
-          <v-col cols="3" xl="2" class="text-capitalize">
+          <v-col
+            cols="3"
+            xl="2"
+            class="text-capitalize"
+          >
             <span>{{ filter }}</span>
           </v-col>
           <v-col>
@@ -70,8 +77,7 @@ const show = ref(false);
                 :src="screenshot_url"
                 class="pointer"
                 @click="show = true"
-              >
-              </v-carousel-item>
+              />
               <template #next="{ props }">
                 <v-btn
                   icon="mdi-chevron-right"
@@ -83,11 +89,19 @@ const show = ref(false);
             <v-dialog v-model="show">
               <v-list-item>
                 <template #append>
-                  <v-btn @click="show = false" icon variant="flat" size="large"
-                    ><v-icon class="text-white text-shadow" size="25"
-                      >mdi-close</v-icon
-                    ></v-btn
+                  <v-btn
+                    icon
+                    variant="flat"
+                    size="large"
+                    @click="show = false"
                   >
+                    <v-icon
+                      class="text-white text-shadow"
+                      size="25"
+                    >
+                      mdi-close
+                    </v-icon>
+                  </v-btn>
                 </template>
               </v-list-item>
               <v-carousel
@@ -99,17 +113,16 @@ const show = ref(false);
               >
                 <template #prev="{ props }">
                   <v-btn
-                    @click="props.onClick"
                     icon="mdi-chevron-left"
                     class="translucent-dark"
+                    @click="props.onClick"
                   />
                 </template>
                 <v-carousel-item
                   v-for="screenshot_url in rom.merged_screenshots"
                   :key="screenshot_url"
                   :src="screenshot_url"
-                >
-                </v-carousel-item>
+                />
                 <template #next="{ props }">
                   <v-btn
                     icon="mdi-chevron-right"
@@ -120,6 +133,8 @@ const show = ref(false);
               </v-carousel>
             </v-dialog>
           </v-col>
-        </v-row> </template></v-col
-  ></v-row>
+        </v-row>
+      </template>
+    </v-col>
+  </v-row>
 </template>

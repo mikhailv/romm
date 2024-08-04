@@ -14,18 +14,22 @@ defineProps<{ collection: Collection }>();
     <template #prepend>
       <common-collection-r-avatar :collection="collection" />
     </template>
-    <v-row no-gutters
-      ><v-col
-        ><span class="text-body-1">{{ collection.name }}</span></v-col
-      ></v-row
-    >
+    <v-row no-gutters>
+      <v-col>
+        <span class="text-body-1">{{ collection.name }}</span>
+      </v-col>
+    </v-row>
     <v-row no-gutters>
       <v-col>
         <span class="text-caption text-grey">{{ collection.description }}</span>
       </v-col>
     </v-row>
     <template #append>
-      <v-chip class="ml-2" size="x-small" label>
+      <v-chip
+        class="ml-2"
+        size="x-small"
+        label
+      >
         {{ collection.rom_count }}
       </v-chip>
     </template>

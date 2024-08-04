@@ -59,20 +59,27 @@ watch(itemsPerPage, async () => {
 </script>
 
 <template>
-  <v-navigation-drawer v-model="activeFirmwareDrawer" mobile location="bottom">
+  <v-navigation-drawer
+    v-model="activeFirmwareDrawer"
+    mobile
+    location="bottom"
+  >
     <v-data-table
+      v-model="selectedFirmware"
+      v-model:page="page"
       :items="currentPlatform?.firmware ?? []"
       :width="mdAndUp ? '60vw' : '95vw'"
       :items-per-page="itemsPerPage"
       :items-per-page-options="PER_PAGE_OPTIONS"
       :headers="HEADERS"
-      v-model="selectedFirmware"
-      v-model:page="page"
       return-object
       show-select
     >
       <template #header.actions>
-        <v-btn-group divided density="compact">
+        <v-btn-group
+          divided
+          density="compact"
+        >
           <v-btn
             v-if="auth.scopes.includes('platforms.write')"
             size="small"
@@ -109,11 +116,19 @@ watch(itemsPerPage, async () => {
               <span>{{ item.file_name }}</span>
             </v-col>
           </v-row>
-          <v-row v-if="!mdAndUp" no-gutters>
+          <v-row
+            v-if="!mdAndUp"
+            no-gutters
+          >
             <v-col>
-              <v-chip size="x-small" label>{{
-                formatBytes(item.file_size_bytes)
-              }}</v-chip>
+              <v-chip
+                size="x-small"
+                label
+              >
+                {{
+                  formatBytes(item.file_size_bytes)
+                }}
+              </v-chip>
               <v-chip
                 color="blue"
                 size="x-small"
@@ -130,17 +145,28 @@ watch(itemsPerPage, async () => {
                 class="text-romm-green"
                 :class="{ 'ml-1': !xs }"
                 title="Passed file size, SHA1 and MD5 checksum checks"
-                ><span>Verified</span>
+              >
+                <span>Verified</span>
               </v-chip>
             </v-col>
           </v-row>
-          <template> </template>
+          <template />
           <template #append>
             <template v-if="mdAndUp">
-              <v-chip size="x-small" label>{{
-                formatBytes(item.file_size_bytes)
-              }}</v-chip>
-              <v-chip class="ml-1" color="blue" size="x-small" label>
+              <v-chip
+                size="x-small"
+                label
+              >
+                {{
+                  formatBytes(item.file_size_bytes)
+                }}
+              </v-chip>
+              <v-chip
+                class="ml-1"
+                color="blue"
+                size="x-small"
+                label
+              >
                 <span class="text-truncate">{{ item.md5_hash }}</span>
               </v-chip>
               <v-chip
@@ -150,19 +176,21 @@ watch(itemsPerPage, async () => {
                 size="x-small"
                 class="text-romm-green ml-1"
                 title="Passed file size, SHA1 and MD5 checksum checks"
-                ><span>Verified</span>
+              >
+                <span>Verified</span>
               </v-chip>
             </template>
           </template>
         </v-list-item>
       </template>
-      <template #no-data
-        ><span
-          >No firmware found for {{ currentPlatform?.name }}</span
-        ></template
-      >
+      <template #no-data>
+        <span>No firmware found for {{ currentPlatform?.name }}</span>
+      </template>
       <template #item.actions="{ item }">
-        <v-btn-group divided density="compact">
+        <v-btn-group
+          divided
+          density="compact"
+        >
           <v-btn
             :href="`/api/firmware/${item.id}/content/${item.file_name}`"
             download
@@ -175,17 +203,27 @@ watch(itemsPerPage, async () => {
             size="small"
             @click="emitter?.emit('showDeleteFirmwareDialog', [item])"
           >
-            <v-icon class="text-romm-red">mdi-delete</v-icon>
+            <v-icon class="text-romm-red">
+              mdi-delete
+            </v-icon>
           </v-btn>
         </v-btn-group>
       </template>
       <template #bottom>
         <v-divider />
-        <v-row no-gutters class="pa-1 align-center justify-center">
-          <v-col cols="8" sm="9" md="10" class="px-3">
+        <v-row
+          no-gutters
+          class="pa-1 align-center justify-center"
+        >
+          <v-col
+            cols="8"
+            sm="9"
+            md="10"
+            class="px-3"
+          >
             <v-pagination
-              :show-first-last-page="!xs"
               v-model="page"
+              :show-first-last-page="!xs"
               rounded="0"
               active-color="romm-accent-1"
               :length="pageCount"

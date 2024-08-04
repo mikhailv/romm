@@ -100,15 +100,18 @@ watch(itemsPerPage, async () => {
 
 <template>
   <common-r-dialog
-    @close="closeDialog"
     v-model="show"
     icon="mdi-memory"
     empty-state-type="firmware"
     scroll-content
     :width="mdAndUp ? '50vw' : '95vw'"
+    @close="closeDialog"
   >
     <template #content>
-      <v-row class="align-center" no-gutters>
+      <v-row
+        class="align-center"
+        no-gutters
+      >
         <v-file-input
           id="file-input"
           v-model="filesToUpload"
@@ -120,44 +123,68 @@ watch(itemsPerPage, async () => {
         />
         <v-data-table
           v-if="filesToUpload.length > 0"
+          v-model:page="page"
           :item-value="(item) => item.name"
           :items="filesToUpload"
           :width="mdAndUp ? '60vw' : '95vw'"
           :items-per-page="itemsPerPage"
           :items-per-page-options="PER_PAGE_OPTIONS"
           :headers="HEADERS"
-          v-model:page="page"
           hide-default-header
         >
           <template #item.name="{ item }">
             <v-list-item class="px-0">
-              <v-row no-gutters
-                ><v-col>{{ item.name }}</v-col></v-row
+              <v-row no-gutters>
+                <v-col>{{ item.name }}</v-col>
+              </v-row>
+              <v-row
+                v-if="xs"
+                no-gutters
               >
-              <v-row v-if="xs" no-gutters>
                 <v-col>
-                  <v-chip class="ml-2" size="x-small" label>{{
-                    formatBytes(item.size)
-                  }}</v-chip>
+                  <v-chip
+                    class="ml-2"
+                    size="x-small"
+                    label
+                  >
+                    {{
+                      formatBytes(item.size)
+                    }}
+                  </v-chip>
                 </v-col>
               </v-row>
               <template #append>
-                <v-chip v-if="!xs" class="ml-2" size="x-small" label>{{
-                  formatBytes(item.size)
-                }}</v-chip>
+                <v-chip
+                  v-if="!xs"
+                  class="ml-2"
+                  size="x-small"
+                  label
+                >
+                  {{
+                    formatBytes(item.size)
+                  }}
+                </v-chip>
               </template>
             </v-list-item>
           </template>
           <template #item.actions="{ item }">
-            <v-btn-group divided density="compact">
+            <v-btn-group
+              divided
+              density="compact"
+            >
               <v-btn @click="removeFileFromFileInput(item.name)">
-                <v-icon class="text-romm-red"> mdi-close </v-icon>
+                <v-icon class="text-romm-red">
+                  mdi-close
+                </v-icon>
               </v-btn>
             </v-btn-group>
           </template>
           <template #bottom>
             <v-divider />
-            <v-row no-gutters class="pt-2 align-center justify-center">
+            <v-row
+              no-gutters
+              class="pt-2 align-center justify-center"
+            >
               <v-col class="px-6">
                 <v-pagination
                   v-model="page"
@@ -167,7 +194,11 @@ watch(itemsPerPage, async () => {
                   :length="pageCount"
                 />
               </v-col>
-              <v-col cols="5" sm="3" xl="2">
+              <v-col
+                cols="5"
+                sm="3"
+                xl="2"
+              >
                 <v-select
                   v-model="itemsPerPage"
                   class="pa-2"
@@ -185,9 +216,20 @@ watch(itemsPerPage, async () => {
     </template>
 
     <template #append>
-      <v-row class="justify-center my-2" no-gutters>
-        <v-btn-group divided density="compact">
-          <v-btn class="bg-terciary" @click="closeDialog"> Cancel </v-btn>
+      <v-row
+        class="justify-center my-2"
+        no-gutters
+      >
+        <v-btn-group
+          divided
+          density="compact"
+        >
+          <v-btn
+            class="bg-terciary"
+            @click="closeDialog"
+          >
+            Cancel
+          </v-btn>
           <v-btn
             class="bg-terciary text-romm-green"
             :disabled="filesToUpload.length == 0 || !currentPlatform"

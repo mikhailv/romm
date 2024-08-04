@@ -20,15 +20,14 @@ function setFavourites() {
     :color="filterFavourites ? 'romm-accent-1' : 'romm-gray'"
     @click="setFavourites()"
   >
-    <v-icon :color="filterFavourites ? 'romm-accent-1' : 'romm-white'"
-      >mdi-star</v-icon
-    ><span
+    <v-icon :color="filterFavourites ? 'romm-accent-1' : 'romm-white'">
+      mdi-star
+    </v-icon><span
       class="ml-2"
       :class="{
         'text-romm-white': !filterFavourites,
         'text-romm-accent-1': filterFavourites,
       }"
-      >Filter favourites</span
-    ></v-btn
-  >
+    >Filter favourites</span>
+  </v-btn>
 </template>

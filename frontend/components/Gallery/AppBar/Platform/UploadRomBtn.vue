@@ -20,7 +20,10 @@ const route = useRoute();
     "
   >
     <v-list-item-title class="d-flex">
-      <v-icon icon="mdi-upload" class="mr-2" />Upload roms
+      <v-icon
+        icon="mdi-upload"
+        class="mr-2"
+      />Upload roms
     </v-list-item-title>
   </v-list-item>
 </template>

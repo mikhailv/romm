@@ -9,7 +9,10 @@ const heartbeat = storeHeartbeat();
 
   <slot />
 
-  <div id="version" class="position-absolute">
+  <div
+    id="version"
+    class="position-absolute"
+  >
     <span class="text-white">{{ heartbeat.value.VERSION }}</span>
   </div>
 </template>
