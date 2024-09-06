@@ -4,19 +4,18 @@ import hashlib
 import os
 import re
 import shutil
-import tarfile
-import zipfile
 from collections.abc import Iterator
 from pathlib import Path
+from tarfile import ReadError
+from tarfile import open as open_tarfile
 from typing import Any, Final, TypedDict
 
-import magic
-import py7zr
-import zipfile_deflate64  # trunk-ignore(ruff/F401): Patches zipfile to support deflate64 compression
 from config import LIBRARY_BASE_PATH
 from config.config_manager import config_manager as cm
 from exceptions.fs_exceptions import RomAlreadyExistsException, RomsNotFoundException
+from magic import Magic
 from models.rom import RomFile
+from py7zr import SevenZipFile
 from py7zr.exceptions import (
     Bad7zFile,
     DecompressionError,
@@ -25,6 +24,10 @@ from py7zr.exceptions import (
 )
 from utils.filesystem import iter_directories, iter_files
 from utils.hashing import crc32_to_hex
+from zipfile_deflate64 import (  # Patches zipfile to support deflate64 compression
+    BadZipFile,
+    ZipFile,
+)
 
 from .base_handler import (
     LANGUAGES_BY_SHORTCODE,
@@ -63,7 +66,7 @@ class FSRom(TypedDict):
 
 
 def is_compressed_file(file_path: str) -> bool:
-    mime = magic.Magic(mime=True)
+    mime = Magic(mime=True)
     file_type = mime.from_file(file_path)
 
     return file_type in COMPRESSED_MIME_TYPES or file_path.endswith(
@@ -79,19 +82,19 @@ def read_basic_file(file_path: Path) -> Iterator[bytes]:
 
 def read_zip_file(file_path: Path) -> Iterator[bytes]:
     try:
-        with zipfile.ZipFile(file_path, "r") as z:
+        with ZipFile(file_path, "r") as z:
             for file in z.namelist():
                 with z.open(file, "r") as f:
                     while chunk := f.read(FILE_READ_CHUNK_SIZE):
                         yield chunk
-    except zipfile.BadZipFile:
+    except BadZipFile:
         for chunk in read_basic_file(file_path):
             yield chunk
 
 
 def read_tar_file(file_path: Path, mode: str = "r") -> Iterator[bytes]:
     try:
-        with tarfile.open(file_path, mode) as f:
+        with open_tarfile(file_path, mode) as f:
             for member in f.getmembers():
                 # Ignore metadata files created by macOS
                 if member.name.startswith("._"):
@@ -100,7 +103,7 @@ def read_tar_file(file_path: Path, mode: str = "r") -> Iterator[bytes]:
                 with f.extractfile(member) as ef:  # type: ignore
                     while chunk := ef.read(FILE_READ_CHUNK_SIZE):
                         yield chunk
-    except tarfile.ReadError:
+    except ReadError:
         for chunk in read_basic_file(file_path):
             yield chunk
 
@@ -111,7 +114,7 @@ def read_gz_file(file_path: Path) -> Iterator[bytes]:
 
 def read_7z_file(file_path: Path) -> Iterator[bytes]:
     try:
-        with py7zr.SevenZipFile(file_path, "r") as f:
+        with SevenZipFile(file_path, "r") as f:
             for _name, bio in f.readall().items():
                 while chunk := bio.read(FILE_READ_CHUNK_SIZE):
                     yield chunk
@@ -225,7 +228,7 @@ class FSRomsHandler(FSHandler):
     def _calculate_rom_hashes(
         self, file_path: Path, crc_c: int, md5_h: Any, sha1_h: Any
     ) -> tuple[int, Any, Any]:
-        mime = magic.Magic(mime=True)
+        mime = Magic(mime=True)
         file_type = mime.from_file(file_path)
         extension = Path(file_path).suffix.lower()
 
