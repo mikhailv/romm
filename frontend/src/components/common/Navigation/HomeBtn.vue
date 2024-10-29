@@ -12,14 +12,20 @@ const navigationStore = storeNavigation();
     style="text-decoration: none; color: inherit"
     :href="homeUrl"
   >
-    <v-hover v-slot="{ isHovering, props: hoverProps }">
-      <romm-iso
-        @click="navigationStore.goHome"
-        v-bind="hoverProps"
-        class="pointer"
-        :class="{ 'border-romm-accent-1': isHovering }"
-        :size="35"
-      />
-    </v-hover>
+    <romm-iso
+      @click="navigationStore.goHome"
+      class="pointer romm-iso"
+      :size="35"
+    />
   </a>
 </template>
+
+<style lang="scss" scoped>
+.romm-iso {
+  transition: filter 0.15s ease-in-out;
+}
+
+.romm-iso:hover {
+  filter: drop-shadow(0px 0px 2px #a452fe);
+}
+</style>
