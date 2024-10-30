@@ -7,7 +7,7 @@ import storeRunningTasks from "@/stores/runningTasks";
 import type { Events } from "@/types/emitter";
 import { convertCronExperssion } from "@/utils";
 import type { Emitter } from "mitt";
-import { computed, inject } from "vue";
+import { computed, inject, ref } from "vue";
 import { useDisplay } from "vuetify";
 
 // Props
@@ -15,6 +15,10 @@ const emitter = inject<Emitter<Events>>("emitter");
 const { smAndDown } = useDisplay();
 const heartbeatStore = storeHeartbeat();
 const runningTasks = storeRunningTasks();
+const visibleIGDBId = ref(false);
+const visibleIGDBSecret = ref(false);
+const visibleMobyKey = ref(false);
+const visibleSGDBKey = ref(false);
 
 const tasks = computed(() => [
   {
@@ -72,77 +76,86 @@ const runAllTasks = async () => {
 <template>
   <r-section icon="mdi-key" title="API Keys">
     <template #content>
-      <v-row no-gutters class="align-center">
-        <v-col cols="12">
-          <v-expansion-panels flat multiple>
-            <v-expansion-panel class="bg-terciary">
-              <template #title>
-                <v-avatar class="mr-1" size="30" rounded="1">
-                  <v-img src="/assets/scrappers/igdb.png"
-                /></v-avatar>
-                <span class="ml-2">IGDB</span>
-              </template>
-              <template #text>
-                <v-row no-gutters>
-                  <v-col cols="12" md="6">
-                    <v-text-field
-                      label="Client ID"
-                      hide-details
-                      variant="outlined"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" md="6">
-                    <v-text-field
-                      label="Client Secret"
-                      hide-details
-                      variant="outlined"
-                      :class="{ 'mt-2': smAndDown, 'ml-2': !smAndDown }"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </template>
-            </v-expansion-panel>
+      <v-row no-gutters class="pa-2 align-center">
+        <v-col cols="12" md="6">
+          <v-text-field
+            label="Client ID"
+            hide-details
+            variant="outlined"
+            :append-inner-icon="visibleIGDBId ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="visibleIGDBId = !visibleIGDBId"
+            :type="visibleIGDBId ? 'text' : 'password'"
+            ><template #prepend-inner
+              ><v-avatar size="30" rounded="1">
+                <v-img src="/assets/scrappers/igdb.png"
+              /></v-avatar>
+              <span class="ml-2 mr-4 text-grey text-caption"
+                >IGDB</span
+              ></template
+            ></v-text-field
+          >
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-text-field
+            label="Client Secret"
+            hide-details
+            variant="outlined"
+            :class="{ 'mt-2': smAndDown, 'ml-2': !smAndDown }"
+            :append-inner-icon="visibleIGDBSecret ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="visibleIGDBSecret = !visibleIGDBSecret"
+            :type="visibleIGDBSecret ? 'text' : 'password'"
+          >
+            <template #prepend-inner
+              ><v-avatar size="30" rounded="1">
+                <v-img src="/assets/scrappers/igdb.png"
+              /></v-avatar>
+              <span class="ml-2 mr-4 text-grey text-caption"
+                >IGDB</span
+              ></template
+            >
+          </v-text-field>
+        </v-col>
+      </v-row>
 
-            <v-expansion-panel class="bg-terciary">
-              <template #title>
-                <v-avatar class="mr-1" size="30" rounded="1">
-                  <v-img src="/assets/scrappers/moby.png"
-                /></v-avatar>
-                <span class="ml-2">Mobygames</span>
-              </template>
-              <template #text>
-                <v-row no-gutters>
-                  <v-col>
-                    <v-text-field
-                      label="API Key"
-                      hide-details
-                      variant="outlined"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </template>
-            </v-expansion-panel>
+      <v-row no-gutters class="pa-2">
+        <v-col>
+          <v-text-field
+            label="API Key"
+            hide-details
+            variant="outlined"
+            :append-inner-icon="visibleMobyKey ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="visibleMobyKey = !visibleMobyKey"
+            :type="visibleMobyKey ? 'text' : 'password'"
+            ><template #prepend-inner
+              ><v-avatar size="30" rounded="1">
+                <v-img src="/assets/scrappers/moby.png"
+              /></v-avatar>
+              <span class="ml-2 mr-4 text-grey text-caption"
+                >Mobygames</span
+              ></template
+            ></v-text-field
+          >
+        </v-col>
+      </v-row>
 
-            <v-expansion-panel class="bg-terciary">
-              <template #title>
-                <v-avatar class="mr-1" size="30" rounded="1">
-                  <v-img src="/assets/scrappers/sgdb.png"
-                /></v-avatar>
-                <span class="ml-2">SteamgridDB</span>
-              </template>
-              <template #text>
-                <v-row no-gutters>
-                  <v-col>
-                    <v-text-field
-                      label="API Key"
-                      hide-details
-                      variant="outlined"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </template>
-            </v-expansion-panel>
-          </v-expansion-panels>
+      <v-row no-gutters class="pa-2">
+        <v-col>
+          <v-text-field
+            label="API Key"
+            hide-details
+            variant="outlined"
+            :append-inner-icon="visibleSGDBKey ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append-inner="visibleSGDBKey = !visibleSGDBKey"
+            :type="visibleSGDBKey ? 'text' : 'password'"
+            ><template #prepend-inner
+              ><v-avatar size="30" rounded="1">
+                <v-img src="/assets/scrappers/sgdb.png"
+              /></v-avatar>
+              <span class="ml-2 mr-4 text-grey text-caption"
+                >SteamgridDB</span
+              ></template
+            ></v-text-field
+          >
         </v-col>
       </v-row>
     </template>

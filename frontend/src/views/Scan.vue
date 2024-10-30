@@ -271,6 +271,7 @@ async function stopScan() {
       Manage
     </v-btn>
   </v-row>
+
   <v-row
     v-if="metadataSources.length == 0"
     no-gutters
