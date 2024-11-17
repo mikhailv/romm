@@ -11,6 +11,7 @@ import type { DetailedRom } from "@/stores/roms";
 const route = useRoute();
 const rom = ref<DetailedRom | null>(null);
 const gameRunning = ref(false);
+const backgroundColor = ref("#0D1117");
 const storedFSOP = localStorage.getItem("fullScreenOnPlay");
 const fullScreenOnPlay = ref(isNull(storedFSOP) ? true : storedFSOP === "true");
 
@@ -36,7 +37,7 @@ function onPlay() {
     player.load({
       allowFullScreen: true,
       autoplay: "on",
-      backgroundColor: "#0D1117",
+      backgroundColor: backgroundColor.value,
       openUrlMode: "confirm",
       publicPath: "/assets/ruffle/",
       url: `/api/roms/${rom.value?.id}/content/${rom.value?.file_name}`,
@@ -126,6 +127,14 @@ onMounted(async () => {
                 }}</v-icon
                 >Full screen</v-btn
               >
+            </v-col>
+            <v-col>
+              <v-row class="align-center justify-center m-0">
+                <v-icon class="position-absolute" style="pointer-events: none"
+                  >mdi-format-color-fill</v-icon
+                >
+                <input type="color" v-model="backgroundColor" />
+              </v-row>
             </v-col>
             <v-col
               cols="12"
